@@ -75,6 +75,20 @@
     localStorage.setItem(ORDERS_KEY, JSON.stringify(data));
   }
 
+  const COLLAPSED_KEY = "homepage_collapsed_cats";
+  
+  function getCollapsedCats() {
+    try {
+      return JSON.parse(localStorage.getItem(COLLAPSED_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCollapsedCats(data) {
+    localStorage.setItem(COLLAPSED_KEY, JSON.stringify(data));
+  }
+
   // ── Build Header (top-left, compact) ──────────────────────
   const header = document.createElement("header");
   header.className = "header";
@@ -88,35 +102,57 @@
   const themeBtn = document.createElement("button");
   themeBtn.className = "theme-toggle";
   themeBtn.setAttribute("aria-label", "Toggle Light/Dark Theme");
-  
+  const themes = ["dark", "light", "read"];
+  const icons = {
+    dark: `<svg class="icon-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+    light: `<svg class="icon-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
+    read: `<svg class="icon-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`
+  };
+
   const savedTheme = localStorage.getItem("homepage_theme") || "dark";
   document.documentElement.setAttribute("data-theme", savedTheme);
 
-  themeBtn.innerHTML = `
-    <span class="theme-toggle__icons">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-    </span>
-    <span class="theme-toggle__knob"></span>
-  `;
+  const isToggleRightRaw = localStorage.getItem("homepage_toggle_right");
+  let isToggleRight = isToggleRightRaw !== null ? isToggleRightRaw === "true" : true;
+
+  if (isToggleRight) themeBtn.classList.add("is-right");
+
+  function getNextTheme(current) {
+    const idx = themes.indexOf(current);
+    return themes[(idx + 1) % themes.length];
+  }
+
+  function renderToggle(currentTheme) {
+    const next = getNextTheme(currentTheme);
+    const currIcon = icons[currentTheme];
+    const nextIcon = icons[next];
+
+    const isRight = themeBtn.classList.contains("is-right");
+    const leftIcon = isRight ? currIcon : nextIcon;
+    const rightIcon = isRight ? nextIcon : currIcon;
+
+    themeBtn.innerHTML = `
+      <span class="theme-toggle__icons">
+        ${leftIcon}
+        ${rightIcon}
+      </span>
+      <span class="theme-toggle__knob"></span>
+    `;
+  }
+
+  renderToggle(savedTheme);
 
   themeBtn.addEventListener("click", () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const newTheme = isDark ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("homepage_theme", newTheme);
+    isToggleRight = !isToggleRight;
+    themeBtn.classList.toggle("is-right", isToggleRight);
+    localStorage.setItem("homepage_toggle_right", isToggleRight);
+
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const next = getNextTheme(current);
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("homepage_theme", next);
+    
+    renderToggle(next);
   });
   
   header.appendChild(themeBtn);
@@ -166,10 +202,36 @@
     section.className = "category";
     section.setAttribute("data-category", catName);
 
+    // Apply collapsed state on load
+    const collapsed = getCollapsedCats();
+    if (collapsed.includes(catName)) {
+      section.classList.add("collapsed");
+    }
+
     const catHeader = document.createElement("div");
     catHeader.className = "category__header";
 
-
+    // Collapse Chevron
+    const chevronBtn = document.createElement("button");
+    chevronBtn.className = "category__chevron";
+    chevronBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    `;
+    chevronBtn.title = "Toggle Category";
+    chevronBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      section.classList.toggle("collapsed");
+      let cols = getCollapsedCats();
+      if (section.classList.contains("collapsed")) {
+        if (!cols.includes(catName)) cols.push(catName);
+      } else {
+        cols = cols.filter(c => c !== catName);
+      }
+      saveCollapsedCats(cols);
+    });
+    catHeader.appendChild(chevronBtn);
 
     const h2 = document.createElement("h2");
     h2.className = "category__name";
