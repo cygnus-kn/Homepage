@@ -246,12 +246,17 @@
     a.draggable = true;
     a.setAttribute("data-link-title", link.title);
     a.setAttribute("data-link-url", link.url);
+    if (link.iconUrl) a.setAttribute("data-link-icon", link.iconUrl);
     a.setAttribute("data-category", categoryName);
     if (isCustom) a.setAttribute("data-custom", "true");
 
-    let hostname = "";
-    try { hostname = new URL(link.url).hostname; } catch (e) {}
-    const logoUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`;
+    let logoUrl = link.iconUrl;
+    if (!logoUrl) {
+      let hostname = "";
+      try { hostname = new URL(link.url).hostname; } catch (e) {}
+      // The V2 API handles substacks and non-standard icons much better
+      logoUrl = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${hostname}&size=128`;
+    }
 
     a.innerHTML = `
       <div class="link-item__box">
@@ -406,6 +411,10 @@
         URL
         <input type="url" class="modal__input" id="modal-url" placeholder="e.g. https://spotify.com" autocomplete="off" />
       </label>
+      <label class="modal__label">
+        Icon URL <span style="font-size: 0.75rem; color: var(--text-muted);">(optional)</span>
+        <input type="url" class="modal__input" id="modal-icon" placeholder="Leave empty for auto-detect" autocomplete="off" />
+      </label>
       <div class="modal__actions">
         <button type="button" class="modal__btn modal__btn--cancel" id="modal-cancel">Cancel</button>
         <button type="button" class="modal__btn modal__btn--save" id="modal-save">Add</button>
@@ -416,6 +425,7 @@
 
   const modalNameInput = document.getElementById("modal-name");
   const modalUrlInput = document.getElementById("modal-url");
+  const modalIconInput = document.getElementById("modal-icon");
   const modalCancelBtn = document.getElementById("modal-cancel");
   const modalSaveBtn = document.getElementById("modal-save");
 
@@ -429,6 +439,7 @@
     currentAddBtn = addBtn;
     modalNameInput.value = "";
     modalUrlInput.value = "";
+    modalIconInput.value = "";
     modalOverlay.classList.add("active");
     // Focus after the overlay transition
     setTimeout(() => modalNameInput.focus(), 100);
@@ -444,9 +455,11 @@
   function saveFromModal() {
     const title = modalNameInput.value.trim();
     const url = modalUrlInput.value.trim();
+    const iconUrl = modalIconInput.value.trim();
     if (!title || !url) return;
 
     const link = { title, url };
+    if (iconUrl) link.iconUrl = iconUrl;
 
     // Save to localStorage
     const data = getCustomLinks();
@@ -521,6 +534,7 @@
     const action = btn.getAttribute("data-action");
     const linkTitle = ctxTarget.getAttribute("data-link-title");
     const linkUrl = ctxTarget.getAttribute("data-link-url");
+    const linkIcon = ctxTarget.getAttribute("data-link-icon") || "";
     const catName = ctxTarget.getAttribute("data-category");
     const isCustom = ctxTarget.hasAttribute("data-custom");
 
@@ -530,13 +544,13 @@
 
     if (action === "edit") {
       // Pre-fill modal for editing — remove old, add new
-      // For simplicity: delete old, open add modal
       deleteLink(ctxTarget, catName, linkTitle, linkUrl, isCustom);
       const grid = ctxTarget.closest(".link-grid");
       const addBtn = grid.querySelector(".add-btn");
       openModal(catName, grid, addBtn);
       modalNameInput.value = linkTitle;
       modalUrlInput.value = linkUrl;
+      modalIconInput.value = linkIcon;
     }
 
     if (action === "delete") {
