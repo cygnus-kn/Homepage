@@ -5,127 +5,61 @@
 // ============================================================
 
 const CONFIG = {
-  // ── Site Info ──────────────────────────────────────────────
   siteTitle: "My Homepage",
-  subtitle: "Quick links to everywhere I need to go",
-
-  // ── Categories & Links ────────────────────────────────────
-  // Each category has a name, icon (emoji), and list of links.
-  // Each link has a title, url, and optional description & icon.
   categories: [
     {
-      name: "Social",
-      icon: "💬",
+      name: "Blogs",
+      icon: "📚",
       links: [
-        {
-          title: "Twitter / X",
-          url: "https://x.com",
-          description: "Posts & threads",
-          icon: "🐦",
-        },
-        {
-          title: "Reddit",
-          url: "https://reddit.com",
-          description: "Communities & discussions",
-          icon: "🤖",
-        },
-        {
-          title: "YouTube",
-          url: "https://youtube.com",
-          description: "Videos & streams",
-          icon: "▶️",
-        },
-        {
-          title: "Discord",
-          url: "https://discord.com",
-          description: "Chat servers",
-          icon: "🎮",
-        },
-      ],
+        { title: "Astral Codex Ten", url: "https://www.astralcodexten.com" },
+        { title: "ACOUP", url: "https://acoup.blog" },
+        { title: "Escaping Flatland", url: "https://www.henrikkarlsson.xyz" },
+        { title: "Numb at the Lodge", url: "https://samkriss.substack.com" },
+        { title: "Maximum Progress", url: "https://www.maximum-progress.com" },
+        { title: "Matt Lakeman", url: "https://mattlakeman.org/" },
+        { title: "not not Talmud", url: "https://notnottalmud.substack.com", iconUrl: "https://substackcdn.com/image/fetch/$s_!nZQz!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F59a1514d-5160-43db-83e1-c1e5dc5de2ee_1280x1280.png" },
+        { title: "The Cochinchine Pensées", url: "https://archyatt.substack.com", iconUrl: "https://substackcdn.com/image/fetch/$s_!tQQh!,w_64,h_64,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F05eebdb4-2c20-4953-b3f2-e2940e767e84_640x640.png" },
+        { title: "Noahpinion", url: "https://www.noahpinion.blog" }
+      ]
     },
     {
-      name: "Dev Tools",
-      icon: "🛠️",
-      links: [
-        {
-          title: "GitHub",
-          url: "https://github.com",
-          description: "Repos & code",
-          icon: "🐙",
-        },
-        {
-          title: "Stack Overflow",
-          url: "https://stackoverflow.com",
-          description: "Q&A for devs",
-          icon: "📚",
-        },
-        {
-          title: "VS Code Web",
-          url: "https://vscode.dev",
-          description: "Editor in browser",
-          icon: "💻",
-        },
-        {
-          title: "MDN Web Docs",
-          url: "https://developer.mozilla.org",
-          description: "Web reference",
-          icon: "📖",
-        },
-      ],
-    },
-    {
-      name: "News & Reading",
+      name: "Magazines",
       icon: "📰",
       links: [
-        {
-          title: "Hacker News",
-          url: "https://news.ycombinator.com",
-          description: "Tech news & links",
-          icon: "🔶",
-        },
-        {
-          title: "The Verge",
-          url: "https://theverge.com",
-          description: "Tech & culture",
-          icon: "🔷",
-        },
-        {
-          title: "Wikipedia",
-          url: "https://wikipedia.org",
-          description: "Encyclopedia",
-          icon: "🌐",
-        },
-      ],
+        { title: "Lesswrong", url: "https://www.lesswrong.com/" },
+        { title: "Clearer Thinking", url: "https://www.clearerthinking.org/" },
+        { title: "Asterisk", url: "https://asteriskmag.com/" },
+        { title: "Nautilus", url: "https://nautil.us/" },
+        { title: "Smithsonian", url: "https://www.smithsonianmag.com/" },
+        { title: "Nature", url: "https://www.nature.com/" },
+        { title: "PsyPost", url: "https://www.psypost.org/" },
+        { title: "Reactor", url: "https://reactormag.com/" },
+        { title: "Physics", url: "https://phys.org/" },
+        { title: "Science", url: "https://www.science.org/" },
+        { title: "Slate", url: "https://slate.com/" },
+        { title: "Bloomberg", url: "https://www.bloomberg.com/" },
+        { title: "The Economist", url: "https://www.economist.com/" },
+        { title: "Dwell", url: "https://www.dwell.com/" }
+      ]
+    },
+    {
+      name: "Youtube (educational)",
+      icon: "▶️",
+      links: [
+        { title: "Asianometry", url: "https://www.youtube.com/@Asianometry", iconUrl: "https://yt3.ggpht.com/t_WHWwjVFb-837gRQ-ExcsjK1q5Z4dZ-mb4I6ItI4aBo3woGH7MkO7RAKf5kiAZUa3148lgNWw=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Howtown", url: "https://www.youtube.com/@Howtown", iconUrl: "https://yt3.ggpht.com/WPr50X5C9Hyvd21TyVKWsfsuaxkuyH-gOErQbuPMmDo-g0urjzsKLF9VDmnaPxzB6_xM_5LNNQ=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "3Blue1Brown", url: "https://www.youtube.com/@3blue1brown", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nFzZFPLxPZRHcE3SSwzdrbuWqfoWYwLAu0_2iO6blQYAU=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Primer", url: "https://www.youtube.com/@PrimerBlobs", iconUrl: "https://yt3.ggpht.com/YicJ3lAVdXC5jI7SA7mnX7pPoULN2Gfgh_S4IgDPDPjLaeTx1vWiQeh-reCty2uWuoVK70K5Lg=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Bobby Broccoli", url: "https://www.youtube.com/@BobbyBroccoli", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lXPV2x_XHUSd5_S93CVpAXUEGEa_b30Wv9KKLcud0dGb8=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Practical Engineering", url: "https://www.youtube.com/@PracticalEngineeringChannel", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_m1Y4p9FzWjJBIhIwbVt6Z1qGKa8eWUTzE3kizORZMFKf4=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "The Plain Bagel", url: "https://www.youtube.com/@ThePlainBagel", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lP44aDeBvzShX0gPVRsL9UYY7_VlGf0CG0I9PDaHib0Vw=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Extra Credits", url: "https://www.youtube.com/@extracredits", iconUrl: "https://yt3.ggpht.com/WUFdolvGD_8Deimk4YBdqETajhYqA2qJEs-K7jzDqqlK4aRJ_XnyJU9PJOBFyzbQrspUsNm-=s88-c-k-c0x00ffffff-no-rj" }
+      ]
     },
     {
       name: "Productivity",
-      icon: "✅",
-      links: [
-        {
-          title: "Google Drive",
-          url: "https://drive.google.com",
-          description: "Files & docs",
-          icon: "📁",
-        },
-        {
-          title: "Notion",
-          url: "https://notion.so",
-          description: "Notes & wikis",
-          icon: "📝",
-        },
-        {
-          title: "Gmail",
-          url: "https://mail.google.com",
-          description: "Email",
-          icon: "✉️",
-        },
-        {
-          title: "Google Calendar",
-          url: "https://calendar.google.com",
-          description: "Schedule",
-          icon: "📅",
-        },
-      ],
-    },
-  ],
+      icon: "⚡",
+      links: []
+    }
+  ]
 };
