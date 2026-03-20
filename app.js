@@ -78,7 +78,48 @@
   // ── Build Header (top-left, compact) ──────────────────────
   const header = document.createElement("header");
   header.className = "header";
-  header.innerHTML = `<h1 class="header__title">${CONFIG.siteTitle}</h1>`;
+  
+  const title = document.createElement("h1");
+  title.className = "header__title";
+  title.textContent = CONFIG.siteTitle;
+  header.appendChild(title);
+
+  // Theme Toggle Button
+  const themeBtn = document.createElement("button");
+  themeBtn.className = "theme-toggle";
+  themeBtn.setAttribute("aria-label", "Toggle Light/Dark Theme");
+  
+  const savedTheme = localStorage.getItem("homepage_theme") || "dark";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+
+  themeBtn.innerHTML = `
+    <span class="theme-toggle__icons">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </span>
+    <span class="theme-toggle__knob"></span>
+  `;
+
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const newTheme = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("homepage_theme", newTheme);
+  });
+  
+  header.appendChild(themeBtn);
   app.appendChild(header);
 
   // ── Build Categories ──────────────────────────────────────
@@ -92,8 +133,6 @@
   const renamedCats = getRenamedCats();
   const categoryOrders = getCategoryOrders();
   const allCards = [];
-
-  let draggedItem = null;
 
   // ── Helper: make a category name editable ─────────────────
   function makeEditable(h2El, originalName) {
@@ -191,29 +230,24 @@
       allCards.push({ el: a });
     });
 
-    // Drag-and-drop support container
-    grid.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      if (!draggedItem || draggedItem.closest(".link-grid") !== grid) return;
-
-      const target = e.target.closest(".link-item:not(.dragging)");
-      if (e.target.closest(".add-btn")) return; // don't drop over add btn
-
-      if (target) {
-        const rect = target.getBoundingClientRect();
-        const isAfter = (e.clientX - rect.left) > (rect.width / 2);
-        if (isAfter) {
-          grid.insertBefore(draggedItem, target.nextSibling);
-        } else {
-          grid.insertBefore(draggedItem, target);
+    // Initialize SortableJS for smooth drag-and-drop animations
+    if (typeof Sortable !== "undefined") {
+      Sortable.create(grid, {
+        animation: 150,
+        easing: "cubic-bezier(1, 0, 0, 1)",
+        filter: ".add-btn", // Prevent dragging the Add button
+        draggable: ".link-item", // Only links are draggable
+        ghostClass: "sortable-ghost", // Class added to the dragged item shadow
+        onEnd: function () {
+          // Save new order
+          const items = grid.querySelectorAll(".link-item");
+          const urls = Array.from(items).map(item => item.getAttribute("data-link-url"));
+          const orders = getCategoryOrders();
+          orders[catName] = urls;
+          saveCategoryOrders(orders);
         }
-      } else {
-        const addBtn = grid.querySelector(".add-btn");
-        if (addBtn && e.target === grid) {
-          grid.insertBefore(draggedItem, addBtn);
-        }
-      }
-    });
+      });
+    }
 
     // "+" Add button
     const addBtn = document.createElement("button");
@@ -264,28 +298,6 @@
       </div>
       <div class="link-item__title">${link.title}</div>
     `;
-
-    // Drag-and-drop item events
-    a.addEventListener("dragstart", (e) => {
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/plain", link.url);
-      draggedItem = a;
-      setTimeout(() => a.classList.add("dragging"), 0);
-    });
-
-    a.addEventListener("dragend", () => {
-      a.classList.remove("dragging");
-      draggedItem = null;
-      const grid = a.closest(".link-grid");
-      if (grid) {
-        // Save new order
-        const items = grid.querySelectorAll(".link-item");
-        const urls = Array.from(items).map(item => item.getAttribute("data-link-url"));
-        const orders = getCategoryOrders();
-        orders[categoryName] = urls;
-        saveCategoryOrders(orders);
-      }
-    });
 
     // Right-click context menu
     a.addEventListener("contextmenu", (e) => {
