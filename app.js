@@ -161,25 +161,53 @@
   // ── Build RSS Feed Box ────────────────────────────────────
   function buildRssFeedBox(appEl) {
     const hiddenArticles = JSON.parse(localStorage.getItem('homepage_hidden_articles') || '[]');
-
     const RssSources = [];
-    const blogsCat = (typeof CONFIG !== "undefined" && CONFIG.categories) ? CONFIG.categories.find(c => c.name === "Blogs") : null;
-    
-    // Leverage identical localStorage override logic from app categories framework
-    let blogsLinks = blogsCat ? [...blogsCat.links] : [];
-    const localBlogs = localStorage.getItem("homepage_category_Blogs");
-    if (localBlogs) {
-      blogsLinks = JSON.parse(localBlogs); // local entirely overrides remote config structurally
+    // Synchronize author discovery perfectly with the live layout engine
+    const renamedCats = (function() {
+      try { return JSON.parse(localStorage.getItem('homepage_renamed_cats')) || {}; } catch { return {}; }
+    })();
+    const customCats = (function() {
+      try { return JSON.parse(localStorage.getItem('homepage_custom_cats')) || []; } catch { return []; }
+    })();
+    const deletedLinks = (function() {
+      try { return JSON.parse(localStorage.getItem('homepage_deleted_links')) || []; } catch { return []; }
+    })();
+    const customLinks = (function() {
+      try { return JSON.parse(localStorage.getItem('homepage_custom_links')) || {}; } catch { return {}; }
+    })();
+
+    // Find the category that represents "Blogs" (checking both original and renamed names)
+    let blogsNode = CONFIG.categories.find(c => c.name === "Blogs" || renamedCats[c.name] === "Blogs");
+    if (!blogsNode) {
+      // Fallback: check if a user-created custom category is named/renamed to "Blogs"
+      blogsNode = customCats.find(c => c.name === "Blogs" || renamedCats[c.name] === "Blogs");
     }
-    
-    if (blogsLinks && blogsLinks.length > 0) {
-      blogsLinks.forEach(link => {
-        let fUrl = link.url;
-        if (!fUrl.endsWith('.xml') && !fUrl.includes('rss')) {
-          fUrl = fUrl.endsWith('/') ? fUrl + "feed" : fUrl + "/feed";
-        }
-        RssSources.push({ name: link.title, url: fUrl });
-      });
+
+    if (blogsNode) {
+      const blogsKey = blogsNode.name; // Use the internal key for lookups
+      let blogsLinks = [];
+
+      // 1. Add base links from config if it's a default category
+      if (CONFIG.categories.some(c => c.name === blogsKey)) {
+        (blogsNode.links || []).forEach(link => {
+          const linkId = blogsKey + "||" + link.url;
+          if (!deletedLinks.includes(linkId)) blogsLinks.push(link);
+        });
+      }
+
+      // 2. Add custom links added via the UI
+      const extras = customLinks[blogsKey] || [];
+      extras.forEach(link => blogsLinks.push(link));
+
+      if (blogsLinks.length > 0) {
+        blogsLinks.forEach(link => {
+          let fUrl = link.url;
+          if (!fUrl.endsWith('.xml') && !fUrl.includes('rss')) {
+            fUrl = fUrl.endsWith('/') ? fUrl + "feed" : fUrl + "/feed";
+          }
+          RssSources.push({ name: link.title, url: fUrl });
+        });
+      }
     }
 
     if (RssSources.length === 0) return; // Skip building UI entirely if author map functionally empty
