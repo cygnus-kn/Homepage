@@ -272,6 +272,11 @@ body::before {
   color: inherit;
   cursor: pointer;
   width: 100%;
+  
+  /* Disable iOS preview popup and text-selection for perfect drag & drop */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   /* fade-in setup — activated by JS */
   opacity: 0;
