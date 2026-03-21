@@ -299,6 +299,8 @@
       Sortable.create(grid, {
         animation: 150,
         easing: "cubic-bezier(1, 0, 0, 1)",
+        delay: 300,             // 300ms hold delay before drag starts
+        delayOnTouchOnly: true, // Only apply hold delay on mobile mapping to touch screens
         filter: ".add-btn", // Prevent dragging the Add button
         draggable: ".link-item", // Only links are draggable
         ghostClass: "sortable-ghost", // Class added to the dragged item shadow
