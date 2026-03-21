@@ -423,7 +423,7 @@ body::before {
 /* ── Context Menu (right-click) ─────────────────────────────── */
 .ctx-menu {
   position: fixed;
-  z-index: 2000;
+  z-index: 999999 !important;
   min-width: 180px;
   background: var(--bg-secondary);
   border: 1px solid var(--surface-border);
