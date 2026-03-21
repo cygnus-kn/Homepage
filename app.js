@@ -396,20 +396,56 @@
 
     return a;
   }
-
-  // Render config categories
+  // ── Render All Categories with Ordering Persistence ──────
   const hiddenCats = JSON.parse(localStorage.getItem("homepage_hidden_cats") || "[]");
+  let savedCategoryOrder = JSON.parse(localStorage.getItem("homepage_category_block_orders") || "[]");
+
+  // Collect all available categories
+  const allAvailableCats = [];
   CONFIG.categories.forEach((cat) => {
-    if (hiddenCats.includes(cat.name)) return;
-    const section = buildCategorySection(cat.name, cat.icon, cat.links, false);
-    categoriesContainer.appendChild(section);
+    if (!hiddenCats.includes(cat.name)) {
+      allAvailableCats.push({ name: cat.name, icon: cat.icon, links: cat.links, isCustom: false });
+    }
+  });
+  getCustomCats().forEach((cat) => {
+    allAvailableCats.push({ name: cat.name, icon: cat.icon, links: customLinks[cat.name] || [], isCustom: true });
   });
 
-  // Render custom (user-created) categories from localStorage
-  getCustomCats().forEach((cat) => {
-    const links = customLinks[cat.name] || [];
-    const section = buildCategorySection(cat.name, cat.icon, links, true);
-    categoriesContainer.appendChild(section);
+  // Render them based on saved layout array (defaulting remainder at the bottom)
+  const renderedCatIds = new Set();
+  
+  // 1. Render those present in the saved order array securely
+  savedCategoryOrder.forEach(savedCatName => {
+    const matched = allAvailableCats.find(c => c.name === savedCatName);
+    if (matched) {
+      const section = buildCategorySection(matched.name, matched.icon, matched.links, matched.isCustom);
+      categoriesContainer.appendChild(section);
+      renderedCatIds.add(matched.name);
+    }
+  });
+
+  // 2. Render any brand new/un-ordered ones at the bottom
+  allAvailableCats.forEach((cat) => {
+    if (!renderedCatIds.has(cat.name)) {
+      const section = buildCategorySection(cat.name, cat.icon, cat.links, cat.isCustom);
+      categoriesContainer.appendChild(section);
+    }
+  });
+
+  // ── Initialize Category Drag-and-Drop ─────────────────────
+  new Sortable(categoriesContainer, {
+    group: "homepage-categories",
+    handle: ".category__header", // Users hold the header area to drag
+    animation: 250,
+    delay: 300,
+    delayOnTouchOnly: true,
+    ghostClass: "sortable-ghost",
+    onEnd: () => {
+      // Build an array mapped exclusively to active structural placement
+      const domCats = document.querySelectorAll(".category");
+      const order = Array.from(domCats).map(el => el.getAttribute("data-category"));
+      localStorage.setItem("homepage_category_block_orders", JSON.stringify(order));
+    }
   });
 
   // ── "Add new category" button ─────────────────────────────
@@ -428,15 +464,20 @@
     cats.push({ name: internalName, icon });
     saveCustomCats(cats);
 
-    // Build and insert before the add-category button
+    // Build and append visually exactly at the bottom of the grid
     const section = buildCategorySection(internalName, icon, [], true);
-    categoriesContainer.insertBefore(section, addCatBtn);
+    categoriesContainer.appendChild(section);
+    
+    // Log new structural order securely
+    const domCats = document.querySelectorAll(".category");
+    const order = Array.from(domCats).map(el => el.getAttribute("data-category"));
+    localStorage.setItem("homepage_category_block_orders", JSON.stringify(order));
 
     // Auto-focus the name so user can rename immediately
     const h2 = section.querySelector(".category__name");
     if (h2) {
       h2.focus();
-      // Select all text so user can just type
+      // Select all text natively smoothly
       const range = document.createRange();
       range.selectNodeContents(h2);
       const sel = window.getSelection();
@@ -444,7 +485,8 @@
       sel.addRange(range);
     }
   });
-  categoriesContainer.appendChild(addCatBtn);
+  
+  app.appendChild(addCatBtn); // Append securely detached from the sortable container!
 
   // ── Delete Category ───────────────────────────────────────
   function deleteCategory(sectionEl, catName, isCustomCat) {

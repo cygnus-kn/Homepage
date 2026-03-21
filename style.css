@@ -181,6 +181,17 @@ body::before {
 /* ── Category Section ───────────────────────────────────────── */
 .category {
   margin-bottom: 2.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: box-shadow var(--transition-med), border var(--transition-fast);
+}
+
+.category:hover {
+  box-shadow: var(--shadow-glow);
+  border-color: var(--surface-border-hover);
 }
 
 .category__header {
@@ -190,6 +201,7 @@ body::before {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--surface-border);
+  cursor: grab;
 }
 
 .category__chevron {
