@@ -365,11 +365,34 @@
       <div class="link-item__title">${link.title}</div>
     `;
 
-    // Right-click context menu
+    // Right-click context menu (Desktop)
     a.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       showContextMenu(e.clientX, e.clientY, a);
     });
+
+    // Touch-and-hold for Context Menu (Mobile)
+    let touchTimer;
+    let hasMoved = false;
+
+    a.addEventListener("touchstart", (e) => {
+      hasMoved = false;
+      touchTimer = setTimeout(() => {
+        if (!hasMoved) {
+          // Open menu via touch using coordinates
+          const touch = e.touches[0];
+          showContextMenu(touch.clientX, touch.clientY, a);
+        }
+      }, 600); // 600ms hold triggers the right-clip box
+    }, { passive: true });
+
+    a.addEventListener("touchmove", () => {
+      hasMoved = true;
+      clearTimeout(touchTimer);
+    }, { passive: true });
+
+    a.addEventListener("touchend", () => clearTimeout(touchTimer));
+    a.addEventListener("touchcancel", () => clearTimeout(touchTimer));
 
     return a;
   }
