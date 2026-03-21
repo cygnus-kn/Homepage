@@ -563,8 +563,28 @@ const CONFIG = {
 
   const footer = document.createElement("footer");
   footer.className = "footer";
-  footer.innerHTML = `Edit <strong>config.js</strong> to customize your links without UI`;
+  footer.innerHTML = `
+    <div style="margin-bottom: 0.75rem;">Edit <strong>config.js</strong> to customize your links without UI</div>
+    <a href="#" id="reset-layout-btn" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: underline; cursor: pointer;">Reset Layout to Default</a>
+  `;
   app.appendChild(footer);
+
+  document.getElementById("reset-layout-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    if (confirm("Are you sure you want to discard your browser's local edits and fully restore your layout directly from the master 'config.js' file?")) {
+      const keys = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("homepage_")) keys.push(k);
+      }
+      keys.forEach(k => {
+        if (k !== "homepage_theme" && k !== "homepage_toggle_right") {
+          localStorage.removeItem(k);
+        }
+      });
+      window.location.reload();
+    }
+  });
 
   // ── Staggered Fade-In ─────────────────────────────────────
   requestAnimationFrame(() => {
