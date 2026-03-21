@@ -247,7 +247,9 @@
     delCatBtn.title = "Delete category";
     delCatBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      deleteCategory(section, catName, isCustomCat);
+      if (confirm(`Are you sure you want to delete the "${displayName}" category?`)) {
+        deleteCategory(section, catName, isCustomCat);
+      }
     });
     catHeader.appendChild(delCatBtn);
 
