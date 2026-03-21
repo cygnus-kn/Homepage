@@ -432,6 +432,36 @@ body::before {
   color: var(--accent-1);
 }
 
+/* ── Action Buttons (footer) ────────────────────────────────── */
+.actions-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.action-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.action-btn--reset {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-color: var(--surface-border);
+}
+
+.action-btn--export {
+  background: var(--accent-1);
+  color: #ffffff;
+}
+
 /* ── Context Menu (right-click) ─────────────────────────────── */
 .ctx-menu {
   position: fixed;

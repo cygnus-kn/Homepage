@@ -158,59 +158,97 @@
   header.appendChild(themeBtn);
   app.appendChild(header);
 
-  // ── Build RSS Feed Box ────────────────────────────────────
-  function buildRssFeedBox(appEl) {
-    const hiddenArticles = JSON.parse(localStorage.getItem('homepage_hidden_articles') || '[]');
-    const RssSources = [];
-    // Synchronize author discovery perfectly with the live layout engine
-    const renamedCats = (function() {
-      try { return JSON.parse(localStorage.getItem('homepage_renamed_cats')) || {}; } catch { return {}; }
-    })();
-    const customCats = (function() {
-      try { return JSON.parse(localStorage.getItem('homepage_custom_cats')) || []; } catch { return []; }
-    })();
-    const deletedLinks = (function() {
-      try { return JSON.parse(localStorage.getItem('homepage_deleted_links')) || []; } catch { return []; }
-    })();
-    const customLinks = (function() {
-      try { return JSON.parse(localStorage.getItem('homepage_custom_links')) || {}; } catch { return {}; }
-    })();
+  // ── Utility: relative time display ─────────────────────────
+  function timeAgo(dateString) {
+    const timestamp = new Date(dateString).getTime();
+    if (isNaN(timestamp)) return dateString;
+    const seconds = Math.floor((new Date() - timestamp) / 1000);
+    const intervals = { year: 31536000, month: 2592000, week: 604800, day: 86400, hour: 3600, minute: 60 };
+    for (const [unit, secs] of Object.entries(intervals)) {
+      const interval = Math.floor(seconds / secs);
+      if (interval >= 1) return interval + ' ' + unit + (interval === 1 ? '' : 's') + ' ago';
+    }
+    return "Just now";
+  }
+
+  // ── Collect RSS sources from the "Blogs" category ─────────
+  function collectRssSources() {
+    const renamedCats = getRenamedCats();
+    const customCats = getCustomCats();
+    const deletedLinks = getDeletedLinks();
+    const customLinks = getCustomLinks();
 
     // Find the category that represents "Blogs" (checking both original and renamed names)
     let blogsNode = CONFIG.categories.find(c => c.name === "Blogs" || renamedCats[c.name] === "Blogs");
     if (!blogsNode) {
-      // Fallback: check if a user-created custom category is named/renamed to "Blogs"
       blogsNode = customCats.find(c => c.name === "Blogs" || renamedCats[c.name] === "Blogs");
     }
+    if (!blogsNode) return [];
 
-    if (blogsNode) {
-      const blogsKey = blogsNode.name; // Use the internal key for lookups
-      let blogsLinks = [];
+    const blogsKey = blogsNode.name;
+    let blogsLinks = [];
 
-      // 1. Add base links from config if it's a default category
-      if (CONFIG.categories.some(c => c.name === blogsKey)) {
-        (blogsNode.links || []).forEach(link => {
-          const linkId = blogsKey + "||" + link.url;
-          if (!deletedLinks.includes(linkId)) blogsLinks.push(link);
-        });
-      }
-
-      // 2. Add custom links added via the UI
-      const extras = customLinks[blogsKey] || [];
-      extras.forEach(link => blogsLinks.push(link));
-
-      if (blogsLinks.length > 0) {
-        blogsLinks.forEach(link => {
-          let fUrl = link.url;
-          if (!fUrl.endsWith('.xml') && !fUrl.includes('rss')) {
-            fUrl = fUrl.endsWith('/') ? fUrl + "feed" : fUrl + "/feed";
-          }
-          RssSources.push({ name: link.title, url: fUrl });
-        });
-      }
+    // Add base links from config if it's a default category
+    if (CONFIG.categories.some(c => c.name === blogsKey)) {
+      (blogsNode.links || []).forEach(link => {
+        const linkId = blogsKey + "||" + link.url;
+        if (!deletedLinks.includes(linkId)) blogsLinks.push(link);
+      });
     }
 
-    if (RssSources.length === 0) return; // Skip building UI entirely if author map functionally empty
+    // Add custom links added via the UI
+    const extras = customLinks[blogsKey] || [];
+    extras.forEach(link => blogsLinks.push(link));
+
+    // Convert blog links to RSS feed URLs
+    return blogsLinks.map(link => {
+      let fUrl = link.url;
+      if (!fUrl.endsWith('.xml') && !fUrl.includes('rss')) {
+        fUrl = fUrl.endsWith('/') ? fUrl + "feed" : fUrl + "/feed";
+      }
+      return { name: link.title, url: fUrl };
+    });
+  }
+
+  // ── Create a single feed item row ─────────────────────────
+  function createFeedItem(article, index, hiddenArticles) {
+    let domain = "";
+    try { domain = new URL(article.link).hostname.replace('www.', ''); } catch (e) {}
+
+    const row = document.createElement("div");
+    row.className = "feed-item";
+    row.innerHTML = `
+      <span class="feed-item__number">${index + 1}.</span>
+      <div class="feed-item__main">
+        <div class="feed-item__titleRow">
+          <a href="${article.link}" target="_blank" class="feed-item__title" style="text-decoration: none; color: inherit;">${article.title}</a>
+          <span class="feed-item__domain">(${domain})</span>
+        </div>
+        <div class="feed-item__meta">
+          <span class="feed-item__date">${timeAgo(article.pubDate)}</span>
+          <span style="opacity: 0.5; margin: 0 4px;">•</span>
+          <span style="opacity: 0.5;">by</span>
+          <span class="feed-item__source">${article.blogName}</span>
+        </div>
+      </div>
+      <button class="feed-item__hide" title="Hide this article">✕</button>
+    `;
+    const hideBtn = row.querySelector(".feed-item__hide");
+    hideBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      hiddenArticles.push(article.link);
+      localStorage.setItem('homepage_hidden_articles', JSON.stringify(hiddenArticles));
+      row.remove();
+    });
+    return row;
+  }
+
+  // ── Build RSS Feed Box ────────────────────────────────────
+  function buildRssFeedBox(appEl) {
+    const RssSources = collectRssSources();
+    if (RssSources.length === 0) return;
+
+    const hiddenArticles = JSON.parse(localStorage.getItem('homepage_hidden_articles') || '[]');
 
     const feedBox = document.createElement("div");
     feedBox.className = "feed-box";
@@ -222,18 +260,6 @@
 
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
     const cutoffTime = Date.now() - SEVEN_DAYS_MS;
-
-    function timeAgo(dateString) {
-      const timestamp = new Date(dateString).getTime();
-      if (isNaN(timestamp)) return dateString;
-      const seconds = Math.floor((new Date() - timestamp) / 1000);
-      const intervals = { year: 31536000, month: 2592000, week: 604800, day: 86400, hour: 3600, minute: 60 };
-      for (const [unit, secs] of Object.entries(intervals)) {
-        const interval = Math.floor(seconds / secs);
-        if (interval >= 1) return interval + ' ' + unit + (interval === 1 ? '' : 's') + ' ago';
-      }
-      return "Just now";
-    }
 
     (async function() {
       try {
@@ -266,35 +292,7 @@
         }
 
         newestArticles.forEach((article, index) => {
-          let domain = "";
-          try { domain = new URL(article.link).hostname.replace('www.', ''); } catch (e) {}
-
-          const row = document.createElement("div");
-          row.className = "feed-item";
-          row.innerHTML = `
-            <span class="feed-item__number">${index + 1}.</span>
-            <div class="feed-item__main">
-              <div class="feed-item__titleRow">
-                <a href="${article.link}" target="_blank" class="feed-item__title" style="text-decoration: none; color: inherit;">${article.title}</a>
-                <span class="feed-item__domain">(${domain})</span>
-              </div>
-              <div class="feed-item__meta">
-                <span class="feed-item__date">${timeAgo(article.pubDate)}</span>
-                <span style="opacity: 0.5; margin: 0 4px;">•</span>
-                <span style="opacity: 0.5;">by</span>
-                <span class="feed-item__source">${article.blogName}</span>
-              </div>
-            </div>
-            <button class="feed-item__hide" title="Hide this article">✕</button>
-          `;
-          const hideBtn = row.querySelector(".feed-item__hide");
-          hideBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            hiddenArticles.push(article.link);
-            localStorage.setItem('homepage_hidden_articles', JSON.stringify(hiddenArticles));
-            row.remove();
-          });
-          feedContent.appendChild(row);
+          feedContent.appendChild(createFeedItem(article, index, hiddenArticles));
         });
       } catch(e) {
         feedContent.innerHTML = `<div class="feed-loading">Failed to fetch recent writings.</div>`;
@@ -673,34 +671,14 @@
 
   // ── Footer / Export Config ──────────────────────────────────
   const actionsContainer = document.createElement("div");
-  actionsContainer.style.display = "flex";
-  actionsContainer.style.gap = "8px";
-  actionsContainer.style.justifyContent = "center";
-  actionsContainer.style.marginTop = "2.5rem";
-  actionsContainer.style.marginBottom = "2.5rem";
+  actionsContainer.className = "actions-bar";
   
   const resetBtn = document.createElement("button");
-  resetBtn.style.padding = "6px 16px";
-  resetBtn.style.borderRadius = "4px";
-  resetBtn.style.fontFamily = "var(--font-family)";
-  resetBtn.style.fontSize = "0.85rem";
-  resetBtn.style.background = "var(--surface)";
-  resetBtn.style.color = "var(--text-secondary)";
-  resetBtn.style.fontWeight = "600";
-  resetBtn.style.border = "1px solid var(--surface-border)";
-  resetBtn.style.cursor = "pointer";
+  resetBtn.className = "action-btn action-btn--reset";
   resetBtn.textContent = "♻️ Reset to Default";
 
   const exportBtn = document.createElement("button");
-  exportBtn.style.padding = "6px 16px";
-  exportBtn.style.borderRadius = "4px";
-  exportBtn.style.fontFamily = "var(--font-family)";
-  exportBtn.style.fontSize = "0.85rem";
-  exportBtn.style.background = "var(--accent-1)";
-  exportBtn.style.color = "#ffffff";
-  exportBtn.style.fontWeight = "600";
-  exportBtn.style.border = "1px solid transparent";
-  exportBtn.style.cursor = "pointer";
+  exportBtn.className = "action-btn action-btn--export";
   exportBtn.textContent = "💾 Save Layout";
   
   exportBtn.addEventListener("click", () => {
