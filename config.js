@@ -43,17 +43,18 @@ const CONFIG = {
       ]
     },
     {
-      name: "Youtube (educational)",
-      icon: "▶️",
+      name: "Education",
+      icon: "🎓",
       links: [
-        { title: "Asianometry", url: "https://www.youtube.com/@Asianometry", iconUrl: "https://yt3.ggpht.com/t_WHWwjVFb-837gRQ-ExcsjK1q5Z4dZ-mb4I6ItI4aBo3woGH7MkO7RAKf5kiAZUa3148lgNWw=s88-c-k-c0x00ffffff-no-rj" },
-        { title: "Howtown", url: "https://www.youtube.com/@Howtown", iconUrl: "https://yt3.ggpht.com/WPr50X5C9Hyvd21TyVKWsfsuaxkuyH-gOErQbuPMmDo-g0urjzsKLF9VDmnaPxzB6_xM_5LNNQ=s88-c-k-c0x00ffffff-no-rj" },
-        { title: "3Blue1Brown", url: "https://www.youtube.com/@3blue1brown", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nFzZFPLxPZRHcE3SSwzdrbuWqfoWYwLAu0_2iO6blQYAU=s88-c-k-c0x00ffffff-no-rj" },
-        { title: "Primer", url: "https://www.youtube.com/@PrimerBlobs", iconUrl: "https://yt3.ggpht.com/YicJ3lAVdXC5jI7SA7mnX7pPoULN2Gfgh_S4IgDPDPjLaeTx1vWiQeh-reCty2uWuoVK70K5Lg=s88-c-k-c0x00ffffff-no-rj" },
         { title: "Bobby Broccoli", url: "https://www.youtube.com/@BobbyBroccoli", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lXPV2x_XHUSd5_S93CVpAXUEGEa_b30Wv9KKLcud0dGb8=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "3Blue1Brown", url: "https://www.youtube.com/@3blue1brown", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nFzZFPLxPZRHcE3SSwzdrbuWqfoWYwLAu0_2iO6blQYAU=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Asianometry", url: "https://www.youtube.com/@Asianometry", iconUrl: "https://yt3.ggpht.com/t_WHWwjVFb-837gRQ-ExcsjK1q4aBo3woGH7MkO7RAKf5kiAZUa3148lgNWw=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Primer", url: "https://www.youtube.com/@PrimerBlobs", iconUrl: "https://yt3.ggpht.com/YicJ3lAVdXC5jI7SA7mnX7pPoULN2Gfgh_S4IgDPDPjLaeTx1vWiQeh-reCty2uWuoVK70K5Lg=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "Howtown", url: "https://www.youtube.com/@Howtown", iconUrl: "https://yt3.ggpht.com/WPr50X5C9Hyvd21TyVKWsfsuaxkuyH-gOErQbuPMmDo-g0urjzsKLF9VDmnaPxzB6_xM_5LNNQ=s88-c-k-c0x00ffffff-no-rj" },
         { title: "Practical Engineering", url: "https://www.youtube.com/@PracticalEngineeringChannel", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_m1Y4p9FzWjJBIhIwbVt6Z1qGKa8eWUTzE3kizORZMFKf4=s88-c-k-c0x00ffffff-no-rj" },
         { title: "The Plain Bagel", url: "https://www.youtube.com/@ThePlainBagel", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lP44aDeBvzShX0gPVRsL9UYY7_VlGf0CG0I9PDaHib0Vw=s88-c-k-c0x00ffffff-no-rj" },
-        { title: "Extra Credits", url: "https://www.youtube.com/@extracredits", iconUrl: "https://yt3.ggpht.com/WUFdolvGD_8Deimk4YBdqETajhYqA2qJEs-K7jzDqqlK4aRJ_XnyJU9PJOBFyzbQrspUsNm-=s88-c-k-c0x00ffffff-no-rj" }
+        { title: "Extra Credits", url: "https://www.youtube.com/@extracredits", iconUrl: "https://yt3.ggpht.com/WUFdolvGD_8Deimk4YBdqETajhYqA2qJEs-K7jzDqqlK4aRJ_XnyJU9PJOBFyzbQrspUsNm-=s88-c-k-c0x00ffffff-no-rj" },
+        { title: "JSC - Criminal Psychology", url: "https://www.youtube.com/@JCS", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_kctKVxcu-jhgLMpmgHsv-UFmQku6-a_eNVC9C_RCxlkPw=s88-c-k-c0x00ffffff-no-rj" }
       ]
     },
     {
@@ -72,13 +73,6 @@ const CONFIG = {
         { title: "Company Man", url: "https://www.youtube.com/@companyman114", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_k6haZxIjvv5TbqgDUHY13vLPckV8gGOTfAwvkUxk3JyeY=s88-c-k-c0x00ffffff-no-rj" },
         { title: "Acolytes Of Horror", url: "https://www.youtube.com/@AcolytesOfHorror", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ll3SJJy-Mk0EqKyDuQisKY3nrjgOXDtgNXWNdMpvl7ppI=s88-c-k-c0x00ffffff-no-rj" },
         { title: "hbomberguy", url: "https://www.youtube.com/@hbomberguy", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_mxzfZOQ4VUZ45Hu8oPlkl6xz9OVnHKpn4yKPkNcOVQGcI=s88-c-k-c0x00ffffff-no-rj" }
-      ]
-    },
-    {
-      name: "Education",
-      icon: "🎓",
-      links: [
-        { title: "JSC - Criminal Psychology", url: "https://www.youtube.com/@JCS", iconUrl: "https://yt3.ggpht.com/ytc/AIdro_kctKVxcu-jhgLMpmgHsv-UFmQku6-a_eNVC9C_RCxlkPw=s88-c-k-c0x00ffffff-no-rj" }
       ]
     },
     {
