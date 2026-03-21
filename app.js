@@ -158,6 +158,123 @@
   header.appendChild(themeBtn);
   app.appendChild(header);
 
+  // ── Build RSS Feed Box ────────────────────────────────────
+  function buildRssFeedBox(appEl) {
+    const hiddenArticles = JSON.parse(localStorage.getItem('homepage_hidden_articles') || '[]');
+
+    const RssSources = [];
+    const blogsCat = (typeof CONFIG !== "undefined" && CONFIG.categories) ? CONFIG.categories.find(c => c.name === "Blogs") : null;
+    
+    // Leverage identical localStorage override logic from app categories framework
+    let blogsLinks = blogsCat ? [...blogsCat.links] : [];
+    const localBlogs = localStorage.getItem("homepage_category_Blogs");
+    if (localBlogs) {
+      blogsLinks = JSON.parse(localBlogs); // local entirely overrides remote config structurally
+    }
+    
+    if (blogsLinks && blogsLinks.length > 0) {
+      blogsLinks.forEach(link => {
+        let fUrl = link.url;
+        if (!fUrl.endsWith('.xml') && !fUrl.includes('rss')) {
+          fUrl = fUrl.endsWith('/') ? fUrl + "feed" : fUrl + "/feed";
+        }
+        RssSources.push({ name: link.title, url: fUrl });
+      });
+    }
+
+    if (RssSources.length === 0) return; // Skip building UI entirely if author map functionally empty
+
+    const feedBox = document.createElement("div");
+    feedBox.className = "feed-box";
+    const feedContent = document.createElement("div");
+    feedContent.className = "feed-content";
+    feedContent.innerHTML = `<div class="feed-loading">Loading articles...</div>`;
+    feedBox.appendChild(feedContent);
+    appEl.appendChild(feedBox);
+
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const cutoffTime = Date.now() - SEVEN_DAYS_MS;
+
+    function timeAgo(dateString) {
+      const timestamp = new Date(dateString).getTime();
+      if (isNaN(timestamp)) return dateString;
+      const seconds = Math.floor((new Date() - timestamp) / 1000);
+      const intervals = { year: 31536000, month: 2592000, week: 604800, day: 86400, hour: 3600, minute: 60 };
+      for (const [unit, secs] of Object.entries(intervals)) {
+        const interval = Math.floor(seconds / secs);
+        if (interval >= 1) return interval + ' ' + unit + (interval === 1 ? '' : 's') + ' ago';
+      }
+      return "Just now";
+    }
+
+    (async function() {
+      try {
+        const fetchPromises = RssSources.map(async (source) => {
+          const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`;
+          try {
+            const response = await fetch(proxyUrl);
+            const data = await response.json();
+            if (data.status === "ok") {
+              return data.items
+                .filter(item => new Date(item.pubDate).getTime() >= cutoffTime)
+                .slice(0, 3)
+                .map(item => ({...item, blogName: source.name}));
+            }
+          } catch (e) {}
+          return [];
+        });
+
+        let allArticles = await Promise.all(fetchPromises);
+        allArticles = allArticles.flat();
+        let validArticles = allArticles.filter(item => !hiddenArticles.includes(item.link));
+        validArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+        const newestArticles = validArticles.slice(0, 20);
+        feedContent.innerHTML = "";
+        
+        if (newestArticles.length === 0) {
+          feedContent.innerHTML = `<div class="feed-loading">No recent writings found.</div>`;
+          return;
+        }
+
+        newestArticles.forEach((article, index) => {
+          let domain = "";
+          try { domain = new URL(article.link).hostname.replace('www.', ''); } catch (e) {}
+
+          const row = document.createElement("div");
+          row.className = "feed-item";
+          row.innerHTML = `
+            <span class="feed-item__number">${index + 1}.</span>
+            <div class="feed-item__main">
+              <div class="feed-item__titleRow">
+                <a href="${article.link}" target="_blank" class="feed-item__title" style="text-decoration: none; color: inherit;">${article.title}</a>
+                <span class="feed-item__domain">(${domain})</span>
+              </div>
+              <div class="feed-item__meta">
+                <span class="feed-item__date">${timeAgo(article.pubDate)}</span>
+                <span style="opacity: 0.5; margin: 0 4px;">•</span>
+                <span style="opacity: 0.5;">by</span>
+                <span class="feed-item__source">${article.blogName}</span>
+              </div>
+            </div>
+            <button class="feed-item__hide" title="Hide this article">✕</button>
+          `;
+          const hideBtn = row.querySelector(".feed-item__hide");
+          hideBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            hiddenArticles.push(article.link);
+            localStorage.setItem('homepage_hidden_articles', JSON.stringify(hiddenArticles));
+            row.remove();
+          });
+          feedContent.appendChild(row);
+        });
+      } catch(e) {
+        feedContent.innerHTML = `<div class="feed-loading">Failed to fetch recent writings.</div>`;
+      }
+    })();
+  }
+  buildRssFeedBox(app);
+
   // ── Build Categories ──────────────────────────────────────
   // ── Globals ───────────────────────────────────────────────
   const categoriesContainer = document.createElement("div");

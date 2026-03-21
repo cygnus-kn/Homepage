@@ -630,6 +630,144 @@ body::before {
   display: none !important;
 }
 
+/* ── Recent Writings Feed ─────────────────────────────────────────────────── */
+.feed-box {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0.5rem 1rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+/* ── Custom Scrollbar ── */
+.feed-content::-webkit-scrollbar {
+  width: 6px;
+}
+.feed-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.feed-content::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 4px;
+}
+.feed-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.feed-loading {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  text-decoration: none;
+  background: transparent;
+}
+
+.feed-item__number {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  min-width: 18px;
+  text-align: right;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.feed-item__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed-item__titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.feed-item__title {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.feed-item__title:hover {
+  text-decoration: underline;
+}
+
+.feed-item__domain {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.feed-item__domain:hover {
+  text-decoration: underline;
+}
+
+.feed-item__meta {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.feed-item__source {
+  color: var(--accent-1);
+}
+
+.feed-item__date {
+  opacity: 0.8;
+}
+
+/* ── Hide Article Button ── */
+.feed-item__hide {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; /* push to far right */
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.feed-item:hover .feed-item__hide {
+  opacity: 1;
+}
+
+.feed-item__hide:hover {
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .container {
