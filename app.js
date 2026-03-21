@@ -324,7 +324,6 @@
       <div class="add-btn__box">
         <span class="add-btn__icon">+</span>
       </div>
-      <div class="add-btn__label">Add</div>
     `;
     addBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -528,14 +527,36 @@
   }
 
   // ── Footer / Export Config ──────────────────────────────────
+  const actionsContainer = document.createElement("div");
+  actionsContainer.style.display = "flex";
+  actionsContainer.style.gap = "8px";
+  actionsContainer.style.justifyContent = "center";
+  actionsContainer.style.marginTop = "2.5rem";
+  actionsContainer.style.marginBottom = "2.5rem";
+  
+  const resetBtn = document.createElement("button");
+  resetBtn.style.padding = "6px 16px";
+  resetBtn.style.borderRadius = "4px";
+  resetBtn.style.fontFamily = "var(--font-family)";
+  resetBtn.style.fontSize = "0.85rem";
+  resetBtn.style.background = "var(--surface)";
+  resetBtn.style.color = "var(--text-secondary)";
+  resetBtn.style.fontWeight = "600";
+  resetBtn.style.border = "1px solid var(--surface-border)";
+  resetBtn.style.cursor = "pointer";
+  resetBtn.textContent = "♻️ Reset to Default";
+
   const exportBtn = document.createElement("button");
-  exportBtn.className = "add-category-btn";
-  exportBtn.style.marginTop = "2rem";
-  exportBtn.style.marginBottom = "3rem";
-  exportBtn.style.background = "var(--text-primary)";
-  exportBtn.style.color = "var(--bg-primary)";
-  exportBtn.style.fontWeight = "bold";
-  exportBtn.textContent = "💾 Download Layout to config.js";
+  exportBtn.style.padding = "6px 16px";
+  exportBtn.style.borderRadius = "4px";
+  exportBtn.style.fontFamily = "var(--font-family)";
+  exportBtn.style.fontSize = "0.85rem";
+  exportBtn.style.background = "var(--accent-1)";
+  exportBtn.style.color = "#ffffff";
+  exportBtn.style.fontWeight = "600";
+  exportBtn.style.border = "1px solid transparent";
+  exportBtn.style.cursor = "pointer";
+  exportBtn.textContent = "💾 Save Layout";
   
   exportBtn.addEventListener("click", () => {
     if (!confirm("This will securely construct your entire displayed layout into code and download it as 'config.js'. Do you want to proceed?")) return;
@@ -601,18 +622,7 @@ const CONFIG = {
     setTimeout(() => alert("Success! 'config.js' downloaded.\\n\\nTo finalize:\\n1. Drag the file into your GitHub folder (replacing the old one).\\n2. Commit and Push to GitHub.\\n3. CLEAR your phone's Safari Cache entirely so your browser successfully resets onto the master code!"), 600);
   });
   
-  app.appendChild(exportBtn);
-
-  const footer = document.createElement("footer");
-  footer.className = "footer";
-  footer.innerHTML = `
-    <div style="margin-bottom: 0.75rem;">Edit <strong>config.js</strong> to customize your links without UI</div>
-    <a href="#" id="reset-layout-btn" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: underline; cursor: pointer;">Reset Layout to Default</a>
-  `;
-  app.appendChild(footer);
-
-  document.getElementById("reset-layout-btn").addEventListener("click", (e) => {
-    e.preventDefault();
+  resetBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to discard your browser's local edits and fully restore your layout directly from the master 'config.js' file?")) {
       const keys = [];
       for (let i = 0; i < localStorage.length; i++) {
@@ -627,6 +637,15 @@ const CONFIG = {
       window.location.reload();
     }
   });
+
+  actionsContainer.appendChild(resetBtn);
+  actionsContainer.appendChild(exportBtn);
+  app.appendChild(actionsContainer);
+
+  const footer = document.createElement("footer");
+  footer.className = "footer";
+  footer.innerHTML = `<div>Edit <strong>config.js</strong> to customize your links without UI</div>`;
+  app.appendChild(footer);
 
   // ── Staggered Fade-In ─────────────────────────────────────
   requestAnimationFrame(() => {
