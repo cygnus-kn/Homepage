@@ -321,47 +321,6 @@ const CONFIG = {
                 iconUrl: "https://yt3.ggpht.com/2a95phYISx1m5lmFjKYzOcSYc-53YpSX7lwxLWu8r0WeB4yZ41HyERdmybbJF9B23K6-FAWq8Q=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
-    },
-    {
-        name: "Cinema & TV",
-        icon: "🍿",
-        links: [
-            {
-                title: "Accented Cinema",
-                url: "https://www.youtube.com/@AccentedCinema",
-                iconUrl: "https://yt3.ggpht.com/agIi1DZMbZpoZQ-yweEHwGUFzAQW1tyWP8IF12s-jrqwnZHuJidA5FI21BWcbi0zZgO1ynHd=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "Schaffrillas Productions",
-                url: "https://www.youtube.com/@SchaffrillasProductions",
-                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nUUgl5CPnR7vXcf40M6y-bsNYBOUqMJkZyxm3eh78kvC0=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "The Sin Squad",
-                url: "https://www.youtube.com/@The_Sin_Squad",
-                iconUrl: "https://yt3.ggpht.com/-3lh7aVN1sp4FPTEOgRPPGHd1mtHFjeRKZm-ZI9kr5GKKgd2vhX9J-8N6c8z_16QJq9EEutu=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "schnee",
-                url: "https://www.youtube.com/@schnee1",
-                iconUrl: "https://yt3.ggpht.com/0nmWB8a-J3WSoFXgnr-5RZTKTy6DMwhhSAbPaeFPqimY8_S_hIuKgHHk7soqpHLSJro6DuSCiQ=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "Sloan Stowe",
-                url: "https://www.youtube.com/@SloanStowe",
-                iconUrl: "https://yt3.ggpht.com/wReGfua0kSnIrt8snoqfvqiiwzxQxAKW4ljTPdasCnQzebyK701NwDiliXTs6wFUKv0K0tyfXw=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "captainmidnight",
-                url: "https://www.youtube.com/@captainmidnight",
-                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_k66x-646xTKINzEwR_HB165YmHTxfb0n6af6jVR1Y_yno=s88-c-k-c0x00ffffff-no-rj"
-            },
-            {
-                title: "CZsWorld",
-                url: "https://www.youtube.com/@CZsWorld",
-                iconUrl: "https://yt3.ggpht.com/gbRZyXFSzzPkqY9Bj1y4x_QcpgkfRJsRvz-pCCayj2AW9Af_c9048DXbL5cDC7HgphMhF5GUKmQ=s88-c-k-c0x00ffffff-no-rj"
-            }
-        ]
     }
 ]
 };
