@@ -485,10 +485,85 @@
     }
   }
 
-  // ── Footer ────────────────────────────────────────────────
+  // ── Footer / Export Config ──────────────────────────────────
+  const exportBtn = document.createElement("button");
+  exportBtn.className = "add-category-btn";
+  exportBtn.style.marginTop = "2rem";
+  exportBtn.style.marginBottom = "3rem";
+  exportBtn.style.background = "var(--text-primary)";
+  exportBtn.style.color = "var(--bg-primary)";
+  exportBtn.style.fontWeight = "bold";
+  exportBtn.textContent = "💾 Download Layout to config.js";
+  
+  exportBtn.addEventListener("click", () => {
+    if (!confirm("This will securely construct your entire displayed layout into code and download it as 'config.js'. Do you want to proceed?")) return;
+
+    const exportCats = [];
+    const sections = document.querySelectorAll(".category");
+    
+    const allConfigCats = CONFIG.categories || [];
+    const allCustomCats = getCustomCats();
+
+    sections.forEach((sec) => {
+      const catId = sec.getAttribute("data-category");
+      let icon = "📁";
+      const confCat = allConfigCats.find(c => c.name === catId);
+      if (confCat) icon = confCat.icon || "📁";
+      else {
+        const custCat = allCustomCats.find(c => c.name === catId);
+        if (custCat) icon = custCat.icon || "📁";
+      }
+
+      const displayName = sec.querySelector(".category__name").textContent.trim();
+
+      const links = [];
+      sec.querySelectorAll(".link-item").forEach(a => {
+        const l = {
+          title: a.getAttribute("data-link-title"),
+          url: a.getAttribute("data-link-url")
+        };
+        const iconUrl = a.getAttribute("data-link-icon");
+        if (iconUrl) l.iconUrl = iconUrl;
+        links.push(l);
+      });
+
+      exportCats.push({
+        name: displayName,
+        icon: icon,
+        links: links
+      });
+    });
+
+    const fileContent = `// ============================================================
+//  HOMEPAGE CONFIGURATION
+//  Edit this file to customize your homepage links & settings.
+//  No other files need to be changed!
+// ============================================================
+
+const CONFIG = {
+  siteTitle: ${JSON.stringify(CONFIG.siteTitle)},
+  categories: ${JSON.stringify(exportCats, null, 4).replace(/"([^"]+)":/g, '$1:')}
+};
+`;
+
+    const blob = new Blob([fileContent], { type: "text/javascript" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "config.js";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    setTimeout(() => alert("Success! 'config.js' downloaded.\\n\\nTo finalize:\\n1. Drag the file into your GitHub folder (replacing the old one).\\n2. Commit and Push to GitHub.\\n3. CLEAR your phone's Safari Cache entirely so your browser successfully resets onto the master code!"), 600);
+  });
+  
+  app.appendChild(exportBtn);
+
   const footer = document.createElement("footer");
   footer.className = "footer";
-  footer.innerHTML = `Edit <strong>config.js</strong> to customize your links`;
+  footer.innerHTML = `Edit <strong>config.js</strong> to customize your links without UI`;
   app.appendChild(footer);
 
   // ── Staggered Fade-In ─────────────────────────────────────
