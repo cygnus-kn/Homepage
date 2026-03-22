@@ -386,14 +386,14 @@
       "Video game": `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>`
     };
 
-    if (catIcons[catName] || icon) {
+    if (catIcons[catName]) {
       const iconSpan = document.createElement("span");
       iconSpan.className = "category__icon";
       iconSpan.style.marginRight = "8px";
       iconSpan.style.display = "flex";
       iconSpan.style.alignItems = "center";
       iconSpan.style.color = "var(--text-muted)";
-      iconSpan.innerHTML = catIcons[catName] || `<span style="font-size:1.1rem; filter: saturate(0.5); opacity:0.8;">${icon}</span>`;
+      iconSpan.innerHTML = catIcons[catName];
       catHeader.appendChild(iconSpan);
     }
 
