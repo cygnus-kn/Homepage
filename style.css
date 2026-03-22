@@ -732,6 +732,7 @@ body::before {
   align-items: baseline;
   gap: 6px;
   flex-wrap: wrap;
+  margin-bottom: 1px;
 }
 
 .feed-item__title {
@@ -749,6 +750,8 @@ body::before {
 .feed-item__domain {
   color: var(--text-muted);
   font-size: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.3;
 }
 
 .feed-item__domain:hover {

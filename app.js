@@ -227,7 +227,7 @@
         <div class="feed-item__meta">
           <span class="feed-item__date">${timeAgo(article.pubDate)}</span>
           <span style="opacity: 0.5; margin: 0 4px;">•</span>
-          <span style="opacity: 0.5;">by</span>
+          <span style="opacity: 0.5; margin-right: 4px;">by</span>
           <span class="feed-item__source">${article.blogName}</span>
         </div>
       </div>
