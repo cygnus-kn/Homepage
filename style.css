@@ -14,8 +14,8 @@
   --text-primary: #e8e8ed;
   --text-secondary: #8a8a9a;
   --text-muted: #55556a;
-  --accent-1: #6c63ff;
-  --accent-2: #00d4aa;
+  --accent-1: #fbbf24;
+  --accent-2: #f59e0b;
   --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   --font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   --font-heading: "Warnock Pro", "Garamond", "Minion Pro", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
