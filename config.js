@@ -9,7 +9,6 @@ const CONFIG = {
   categories: [
     {
         name: "Blogs",
-        icon: "📚",
         links: [
             {
                 title: "Astral Codex Ten",
@@ -61,7 +60,6 @@ const CONFIG = {
     },
     {
         name: "Magazines",
-        icon: "📰",
         links: [
             {
                 title: "Lesswrong",
@@ -123,7 +121,6 @@ const CONFIG = {
     },
     {
         name: "Education",
-        icon: "🎓",
         links: [
             {
                 title: "Bobby Broccoli",
@@ -169,7 +166,6 @@ const CONFIG = {
     },
     {
         name: "Video Essay",
-        icon: "🎥",
         links: [
             {
                 title: "Solar Sands",
@@ -235,7 +231,6 @@ const CONFIG = {
     },
     {
         name: "Cinema & TV",
-        icon: "🍿",
         links: [
             {
                 title: "Accented Cinema",
@@ -276,7 +271,6 @@ const CONFIG = {
     },
     {
         name: "Animation",
-        icon: "🎨",
         links: [
             {
                 title: "TheOdd1sOut",
@@ -337,7 +331,6 @@ const CONFIG = {
     },
     {
         name: "Video game",
-        icon: "📁",
         links: [
             {
                 title: "Winter Starcraft",
