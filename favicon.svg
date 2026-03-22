@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    /* Light Mode */
+    .case { fill: #9CA3AF; } 
+    .face { fill: #F8FAFC; }
+    .crosshair { stroke: #E2E8F0; } /* Subtle structure lines */
+    .ticks { stroke: #CBD5E1; }
+    .north { fill: #DC2626; } /* Deeper, richer terracotta red */
+    .south { fill: #CBD5E1; }
+    .pin-ring { fill: #94A3B8; } 
+    .pin-hole { fill: #F8FAFC; } 
+
+    /* Dark Mode */
+    @media (prefers-color-scheme: dark) {
+      .case { fill: #475569; }
+      .face { fill: #1E293B; }
+      .crosshair { stroke: #334155; }
+      .ticks { stroke: #475569; }
+      .north { fill: #EF4444; } /* Brighter red for excellent dark-mode contrast */
+      .south { fill: #64748B; }
+      .pin-ring { fill: #94A3B8; } 
+      .pin-hole { fill: #1E293B; } 
+    }
+  </style>
+
+  <!-- Outer Casing -->
+  <circle cx="50" cy="50" r="46" class="case" />
+  
+  <!-- Compass Face -->
+  <circle cx="50" cy="50" r="40" class="face" />
+  
+  <!-- Outer Cardinal Tick Marks -->
+  <line x1="50" y1="12" x2="50" y2="20" class="ticks" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="50" y1="88" x2="50" y2="80" class="ticks" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="12" y1="50" x2="20" y2="50" class="ticks" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="88" y1="50" x2="80" y2="50" class="ticks" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <!-- Main Needle Rotated 45 degrees (North East) -->
+  <g transform="rotate(45 50 50)">
+    <!-- North-pointing half (Widened slightly for legibility) -->
+    <polygon points="50,14 38,50 62,50" class="north" stroke-linejoin="round" />
+    
+    <!-- South-pointing half -->
+    <polygon points="50,86 38,50 62,50" class="south" stroke-linejoin="round" />
+    
+    <!-- Hollow Mechanical Center Rivet -->
+    <circle cx="50" cy="50" r="8" class="pin-ring" />
+    <circle cx="50" cy="50" r="3.5" class="pin-hole" />
+  </g>
+</svg>

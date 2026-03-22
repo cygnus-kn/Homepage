@@ -6,7 +6,7 @@
 /* ── Design Tokens ──────────────────────────────────────────── */
 :root {
   --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
+  --bg-secondary: rgba(18, 18, 26, 0.65);
   --surface: rgba(255, 255, 255, 0.04);
   --surface-hover: rgba(255, 255, 255, 0.08);
   --surface-border: rgba(255, 255, 255, 0.08);
@@ -29,7 +29,7 @@
 
 [data-theme="light"] {
   --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
+  --bg-secondary: rgba(255, 255, 255, 0.75);
   --surface: rgba(0, 0, 0, 0.03);
   --surface-hover: rgba(0, 0, 0, 0.06);
   --surface-border: rgba(0, 0, 0, 0.08);
@@ -42,7 +42,7 @@
 
 [data-theme="read"] {
   --bg-primary: #f6f3eb;
-  --bg-secondary: #ffffff;
+  --bg-secondary: rgba(255, 255, 255, 0.85);
   --surface: rgba(0, 0, 0, 0.02);
   --surface-hover: rgba(0, 0, 0, 0.05);
   --surface-border: #ece5d8;
@@ -182,6 +182,8 @@ body::before {
 .category {
   margin-bottom: 2rem;
   background: var(--bg-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.25rem 0.25rem 1.25rem;
