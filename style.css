@@ -467,12 +467,14 @@ body::before {
 .ctx-menu {
   position: fixed;
   z-index: 999999 !important;
-  min-width: 180px;
+  min-width: 140px;
   background: var(--bg-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
-  padding: 6px 0;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: 4px 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
   opacity: 0;
   pointer-events: none;
   transform: scale(0.95);
@@ -491,7 +493,7 @@ body::before {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 9px 16px;
+  padding: 6px 12px;
   background: none;
   border: none;
   color: var(--text-primary);
