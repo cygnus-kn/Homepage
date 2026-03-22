@@ -812,14 +812,24 @@ const CONFIG = {
   let currentCategoryName = null;
   let currentGrid = null;
   let currentAddBtn = null;
+  let editingLinkData = null;
 
-  function openModal(categoryName, grid, addBtn) {
+  function openModal(categoryName, grid, addBtn, editData = null) {
     currentCategoryName = categoryName;
     currentGrid = grid;
     currentAddBtn = addBtn;
-    modalNameInput.value = "";
-    modalUrlInput.value = "";
-    modalIconInput.value = "";
+    editingLinkData = editData;
+
+    if (editData) {
+      modalNameInput.value = editData.title || "";
+      modalUrlInput.value = editData.url || "";
+      modalIconInput.value = editData.icon || "";
+    } else {
+      modalNameInput.value = "";
+      modalUrlInput.value = "";
+      modalIconInput.value = "";
+    }
+
     modalOverlay.classList.add("active");
     // Focus after the overlay transition
     setTimeout(() => modalNameInput.focus(), 100);
@@ -830,6 +840,7 @@ const CONFIG = {
     currentCategoryName = null;
     currentGrid = null;
     currentAddBtn = null;
+    editingLinkData = null;
   }
 
   function saveFromModal() {
@@ -840,6 +851,55 @@ const CONFIG = {
 
     const link = { title, url };
     if (iconUrl) link.iconUrl = iconUrl;
+
+    if (editingLinkData) {
+      // Remove old data mapping
+      if (editingLinkData.isCustom) {
+        let data = getCustomLinks();
+        if (data[currentCategoryName]) {
+          data[currentCategoryName] = data[currentCategoryName].filter(
+            (l) => !(l.title === editingLinkData.title && l.url === editingLinkData.url)
+          );
+          saveCustomLinks(data);
+        }
+      } else {
+        // Mark old default link as deleted
+        const deleted = getDeletedLinks();
+        const linkId = currentCategoryName + "||" + editingLinkData.url;
+        if (!deleted.includes(linkId)) {
+          deleted.push(linkId);
+          saveDeletedLinks(deleted);
+        }
+      }
+
+      // Add new link mapping as custom
+      let data = getCustomLinks();
+      if (!data[currentCategoryName]) data[currentCategoryName] = [];
+      data[currentCategoryName].push(link);
+      saveCustomLinks(data);
+
+      // Swap elements directly to preserve grid order
+      const a = createLinkEl(link, currentCategoryName, true);
+      const el = editingLinkData.el;
+      if (el && el.parentNode) {
+        el.parentNode.replaceChild(a, el);
+        
+        // Preserve position in user's saved sort order if the URL changed!
+        const orders = getCategoryOrders();
+        if (orders[currentCategoryName]) {
+           const idx = orders[currentCategoryName].indexOf(editingLinkData.url);
+           if (idx !== -1) {
+             orders[currentCategoryName][idx] = link.url;
+             saveCategoryOrders(orders);
+           }
+        }
+      } else {
+        currentGrid.insertBefore(a, currentAddBtn);
+      }
+      requestAnimationFrame(() => a.classList.add("visible"));
+      closeModal();
+      return;
+    }
 
     // Save to localStorage
     const data = getCustomLinks();
@@ -923,14 +983,17 @@ const CONFIG = {
     }
 
     if (action === "edit") {
-      // Pre-fill modal for editing — remove old, add new
-      deleteLink(ctxTarget, catName, linkTitle, linkUrl, isCustom);
       const grid = ctxTarget.closest(".link-grid");
       const addBtn = grid.querySelector(".add-btn");
-      openModal(catName, grid, addBtn);
-      modalNameInput.value = linkTitle;
-      modalUrlInput.value = linkUrl;
-      modalIconInput.value = linkIcon;
+      const editData = {
+        title: linkTitle,
+        url: linkUrl,
+        icon: linkIcon,
+        isCustom: isCustom,
+        catName: catName,
+        el: ctxTarget
+      };
+      openModal(catName, grid, addBtn, editData);
     }
 
     if (action === "delete") {
