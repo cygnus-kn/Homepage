@@ -48,6 +48,14 @@ const CONFIG = {
             {
                 title: "Maximum Progress",
                 url: "https://www.maximum-progress.com/"
+            },
+            {
+                title: "250bpm",
+                url: "https://www.250bpm.com/"
+            },
+            {
+                title: "Looking Through the Past",
+                url: "https://worldhistory.substack.com/"
             }
         ]
     },
@@ -319,6 +327,62 @@ const CONFIG = {
                 title: "Mostly True",
                 url: "https://www.youtube.com/@MostlyTrue",
                 iconUrl: "https://yt3.ggpht.com/2a95phYISx1m5lmFjKYzOcSYc-53YpSX7lwxLWu8r0WeB4yZ41HyERdmybbJF9B23K6-FAWq8Q=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "CGPGrey",
+                url: "https://www.youtube.com/@CGPGrey",
+                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nxrDGcxMGo8yKf2_Dw0eaGEWj39IAIdZQjAuz-_mBHjUI=s88-c-k-c0x00ffffff-no-rj"
+            }
+        ]
+    },
+    {
+        name: "Video game",
+        icon: "📁",
+        links: [
+            {
+                title: "Winter Starcraft",
+                url: "https://www.youtube.com/@WinterStarcraft",
+                iconUrl: "https://yt3.ggpht.com/lxP7eXXijv9qtb29mNJYHpLatNWNiklW4Kq7A_uy9BX6M69tZXYr_W2-q4J1I9npFNWoLVrfrQ=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "coppersan",
+                url: "https://www.youtube.com/@coppersan",
+                iconUrl: "https://yt3.ggpht.com/pc9ZNEJXlTvwil97wYspY9gJqqr-kN6R_nM-fS3Vo8WGQ3KP1uCxBEBU5fhFIpqFMXESXZLnonc=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "SaadTheGlad",
+                url: "https://www.youtube.com/@SaadTheGlad",
+                iconUrl: "https://yt3.ggpht.com/A3qKQV8ZgNoGwvCsDaPlhLM6p3BzDI2fqhhycijvil2x1o-8hxRWthxrsVhKBVwRvIUVAeBNkB8=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "Ambiguous Amphibian",
+                url: "https://www.youtube.com/@ambiguousamphibian",
+                iconUrl: "https://yt3.ggpht.com/6cXURFkQH703HXGGNZdu0sQyV3wGkd4qBSvBzpL7AhCQk-zthhQyFfWD9THq1I4tElVqonyZ6T0=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "Synonymous",
+                url: "https://www.youtube.com/@Synonymous101",
+                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lB3c7WGeX3Ak6Tym068TR9gms3H8khgCpbgHuppARn9Js=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "Gingy",
+                url: "https://www.youtube.com/@Gingy",
+                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nG14zYmO2CVfaP4a2K-5OFrEJxwwt3ZLO7g_kENfZ6XqU=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "Shadow the Axolotl",
+                url: "https://www.youtube.com/@shadowtheaxolotl",
+                iconUrl: "https://yt3.ggpht.com/Lg3SzfdzM9myjmxuemjN5BrOY1Vduzevp0C8wFE2YNwXcA9vTbSmY0yogXZy2Iqr39EJXeQWdQ=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "Summoning Salt",
+                url: "https://www.youtube.com/@SummoningSalt",
+                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_n8NSEiNfCuno3JKW2ggFYNvxVUKPg2jzf2O_7W-pmkAv4=s88-c-k-c0x00ffffff-no-rj"
+            },
+            {
+                title: "TotallyPointlessTV",
+                url: "https://www.youtube.com/@TotallyPointlessTV",
+                iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ngE7fO47swvERx3l6qvB8qU2wyNtjFLVyGe9T9jnBQNcA=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
     }
