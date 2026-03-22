@@ -405,18 +405,23 @@
 
     // Grab all valid links for this category
     let combinedLinks = [];
+    const seenUrls = new Set();
 
     links.forEach((link) => {
       const linkId = catName + "||" + link.url;
-      if (!deletedLinks.includes(linkId)) {
+      if (!deletedLinks.includes(linkId) && !seenUrls.has(link.url)) {
         combinedLinks.push({ ...link, isCustom: isCustomCat });
+        seenUrls.add(link.url);
       }
     });
 
     const extras = customLinks[catName] || [];
     if (!isCustomCat) {
       extras.forEach((link) => {
-        combinedLinks.push({ ...link, isCustom: true });
+        if (!seenUrls.has(link.url)) {
+          combinedLinks.push({ ...link, isCustom: true });
+          seenUrls.add(link.url);
+        }
       });
     }
 
@@ -546,13 +551,19 @@
 
   // Collect all available categories
   const allAvailableCats = [];
+  const seenCats = new Set();
+
   CONFIG.categories.forEach((cat) => {
     if (!hiddenCats.includes(cat.name)) {
       allAvailableCats.push({ name: cat.name, icon: cat.icon, links: cat.links, isCustom: false });
+      seenCats.add(cat.name);
     }
   });
   getCustomCats().forEach((cat) => {
-    allAvailableCats.push({ name: cat.name, icon: cat.icon, links: customLinks[cat.name] || [], isCustom: true });
+    if (!seenCats.has(cat.name)) {
+      allAvailableCats.push({ name: cat.name, icon: cat.icon, links: customLinks[cat.name] || [], isCustom: true });
+      seenCats.add(cat.name);
+    }
   });
 
   // Render them based on saved layout array (defaulting remainder at the bottom)
