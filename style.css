@@ -37,6 +37,8 @@
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --text-muted: #6b7280;
+  --accent-1: #6c63ff;
+  --accent-2: #00d4aa;
   --shadow-glow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
