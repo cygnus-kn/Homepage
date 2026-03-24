@@ -124,42 +124,42 @@ const CONFIG = {
         links: [
             {
                 title: "Bobby Broccoli",
-                url: "https://www.youtube.com/@BobbyBroccoli",
+                url: "https://www.youtube.com/@BobbyBroccoli/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lXPV2x_XHUSd5_S93CVpAXUEGEa_b30Wv9KKLcud0dGb8=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "3Blue1Brown",
-                url: "https://www.youtube.com/@3blue1brown",
+                url: "https://www.youtube.com/@3blue1brown/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nFzZFPLxPZRHcE3SSwzdrbuWqfoWYwLAu0_2iO6blQYAU=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Primer",
-                url: "https://www.youtube.com/@PrimerBlobs",
+                url: "https://www.youtube.com/@PrimerBlobs/videos",
                 iconUrl: "https://yt3.ggpht.com/YicJ3lAVdXC5jI7SA7mnX7pPoULN2Gfgh_S4IgDPDPjLaeTx1vWiQeh-reCty2uWuoVK70K5Lg=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Howtown",
-                url: "https://www.youtube.com/@Howtown",
+                url: "https://www.youtube.com/@Howtown/videos",
                 iconUrl: "https://yt3.ggpht.com/WPr50X5C9Hyvd21TyVKWsfsuaxkuyH-gOErQbuPMmDo-g0urjzsKLF9VDmnaPxzB6_xM_5LNNQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Practical Engineering",
-                url: "https://www.youtube.com/@PracticalEngineeringChannel",
+                url: "https://www.youtube.com/@PracticalEngineeringChannel/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_m1Y4p9FzWjJBIhIwbVt6Z1qGKa8eWUTzE3kizORZMFKf4=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "The Plain Bagel",
-                url: "https://www.youtube.com/@ThePlainBagel",
+                url: "https://www.youtube.com/@ThePlainBagel/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lP44aDeBvzShX0gPVRsL9UYY7_VlGf0CG0I9PDaHib0Vw=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Extra Credits",
-                url: "https://www.youtube.com/@extracredits",
+                url: "https://www.youtube.com/@extracredits/videos",
                 iconUrl: "https://yt3.ggpht.com/WUFdolvGD_8Deimk4YBdqETajhYqA2qJEs-K7jzDqqlK4aRJ_XnyJU9PJOBFyzbQrspUsNm-=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "JSC - Criminal Psychology",
-                url: "https://www.youtube.com/@JCS",
+                url: "https://www.youtube.com/@JCS/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_kctKVxcu-jhgLMpmgHsv-UFmQku6-a_eNVC9C_RCxlkPw=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
@@ -169,62 +169,62 @@ const CONFIG = {
         links: [
             {
                 title: "Solar Sands",
-                url: "https://www.youtube.com/@SolarSands",
+                url: "https://www.youtube.com/@SolarSands/videos",
                 iconUrl: "https://yt3.ggpht.com/6tmkMODnk0I0DbVBbJ6MtgFfLNuoxvIlIEID9OyArF0W0sDvfKNrnfKncaqXXmsPEKku8xV_bt8=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "EmpLemon",
-                url: "https://www.youtube.com/@EmperorLemon",
+                url: "https://www.youtube.com/@EmperorLemon/videos",
                 iconUrl: "https://yt3.ggpht.com/F-ULo6Ryi7IHofqMHzF7qEieFsfhIuRI8Tv7VVqinU2tjaob6LMtLVEVEAn0hpzqp7amUKyS=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "LEMMiNO",
-                url: "https://www.youtube.com/@LEMMiNO",
+                url: "https://www.youtube.com/@LEMMiNO/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_n9UULHnAEc-yMg6URdgtNDvUqeu-SXR3WMV2ObydPnLg=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Jacob Geller",
-                url: "https://www.youtube.com/@JacobGeller",
+                url: "https://www.youtube.com/@JacobGeller/videos",
                 iconUrl: "https://yt3.ggpht.com/oEvJp21jyoK8viSJQZsoIB4TpDmXsRBjOfMybj8azcfgCQ6dkQ8uP6Fg4nyYUCosnYhYzTlc=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Nerdwriter1",
-                url: "https://www.youtube.com/@Nerdwriter1",
+                url: "https://www.youtube.com/@Nerdwriter1/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lrqB-g_-yHIwNQwBMXcAIEo7fOtKd1Fv3ZPnFv0D3pm6g=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Fredrik Knudsen",
-                url: "https://www.youtube.com/@FredrikKnudsen",
+                url: "https://www.youtube.com/@FredrikKnudsen/videos",
                 iconUrl: "https://yt3.ggpht.com/WqW4AFB01iqkWFImbyckVHPjWuEbld_fh27L8doMFDsqFzllfLuf8oQssTIOQlcimh8FzB6DvQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "The Exploring Series",
-                url: "https://www.youtube.com/@TheExploringSeries",
+                url: "https://www.youtube.com/@TheExploringSeries/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_mmxYfwLW6fNAcclSxC0pE9NkcjyOl0iTSNsfsqYq0BHg=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Defunctland",
-                url: "https://www.youtube.com/@Defunctland",
+                url: "https://www.youtube.com/@Defunctland/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nbqSLm8QyE1Wzo-wB5PqqXjkDqdZfcxbUQkwzbgX4uv1g=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Exurb1a",
-                url: "https://www.youtube.com/@Exurb1a",
+                url: "https://www.youtube.com/@Exurb1a/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nL_Jo7sq5NSk1zuJQg-_18AOpQL31eeyXP01Pv-ACciaQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Company Man",
-                url: "https://www.youtube.com/@companyman114",
+                url: "https://www.youtube.com/@companyman114/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_k6haZxIjvv5TbqgDUHY13vLPckV8gGOTfAwvkUxk3JyeY=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Acolytes Of Horror",
-                url: "https://www.youtube.com/@AcolytesOfHorror",
+                url: "https://www.youtube.com/@AcolytesOfHorror/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ll3SJJy-Mk0EqKyDuQisKY3nrjgOXDtgNXWNdMpvl7ppI=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "hbomberguy",
-                url: "https://www.youtube.com/@hbomberguy",
+                url: "https://www.youtube.com/@hbomberguy/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_mxzfZOQ4VUZ45Hu8oPlkl6xz9OVnHKpn4yKPkNcOVQGcI=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
@@ -234,37 +234,37 @@ const CONFIG = {
         links: [
             {
                 title: "Accented Cinema",
-                url: "https://www.youtube.com/@AccentedCinema",
+                url: "https://www.youtube.com/@AccentedCinema/videos",
                 iconUrl: "https://yt3.ggpht.com/agIi1DZMbZpoZQ-yweEHwGUFzAQW1tyWP8IF12s-jrqwnZHuJidA5FI21BWcbi0zZgO1ynHd=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Schaffrillas Productions",
-                url: "https://www.youtube.com/@SchaffrillasProductions",
+                url: "https://www.youtube.com/@SchaffrillasProductions/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nUUgl5CPnR7vXcf40M6y-bsNYBOUqMJkZyxm3eh78kvC0=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "The Sin Squad",
-                url: "https://www.youtube.com/@The_Sin_Squad",
+                url: "https://www.youtube.com/@The_Sin_Squad/videos",
                 iconUrl: "https://yt3.ggpht.com/-3lh7aVN1sp4FPTEOgRPPGHd1mtHFjeRKZm-ZI9kr5GKKgd2vhX9J-8N6c8z_16QJq9EEutu=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "schnee",
-                url: "https://www.youtube.com/@schnee1",
+                url: "https://www.youtube.com/@schnee1/videos",
                 iconUrl: "https://yt3.ggpht.com/0nmWB8a-J3WSoFXgnr-5RZTKTy6DMwhhSAbPaeFPqimY8_S_hIuKgHHk7soqpHLSJro6DuSCiQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Sloan Stowe",
-                url: "https://www.youtube.com/@SloanStowe",
+                url: "https://www.youtube.com/@SloanStowe/videos",
                 iconUrl: "https://yt3.ggpht.com/wReGfua0kSnIrt8snoqfvqiiwzxQxAKW4ljTPdasCnQzebyK701NwDiliXTs6wFUKv0K0tyfXw=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "captainmidnight",
-                url: "https://www.youtube.com/@captainmidnight",
+                url: "https://www.youtube.com/@captainmidnight/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_k66x-646xTKINzEwR_HB165YmHTxfb0n6af6jVR1Y_yno=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "CZsWorld",
-                url: "https://www.youtube.com/@CZsWorld",
+                url: "https://www.youtube.com/@CZsWorld/videos",
                 iconUrl: "https://yt3.ggpht.com/gbRZyXFSzzPkqY9Bj1y4x_QcpgkfRJsRvz-pCCayj2AW9Af_c9048DXbL5cDC7HgphMhF5GUKmQ=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
@@ -274,57 +274,57 @@ const CONFIG = {
         links: [
             {
                 title: "TheOdd1sOut",
-                url: "https://www.youtube.com/@theodd1sout",
+                url: "https://www.youtube.com/@theodd1sout/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_mxpQ2hfudhflswgM8pZg22Jn_bgaQV0gIpUqYQW4z9Av8=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "JaidenAnimations",
-                url: "https://www.youtube.com/@jaidenanimations",
+                url: "https://www.youtube.com/@jaidenanimations/videos",
                 iconUrl: "https://yt3.ggpht.com/6uDu4HmbcorfDWch6L4FAzv-DFMOstOwhTks-5VUm-kY5puZ_oU4EeA1YOqEM_EDvCTj3UPUW68=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "GingerPale",
-                url: "https://www.youtube.com/@GingerPale",
+                url: "https://www.youtube.com/@GingerPale/videos",
                 iconUrl: "https://yt3.ggpht.com/ll7jGEeEKOrG5UsfA6jD8VvpbZwpYK8ciS1JRYG0pO6Ay09rjz4THGVN78JFoS5SlSdgYtYlgPo=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "BlueJay",
-                url: "https://www.youtube.com/@BlueJayYT",
+                url: "https://www.youtube.com/@BlueJayYT/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_mtE0wtRYXirpEWGKtJ_mK85JBizT2WktAw6QBpDsz-OA=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Ice Cream Sandwich",
-                url: "https://www.youtube.com/@IceCreamSandwich",
+                url: "https://www.youtube.com/@IceCreamSandwich/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nfaehZCNR35m9QPE3-s4pB9Aww7U3mWG_zlYeeymlu3T4=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Casually Explained",
-                url: "https://www.youtube.com/@CasuallyExplained",
+                url: "https://www.youtube.com/@CasuallyExplained/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lAO_lHZfWaYLuWbSBxQzUkPLQ-2xRvPdSC8KpvfUWzfX4=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "the poopie show",
-                url: "https://www.youtube.com/@thepoopieshow",
+                url: "https://www.youtube.com/@thepoopieshow/videos",
                 iconUrl: "https://yt3.ggpht.com/sPRCC8y6VzobcPaFkkyPmItcVUqgJBJJ3LcIqADi-Jv7Sxv9V4yU-cAjfcbUgLwE-OV-8nhTsA=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Sam O'Nella Academy",
-                url: "https://www.youtube.com/@SamONellaAcademy",
+                url: "https://www.youtube.com/@SamONellaAcademy/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_l6Uep21u0mI0cPOY5h2YMxXyRCajmvy62-TlrOaF0r-pQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Misinformed",
-                url: "https://www.youtube.com/@Misinformed_yt",
+                url: "https://www.youtube.com/@Misinformed_yt/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ll-N0GASu67EIoGqNvLsB0FGHAeYpgXT1XfWrLnx5ifA=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Mostly True",
-                url: "https://www.youtube.com/@MostlyTrue",
+                url: "https://www.youtube.com/@MostlyTrue/videos",
                 iconUrl: "https://yt3.ggpht.com/2a95phYISx1m5lmFjKYzOcSYc-53YpSX7lwxLWu8r0WeB4yZ41HyERdmybbJF9B23K6-FAWq8Q=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "CGPGrey",
-                url: "https://www.youtube.com/@CGPGrey",
+                url: "https://www.youtube.com/@CGPGrey/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nxrDGcxMGo8yKf2_Dw0eaGEWj39IAIdZQjAuz-_mBHjUI=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
@@ -334,47 +334,47 @@ const CONFIG = {
         links: [
             {
                 title: "Winter Starcraft",
-                url: "https://www.youtube.com/@WinterStarcraft",
+                url: "https://www.youtube.com/@WinterStarcraft/videos",
                 iconUrl: "https://yt3.ggpht.com/lxP7eXXijv9qtb29mNJYHpLatNWNiklW4Kq7A_uy9BX6M69tZXYr_W2-q4J1I9npFNWoLVrfrQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "coppersan",
-                url: "https://www.youtube.com/@coppersan",
+                url: "https://www.youtube.com/@coppersan/videos",
                 iconUrl: "https://yt3.ggpht.com/pc9ZNEJXlTvwil97wYspY9gJqqr-kN6R_nM-fS3Vo8WGQ3KP1uCxBEBU5fhFIpqFMXESXZLnonc=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "SaadTheGlad",
-                url: "https://www.youtube.com/@SaadTheGlad",
+                url: "https://www.youtube.com/@SaadTheGlad/videos",
                 iconUrl: "https://yt3.ggpht.com/A3qKQV8ZgNoGwvCsDaPlhLM6p3BzDI2fqhhycijvil2x1o-8hxRWthxrsVhKBVwRvIUVAeBNkB8=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Ambiguous Amphibian",
-                url: "https://www.youtube.com/@ambiguousamphibian",
+                url: "https://www.youtube.com/@ambiguousamphibian/videos",
                 iconUrl: "https://yt3.ggpht.com/6cXURFkQH703HXGGNZdu0sQyV3wGkd4qBSvBzpL7AhCQk-zthhQyFfWD9THq1I4tElVqonyZ6T0=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Synonymous",
-                url: "https://www.youtube.com/@Synonymous101",
+                url: "https://www.youtube.com/@Synonymous101/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_lB3c7WGeX3Ak6Tym068TR9gms3H8khgCpbgHuppARn9Js=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Gingy",
-                url: "https://www.youtube.com/@Gingy",
+                url: "https://www.youtube.com/@Gingy/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_nG14zYmO2CVfaP4a2K-5OFrEJxwwt3ZLO7g_kENfZ6XqU=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Shadow the Axolotl",
-                url: "https://www.youtube.com/@shadowtheaxolotl",
+                url: "https://www.youtube.com/@shadowtheaxolotl/videos",
                 iconUrl: "https://yt3.ggpht.com/Lg3SzfdzM9myjmxuemjN5BrOY1Vduzevp0C8wFE2YNwXcA9vTbSmY0yogXZy2Iqr39EJXeQWdQ=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "Summoning Salt",
-                url: "https://www.youtube.com/@SummoningSalt",
+                url: "https://www.youtube.com/@SummoningSalt/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_n8NSEiNfCuno3JKW2ggFYNvxVUKPg2jzf2O_7W-pmkAv4=s88-c-k-c0x00ffffff-no-rj"
             },
             {
                 title: "TotallyPointlessTV",
-                url: "https://www.youtube.com/@TotallyPointlessTV",
+                url: "https://www.youtube.com/@TotallyPointlessTV/videos",
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ngE7fO47swvERx3l6qvB8qU2wyNtjFLVyGe9T9jnBQNcA=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
