@@ -528,9 +528,9 @@
       hasMoved = false;
       touchTimer = setTimeout(() => {
         if (!hasMoved) {
-          // Open menu via touch using coordinates
+          // Open menu via touch using somewhat offset coordinates so it doesn't hide under the user's finger
           const touch = e.touches[0];
-          showContextMenu(touch.clientX, touch.clientY, a);
+          showContextMenu(touch.clientX, touch.clientY - 70, a);
         }
       }, 600); // 600ms hold triggers the right-clip box
     }, { passive: true });
@@ -974,12 +974,22 @@ const CONFIG = {
     // Adjust if menu goes off-screen
     requestAnimationFrame(() => {
       const rect = ctxMenu.getBoundingClientRect();
+      let newLeft = x;
+      let newTop = y;
+
       if (rect.right > window.innerWidth) {
-        ctxMenu.style.left = (window.innerWidth - rect.width - 8) + "px";
+        newLeft = window.innerWidth - rect.width - 8;
       }
       if (rect.bottom > window.innerHeight) {
-        ctxMenu.style.top = (window.innerHeight - rect.height - 8) + "px";
+        newTop = window.innerHeight - rect.height - 8;
       }
+      
+      // Prevent it from clipping off the top or left
+      if (newTop < 8) newTop = 8;
+      if (newLeft < 8) newLeft = 8;
+
+      ctxMenu.style.left = newLeft + "px";
+      ctxMenu.style.top = newTop + "px";
     });
   }
 
