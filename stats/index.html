@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian Heatmap Tracker</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="data.js"></script>
+    <script src="steps_data.js"></script>
+    <script src="sleep_data.js"></script>
+    <style>
+        :root {
+            --bg-body: transparent;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-card: rgba(255, 255, 255, 0.05);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            
+            /* Heatmap Colors (Green to Purple-Pink) */
+            --color-l0: rgba(255, 255, 255, 0.05); /* Empty */
+            --color-l1: #34d399; /* Light Green */
+            --color-l2: #10b981; /* Emerald Green */
+            --color-l3: #064e3b; /* Dark Green */
+            --color-l4: #e879f9; /* Light Pink-Purple */
+            --color-l5: #c026d3; /* Dark Magenta / Pink-Purple */
+
+            /* Steps Heatmap Colors (Cyan to Purple) */
+            --steps-color-l1: #bcf2ec; /* Lightest Cyan */
+            --steps-color-l2: #5fdfd1; /* Lighter Cyan */
+            --steps-color-l3: #00d8c1; /* Cyan - Under 6000 */
+            --steps-color-l4: #b095f9; /* Lighter Purple - Over 6000 */
+            --steps-color-l5: #7e4df7; /* Darker Purple - Over 8000 */
+
+            /* Sleep Heatmap Colors (Pure Dark-to-Light Purple Variance) */
+            --sleep-color-l1: #eeddff; /* Lightest Lavender */
+            --sleep-color-l2: #d6b8ff; /* Soft Purple */
+            --sleep-color-l3: #bd90ff; /* Medium Purple */
+            --sleep-color-l4: #a066ff; /* Darker Purple */
+            --sleep-color-l5: #823dff; /* Darkest Indigo/Purple */
+
+            --square-size: 14px;
+            --square-gap: 4px;
+        }
+
+        [data-theme="light"] {
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --border-card: rgba(0, 0, 0, 0.08);
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --color-l0: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="read"] {
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --border-card: #ece5d8;
+            --text-main: #2d2d2d;
+            --text-muted: #8d8d8d;
+            --color-l0: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .container {
+            max-width: 1150px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 1.5rem;
+            padding-left: 3.5rem; /* Avoid overlap with global parent sidebar toggle */
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6ee7b7, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        #steps-h1 {
+            background: linear-gradient(135deg, #00d8c1, #956ef8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .controls select {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-card);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .controls select:hover {
+            background: var(--border-card);
+            border-color: var(--color-l3);
+        }
+
+        .controls select:focus {
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Heatmap Grid */
+        .heatmap-wrapper {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-l2) var(--bg-card);
+        }
+        
+        .heatmap-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+        .heatmap-wrapper::-webkit-scrollbar-track {
+            background: var(--bg-card);
+            border-radius: 10px;
+        }
+        .heatmap-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .day-labels {
+            display: grid;
+            grid-template-rows: repeat(7, var(--square-size));
+            gap: var(--square-gap);
+            margin-top: calc(var(--square-size) + 8px); /* Align perfectly with heatmap squares */
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-align: right;
+            padding-right: 0.8rem;
+        }
+        
+        .day-label {
+            line-height: var(--square-size);
+            transform: translateY(-1px);
+        }
+
+        .heatmap-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .month-labels {
+            display: flex;
+            position: relative;
+            height: var(--square-size);
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .month-label {
+            position: absolute;
+        }
+
+        .heatmap {
+            display: grid;
+            grid-template-rows: repeat(7, var(--square-size));
+            grid-auto-flow: column;
+            gap: var(--square-gap);
+        }
+
+        .square {
+            width: var(--square-size);
+            height: var(--square-size);
+            background-color: var(--color-l0);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s, border 0.2s;
+            border: 1px solid rgba(255,255,255,0.02);
+            animation: popIn 0.4s ease-out backwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .square[data-level="1"] { background-color: var(--color-l1); border-color: rgba(52, 211, 153, 0.5); }
+        .square[data-level="2"] { background-color: var(--color-l2); border-color: rgba(16, 185, 129, 0.5); }
+        .square[data-level="3"] { background-color: var(--color-l3); border-color: rgba(6, 78, 59, 0.5); }
+        .square[data-level="4"] { background-color: var(--color-l4); border-color: rgba(232, 121, 249, 0.5); }
+        .square[data-level="5"] { background-color: var(--color-l5); border-color: rgba(192, 38, 211, 0.8); box-shadow: 0 0 10px rgba(192, 38, 211, 0.4); }
+
+        #steps-heatmap .square[data-level="1"], #steps-legend .square[data-level="1"] { background-color: var(--steps-color-l1); border-color: rgba(188, 242, 236, 0.5); }
+        #steps-heatmap .square[data-level="2"], #steps-legend .square[data-level="2"] { background-color: var(--steps-color-l2); border-color: rgba(95, 223, 209, 0.5); }
+        #steps-heatmap .square[data-level="3"], #steps-legend .square[data-level="3"] { background-color: var(--steps-color-l3); border-color: rgba(0, 216, 193, 0.5); }
+        #steps-heatmap .square[data-level="4"], #steps-legend .square[data-level="4"] { background-color: var(--steps-color-l4); border-color: rgba(176, 149, 249, 0.5); }
+        #steps-heatmap .square[data-level="5"], #steps-legend .square[data-level="5"] { background-color: var(--steps-color-l5); border-color: rgba(126, 77, 247, 0.8); box-shadow: 0 0 10px rgba(126, 77, 247, 0.4); }
+
+        .square:hover {
+            transform: scale(1.3);
+            z-index: 10;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 17, 26, 0.95);
+            color: #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            transform: translate(-50%, -10px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+        }
+
+        .tooltip.show {
+            opacity: 1;
+            transform: translate(-50%, -15px);
+        }
+
+        .tooltip .count {
+            font-weight: 700;
+        }
+
+        /* Legend & Stats */
+        .footer {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-card);
+            padding-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat-item strong {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-left: 0.5rem;
+            display: inline-block;
+        }
+
+        .legend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-squares {
+            display: flex;
+            gap: 4px;
+        }
+
+        .legend .square {
+            cursor: default;
+            animation: none;
+        }
+        
+        .legend .square:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        // Sync theme with parent
+        window.addEventListener("message", (e) => {
+            if (e.data && e.data.theme) {
+                document.documentElement.setAttribute("data-theme", e.data.theme);
+            }
+        });
+        // Initial setup
+        if (window.parent && window.parent !== window) {
+            try {
+                const pt = window.parent.document.documentElement.getAttribute("data-theme");
+                if (pt) document.documentElement.setAttribute("data-theme", pt);
+            } catch(e) {}
+        }
+    </script>
+
+    <div class="container" style="margin-bottom: 2rem;">
+        <header>
+            <div>
+                <h1>Daily Notes Heatmap</h1>
+                <div class="subtitle">Track your writing habit frequency</div>
+            </div>
+            <div class="controls">
+                <select id="year-selector"></select>
+            </div>
+        </header>
+
+        <div class="heatmap-wrapper">
+            <div class="day-labels">
+                <span class="day-label">Mon</span>
+                <span class="day-label">Tue</span>
+                <span class="day-label">Wed</span>
+                <span class="day-label">Thu</span>
+                <span class="day-label">Fri</span>
+                <span class="day-label">Sat</span>
+                <span class="day-label">Sun</span>
+            </div>
+            <div class="heatmap-container">
+                <div class="month-labels" id="month-labels"></div>
+                <div class="heatmap" id="heatmap"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="stats-group">
+                <div class="stat-item">Total words: <strong id="stat-total">0</strong></div>
+                <div class="stat-item">Days active: <strong id="stat-days">0</strong></div>
+                <div class="stat-item">Max words: <strong id="stat-max">0</strong></div>
+            </div>
+            <div class="legend">
+                <span>Less</span>
+                <div class="legend-squares">
+                    <div class="square" data-level="0"></div>
+                    <div class="square" data-level="1"></div>
+                    <div class="square" data-level="2"></div>
+                    <div class="square" data-level="3"></div>
+                    <div class="square" data-level="4"></div>
+                    <div class="square" data-level="5"></div>
+                </div>
+                <span>More</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <header>
+            <div>
+                <h1 id="steps-h1">Daily Steps Heatmap</h1>
+                <div class="subtitle">Track your physical activity</div>
+            </div>
+            <div class="controls">
+                <select id="steps-year-selector"></select>
+            </div>
+        </header>
+
+        <div class="heatmap-wrapper">
+            <div class="day-labels">
+                <span class="day-label">Mon</span>
+                <span class="day-label">Tue</span>
+                <span class="day-label">Wed</span>
+                <span class="day-label">Thu</span>
+                <span class="day-label">Fri</span>
+                <span class="day-label">Sat</span>
+                <span class="day-label">Sun</span>
+            </div>
+            <div class="heatmap-container">
+                <div class="month-labels" id="steps-month-labels"></div>
+                <div class="heatmap" id="steps-heatmap"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="stats-group">
+                <div class="stat-item">Total steps: <strong id="steps-stat-total">0</strong></div>
+                <div class="stat-item">Days active: <strong id="steps-stat-days">0</strong></div>
+                <div class="stat-item">Average steps: <strong id="steps-stat-max">0</strong></div>
+            </div>
+            <div class="legend">
+                <span>Less</span>
+                <div class="legend-squares" id="steps-legend">
+                    <div class="square" data-level="0"></div>
+                    <div class="square" data-level="1"></div>
+                    <div class="square" data-level="2"></div>
+                    <div class="square" data-level="3"></div>
+                    <div class="square" data-level="4"></div>
+                    <div class="square" data-level="5"></div>
+                </div>
+                <span>More</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1 id="sleep-h1">Daily Sleep Heatmap</h1>
+                <div class="subtitle">Track your rest and recovery</div>
+            </div>
+            <div class="controls">
+                <select id="sleep-year-selector"></select>
+            </div>
+        </header>
+
+        <div class="heatmap-wrapper">
+            <div class="day-labels">
+                <span class="day-label">Mon</span>
+                <span class="day-label">Tue</span>
+                <span class="day-label">Wed</span>
+                <span class="day-label">Thu</span>
+                <span class="day-label">Fri</span>
+                <span class="day-label">Sat</span>
+                <span class="day-label">Sun</span>
+            </div>
+            <div class="heatmap-container">
+                <div class="month-labels" id="sleep-month-labels"></div>
+                <div class="heatmap" id="sleep-heatmap"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="stats-group">
+                <div class="stat-item">Total sleep: <strong id="sleep-stat-total">0</strong></div>
+                <div class="stat-item">Days logged: <strong id="sleep-stat-days">0</strong></div>
+                <div class="stat-item">Average hours: <strong id="sleep-stat-max">0</strong></div>
+            </div>
+            <div class="legend">
+                <span>Less</span>
+                <div class="legend-squares" id="sleep-legend">
+                    <div class="square" data-level="0"></div>
+                    <div class="square" data-level="1"></div>
+                    <div class="square" data-level="2"></div>
+                    <div class="square" data-level="3"></div>
+                    <div class="square" data-level="4"></div>
+                    <div class="square" data-level="5"></div>
+                </div>
+                <span>More</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        const tooltip = document.getElementById('tooltip');
+
+        function initHeatmap(data, selectorId, heatmapId, monthLabelsId, statTotalId, statDaysId, statMaxId, countLabel, themePrefix = '--color-l', statMode = 'max', customThresholds = null) {
+            const rawDates = Object.keys(data).sort();
+            const years = [...new Set(rawDates.map(date => date.split('-')[0]))];
+            
+            const selector = document.getElementById(selectorId);
+            const heatmapEl = document.getElementById(heatmapId);
+            const monthLabelsEl = document.getElementById(monthLabelsId);
+            const statTotal = document.getElementById(statTotalId);
+            const statDays = document.getElementById(statDaysId);
+            const statMax = document.getElementById(statMaxId);
+
+            if (years.length === 0) {
+                years.push(new Date().getFullYear().toString());
+            }
+
+            years.reverse().forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                selector.appendChild(opt);
+            });
+
+            selector.addEventListener('change', (e) => {
+                render(e.target.value);
+            });
+
+            function render(year) {
+                heatmapEl.innerHTML = '';
+                monthLabelsEl.innerHTML = '';
+                
+                const yearData = {};
+                let maxCount = 0;
+                let totalCount = 0;
+                let daysActive = 0;
+                
+                for (const [date, info] of Object.entries(data)) {
+                    if (date.startsWith(year)) {
+                        let count = typeof info === 'number' ? info : (info.count || 0);
+                        let title = typeof info === 'number' ? '' : (info.title || '');
+                        let path = typeof info === 'number' ? '' : (info.path || '');
+                        
+                        yearData[date] = { count, title, path };
+                        totalCount += count;
+                        daysActive++;
+                        if (count > maxCount) maxCount = count;
+                    }
+                }
+
+                let avgCount = daysActive > 0 ? Math.round(totalCount / daysActive) : 0;
+                statTotal.textContent = totalCount.toLocaleString();
+                statDays.textContent = daysActive;
+                statMax.textContent = (statMode === 'avg' ? avgCount : maxCount).toLocaleString();
+
+                const counts = Object.values(yearData).map(d => d.count).filter(c => c > 0).sort((a,b) => a-b);
+                let q1=0, q2=0, q3=0, q4=0;
+                if (counts.length > 0) {
+                    q1 = counts[Math.floor(counts.length * 0.20)] || 1;
+                    q2 = counts[Math.floor(counts.length * 0.40)] || 1;
+                    q3 = counts[Math.floor(counts.length * 0.60)] || 1;
+                    q4 = counts[Math.floor(counts.length * 0.80)] || 1;
+                }
+
+                function getLevel(c) {
+                    if (c === 0) return 0;
+                    if (customThresholds) {
+                        for (let i = customThresholds.length - 1; i >= 0; i--) {
+                            if (c >= customThresholds[i]) return i + 2;
+                        }
+                        return 1;
+                    }
+                    if (c <= q1) return 1;
+                    if (c <= q2) return 2;
+                    if (c <= q3) return 3;
+                    if (c <= q4) return 4;
+                    return 5;
+                }
+
+                const startDate = new Date(`${year}-01-01T00:00:00`);
+                const endDate = new Date(`${year}-12-31T00:00:00`);
+                
+                let startDay = startDate.getDay() - 1;
+                if (startDay === -1) startDay = 6;
+                
+                for (let i = 0; i < startDay; i++) {
+                    const emptySquare = document.createElement('div');
+                    emptySquare.className = 'square';
+                    emptySquare.style.visibility = 'hidden';
+                    heatmapEl.appendChild(emptySquare);
+                }
+
+                let currentDate = new Date(startDate);
+                let colIndex = 0;
+                let currentMonth = -1;
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                let delay = 0;
+
+                while (currentDate <= endDate) {
+                    if (currentDate.getMonth() !== currentMonth) {
+                        currentMonth = currentDate.getMonth();
+                        const monthLabel = document.createElement('span');
+                        monthLabel.className = 'month-label';
+                        monthLabel.textContent = months[currentMonth];
+                        monthLabel.style.left = `calc(${colIndex} * (var(--square-size) + var(--square-gap)))`;
+                        monthLabelsEl.appendChild(monthLabel);
+                    }
+
+                    const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+                    const dateData = yearData[dateStr] || { count: 0, title: '', path: '' };
+                    const count = dateData.count;
+                    const noteTitle = dateData.title || dateStr;
+                    const notePath = dateData.path || '';
+                    const level = getLevel(count);
+
+                    const square = document.createElement('div');
+                    square.className = 'square';
+                    square.setAttribute('data-level', level);
+                    square.style.animationDelay = `${delay}s`;
+                    
+                    if (count > 0 && notePath !== '') {
+                        square.addEventListener('click', () => {
+                            window.location.href = `note.html?file=${encodeURIComponent(notePath)}`;
+                        });
+                    }
+                    
+                    square.addEventListener('mouseenter', () => {
+                        const rect = square.getBoundingClientRect();
+                        const levelColors = {
+                            0: "var(--text-main)",
+                            1: `var(${themePrefix}1)`,
+                            2: `var(${themePrefix}2)`,
+                            3: `var(${themePrefix}3)`,
+                            4: `var(${themePrefix}4)`,
+                            5: `var(${themePrefix}5)`
+                        };
+                        const countColor = levelColors[level];
+
+                        const text = count === 0 
+                            ? `No records on ${dateStr}`
+                            : (notePath !== '' ? `<div style="margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; white-space: normal; max-width: 250px;"><strong>${noteTitle}</strong></div>` : '') + `<span class="count" style="color: ${countColor};">${count.toLocaleString()}</span> ${countLabel}`;
+                        
+                        tooltip.innerHTML = text;
+                        tooltip.classList.add('show');
+                        
+                        const topPos = rect.top + window.scrollY;
+                        const leftPos = rect.left + window.scrollX + (rect.width / 2);
+                        
+                        tooltip.style.left = `${leftPos}px`;
+                        tooltip.style.top = `${topPos}px`;
+                    });
+
+                    square.addEventListener('mouseleave', () => {
+                        tooltip.classList.remove('show');
+                    });
+
+                    heatmapEl.appendChild(square);
+                    currentDate.setDate(currentDate.getDate() + 1);
+                    if (currentDate.getDay() === 1) colIndex++;
+                    delay += 0.001;
+                }
+            }
+            if (years.length > 0) render(years[0]);
+        }
+        
+        const noteData = typeof heatmapData !== 'undefined' ? heatmapData : {};
+        const stepData = typeof stepsData !== 'undefined' ? stepsData : {};
+        const slpData = typeof sleepData !== 'undefined' ? sleepData : {};
+
+        initHeatmap(noteData, 'year-selector', 'heatmap', 'month-labels', 'stat-total', 'stat-days', 'stat-max', 'words', '--color-l', 'max');
+        initHeatmap(stepData, 'steps-year-selector', 'steps-heatmap', 'steps-month-labels', 'steps-stat-total', 'steps-stat-days', 'steps-stat-max', 'steps', '--steps-color-l', 'avg', [2000, 4000, 6000, 8000]);
+        initHeatmap(slpData, 'sleep-year-selector', 'sleep-heatmap', 'sleep-month-labels', 'sleep-stat-total', 'sleep-stat-days', 'sleep-stat-max', 'hours', '--sleep-color-l', 'avg', [5, 6, 7, 8]);
+</script>
+</body>
+</html>

@@ -152,6 +152,12 @@
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("homepage_theme", next);
     
+    // Sync theme to iframe if it exists
+    const statsIframe = document.querySelector("#stats-view iframe");
+    if (statsIframe && statsIframe.contentWindow) {
+      statsIframe.contentWindow.postMessage({ theme: next }, "*");
+    }
+
     renderToggle(next);
   });
   
@@ -263,16 +269,30 @@
 
     (async function() {
       try {
+        const CACHE_LIFETIME = 60 * 60 * 1000; // 1 hour
         const fetchPromises = RssSources.map(async (source) => {
+          const cacheKey = `rss_cache_${source.url}`;
+          try {
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+              const parsed = JSON.parse(cached);
+              if (Date.now() - parsed.timestamp < CACHE_LIFETIME) {
+                return parsed.data;
+              }
+            }
+          } catch (e) {}
+
           const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source.url)}`;
           try {
             const response = await fetch(proxyUrl);
             const data = await response.json();
             if (data.status === "ok") {
-              return data.items
+              const items = data.items
                 .filter(item => new Date(item.pubDate).getTime() >= cutoffTime)
                 .slice(0, 3)
                 .map(item => ({...item, blogName: source.name}));
+              localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: items }));
+              return items;
             }
           } catch (e) {}
           return [];
@@ -782,6 +802,50 @@ const CONFIG = {
   footer.className = "footer";
   footer.innerHTML = `<div>Edit <strong>config.js</strong> to customize your links without UI</div>`;
   app.appendChild(footer);
+
+  // ── Navigation Logic ────────────────────────────────────────
+  const navHome = document.getElementById("nav-home");
+  const navStats = document.getElementById("nav-stats");
+  const homeView = document.getElementById("home-view");
+  const statsView = document.getElementById("stats-view");
+  const siteMenu = document.getElementById("site-menu");
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+
+  if (sidebarToggle && siteMenu) {
+    sidebarToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      siteMenu.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!siteMenu.contains(e.target) && e.target !== sidebarToggle && !sidebarToggle.contains(e.target)) {
+        siteMenu.classList.remove("open");
+      }
+    });
+  }
+
+  if (navHome && navStats && homeView && statsView) {
+    navHome.addEventListener("click", () => {
+      navHome.classList.add("active");
+      navStats.classList.remove("active");
+      homeView.classList.add("active");
+      statsView.classList.remove("active");
+      if (siteMenu) siteMenu.classList.remove("open");
+    });
+
+    navStats.addEventListener("click", () => {
+      navStats.classList.add("active");
+      navHome.classList.remove("active");
+      statsView.classList.add("active");
+      homeView.classList.remove("active");
+      if (siteMenu) siteMenu.classList.remove("open");
+      
+      const iframe = document.getElementById("stats-iframe");
+      if (iframe && !iframe.getAttribute("src")) {
+        iframe.setAttribute("src", iframe.getAttribute("data-src"));
+      }
+    });
+  }
 
   // ── Staggered Fade-In ─────────────────────────────────────
   requestAnimationFrame(() => {
