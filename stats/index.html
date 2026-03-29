@@ -35,12 +35,32 @@
             --steps-color-l4: #b095f9; /* Lighter Purple - Over 6000 */
             --steps-color-l5: #7e4df7; /* Darker Purple - Over 8000 */
 
-            /* Sleep Heatmap Colors (Pure Dark-to-Light Purple Variance) */
-            --sleep-color-l1: #eeddff; /* Lightest Lavender */
-            --sleep-color-l2: #d6b8ff; /* Soft Purple */
-            --sleep-color-l3: #bd90ff; /* Medium Purple */
-            --sleep-color-l4: #a066ff; /* Darker Purple */
-            --sleep-color-l5: #823dff; /* Darkest Indigo/Purple */
+            /* ========================================================== */
+            /* OPTIONS FOR SLEEP COLORS (Uncomment your favorite!)        */
+            /* ========================================================== */
+
+            /* OPTION 1: Warm Sunrise (Golden to Deep Orange) 
+            --sleep-color-l1: #fef3c7; 
+            --sleep-color-l2: #fde047; 
+            --sleep-color-l3: #fbbf24; 
+            --sleep-color-l4: #f59e0b; 
+            --sleep-color-l5: #d97706; 
+            */
+
+            /* OPTION 2: Midnight Ocean (Ice Blue to Deep Sea) [ACTIVE] */
+            --sleep-color-l1: #e0f2fe;
+            --sleep-color-l2: #7dd3fc;
+            --sleep-color-l3: #38bdf8;
+            --sleep-color-l4: #0284c7;
+            --sleep-color-l5: #0369a1;
+
+            /* OPTION 3: Lunar Silver (Minimalist Monochrome)
+            --sleep-color-l1: #f1f5f9;
+            --sleep-color-l2: #cbd5e1;
+            --sleep-color-l3: #94a3b8;
+            --sleep-color-l4: #64748b;
+            --sleep-color-l5: #334155;
+            */
 
             --square-size: 14px;
             --square-gap: 4px;
@@ -120,6 +140,13 @@
 
         #steps-h1 {
             background: linear-gradient(135deg, #00d8c1, #956ef8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #sleep-h1 {
+            background: linear-gradient(135deg, var(--sleep-color-l2), var(--sleep-color-l5));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -244,13 +271,20 @@
         .square[data-level="2"] { background-color: var(--color-l2); border-color: rgba(16, 185, 129, 0.5); }
         .square[data-level="3"] { background-color: var(--color-l3); border-color: rgba(6, 78, 59, 0.5); }
         .square[data-level="4"] { background-color: var(--color-l4); border-color: rgba(232, 121, 249, 0.5); }
-        .square[data-level="5"] { background-color: var(--color-l5); border-color: rgba(192, 38, 211, 0.8); box-shadow: 0 0 10px rgba(192, 38, 211, 0.4); }
+        .square[data-level="5"] { background-color: var(--color-l5); border-color: rgba(192, 38, 211, 0.8); }
 
         #steps-heatmap .square[data-level="1"], #steps-legend .square[data-level="1"] { background-color: var(--steps-color-l1); border-color: rgba(188, 242, 236, 0.5); }
         #steps-heatmap .square[data-level="2"], #steps-legend .square[data-level="2"] { background-color: var(--steps-color-l2); border-color: rgba(95, 223, 209, 0.5); }
         #steps-heatmap .square[data-level="3"], #steps-legend .square[data-level="3"] { background-color: var(--steps-color-l3); border-color: rgba(0, 216, 193, 0.5); }
         #steps-heatmap .square[data-level="4"], #steps-legend .square[data-level="4"] { background-color: var(--steps-color-l4); border-color: rgba(176, 149, 249, 0.5); }
-        #steps-heatmap .square[data-level="5"], #steps-legend .square[data-level="5"] { background-color: var(--steps-color-l5); border-color: rgba(126, 77, 247, 0.8); box-shadow: 0 0 10px rgba(126, 77, 247, 0.4); }
+        #steps-heatmap .square[data-level="5"], #steps-legend .square[data-level="5"] { background-color: var(--steps-color-l5); border-color: rgba(126, 77, 247, 0.8); }
+
+        #sleep-heatmap .square, #sleep-legend .square { border-color: transparent; }
+        #sleep-heatmap .square[data-level="1"], #sleep-legend .square[data-level="1"] { background-color: var(--sleep-color-l1); }
+        #sleep-heatmap .square[data-level="2"], #sleep-legend .square[data-level="2"] { background-color: var(--sleep-color-l2); }
+        #sleep-heatmap .square[data-level="3"], #sleep-legend .square[data-level="3"] { background-color: var(--sleep-color-l3); }
+        #sleep-heatmap .square[data-level="4"], #sleep-legend .square[data-level="4"] { background-color: var(--sleep-color-l4); }
+        #sleep-heatmap .square[data-level="5"], #sleep-legend .square[data-level="5"] { background-color: var(--sleep-color-l5); }
 
         .square:hover {
             transform: scale(1.3);
