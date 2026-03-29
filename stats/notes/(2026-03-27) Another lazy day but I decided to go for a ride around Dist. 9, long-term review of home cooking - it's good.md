@@ -1,0 +1,16 @@
+It's another lazy day so I thought. I did actually went to sleep early with no electronic devices around me at 11:30 p.m yesterday. Had an excellent sleep, confirmed by my smart watch notification saying that my sleep was" Sleeptastic". I woke up at around 7:30 a.m today. And decided to take my scooter for a ride around District 9. Everything looks the same, somewhat, new shops opened old shops closed but overall not too dissimilar than when I changed my work to Dist. 7. Gosh, it's at least 10 months ago, time does fly fast. 
+
+Afterward, I went home and bought some groceries, nothing much, just some spinach, eggs and fruits, the essentials. Then I cook some pieces of pork meat + stir frying the spinach leaves that I just bought. It's actually more expensive the water spinach, but the taste is not that good. 
+
+In the afternoon, I doom scroll until 2 p.m then took a nap for few hours when I woke up at 4:30 p.m and prepared to head out. Honestly, I didn't feel like combing through student's HW lately, it's just so daunting. I think I need a holiday, and one is approach, the combination of Hung King's day and Unification + Labor day will be at the end of next month. I didn't have any plan then because it would be crowded at every domestic tourist destination, the road is also gonna be packed and travel would feel restricted then. 
+
+I need to do a long-term review of the fact that I've been home cooking for over a month now. Overall, what I really like is that I don't hate myself for eating too much outside, because the portion of a meal if you were to bought at a store is enormous, to compensate for the exorbitant price that has been increasing again this year. Saving one both calories consumed and money spent. Which is something that I've been complaining since last year.
+
+However, I have to spend more time buying groceries, cooking food and cleaning up after now. It's a drain on my energy, and if it weren't for my lax schedule as a part-time teacher, I wouldn't have been able to do it. And keep in mind I've only cooked one meal a day, that's lunch. I intend to do two, for my dinner also but it would be too much time sinked into it I think.
+
+Another aspect that I wish I was more active was running, back when I didn't have to teach every evening, I would go to a park to walk at around 5:30 - 6 p.m. But now I can't, and I also can't run or walk at any other time of the day because it's either too inconvenient or too hot, or too late even. So I'd pretty much like a solution for that. I didn't want to go to a gym to be frank. It's noisy, crowded and full of pretentious people, oh and plus it's expensive, scammy in the way the charge people money.
+
+For tomorrow, I think I'll do more laundry and clean the house, the toilet, something I haven't done since before Tet holiday, the addition of a fridge and another table to put the rice cooker on make the cleaning more work. Since I have to move both of them outside, in addition to the normal stuff (e.g: table, clothing rack).
+
+---
+pre: [[(2026-03-26) Another lazy day, cook fish and meat ball together, had only one class]]

@@ -39,6 +39,11 @@ const heatmapData = {
     "title": "On the third day of Tet holiday, another day passes",
     "path": "notes/(2026-02-19) On the third day of Tet holiday, another day passes.md"
   },
+  "2026-03-25": {
+    "count": 362,
+    "title": "Another lazy day, cook different meal and taught two new classes",
+    "path": "notes/(2026-03-25) Another lazy day, cook different meal and taught two new classes.md"
+  },
   "2026-02-09": {
     "count": 334,
     "title": "Fed up with playing Clash of Clans for too much and feeling the pressure of rising prices",
@@ -53,6 +58,11 @@ const heatmapData = {
     "count": 255,
     "title": "Second day of Tet",
     "path": "notes/(2026-02-18) Second day of Tet.md"
+  },
+  "2026-03-28": {
+    "count": 175,
+    "title": "Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day",
+    "path": "notes/(2026-03-28) Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day.md"
   },
   "2026-03-03": {
     "count": 342,
@@ -89,6 +99,11 @@ const heatmapData = {
     "title": "didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset",
     "path": "notes/(2026-02-02) didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset.md"
   },
+  "2026-03-27": {
+    "count": 586,
+    "title": "Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good",
+    "path": "notes/(2026-03-27) Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good.md"
+  },
   "2026-01-08": {
     "count": 254,
     "title": "Cold weather for the first few days of 2026 and gathering all note into one place, Obsidian",
@@ -98,6 +113,11 @@ const heatmapData = {
     "count": 263,
     "title": "Another Tet day another same routine, but the gambling was fun though",
     "path": "notes/(2026-02-20) Another Tet day another same routine, but the gambling was fun though.md"
+  },
+  "2026-03-29": {
+    "count": 209,
+    "title": "Coming back to VT, lazy Sunday",
+    "path": "notes/(2026-03-29) Coming back to VT, lazy Sunday.md"
   },
   "2026-01-29": {
     "count": 303,
@@ -148,6 +168,11 @@ const heatmapData = {
     "count": 287,
     "title": "ACX meetup in the morning till afternoon with many taboo topics",
     "path": "notes/(2026-03-15) ACX meetup in the morning till afternoon with many taboo topics.md"
+  },
+  "2026-03-24": {
+    "count": 330,
+    "title": "Another lazy day, feeling sleepy and unwilling",
+    "path": "notes/(2026-03-24) Another lazy day, feeling sleepy and unwilling.md"
   },
   "2026-01-21": {
     "count": 473,
@@ -229,6 +254,11 @@ const heatmapData = {
     "title": "Setting up home cook continued",
     "path": "notes/(2026-02-27) Setting up home cook continued.md"
   },
+  "2026-03-26": {
+    "count": 186,
+    "title": "Another lazy day, cook fish and meat ball together, had only one class",
+    "path": "notes/(2026-03-26) Another lazy day, cook fish and meat ball together, had only one class.md"
+  },
   "2026-02-13": {
     "count": 177,
     "title": "Another block of the investment foundation laid",
@@ -283,6 +313,11 @@ const heatmapData = {
     "count": 136,
     "title": "Having my scooter serviced today, shivering rain in the evening",
     "path": "notes/(2026-01-06) Having my scooter serviced today, shivering rain in the evening.md"
+  },
+  "2026-03-23": {
+    "count": 360,
+    "title": "New Monday same routine, bearish stock market",
+    "path": "notes/(2026-03-23) New Monday same routine, bearish stock market.md"
   },
   "2022-08-29": {
     "count": 969,

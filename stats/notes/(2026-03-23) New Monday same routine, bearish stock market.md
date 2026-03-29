@@ -1,0 +1,10 @@
+In the morning, I did my laundry and do some grading, well half of them for a class, will do another half tomorrow then cook some meat ball. The meat ball is tougher than I imagined and it smoked a lot during the cooking process but I don't know why. I put it in high heat then drop the meat ball in and reduce heat after a while, but it smoked more than and meal that I've cooked before. Anyway, when they looked to be done, I got them out and put some sweet onion, mushroom and garlic in with butter for a sauce. Stirred it a little then add some rice vinegar to deglaze and put some milk into it. Seasons with some salt and pepper then simmer for like 2 minutes and add the boiled peas and meat balls back. The sauce tasted a little sour from the vinegar although I didn't put it much in, and although I did add some salt, the sauce wasn't that salty and on the bland side.
+
+The stock market is still red today, in fact it dropped even harder than Friday last week, my portfolio is in deep red, about 11% down right now, gold is supposed to be on high demand at the time of war like this but it actually dropped even further, I bough my at 17 mil but it's sold at 15.800 mil right now.
+
+In the afternoon, I went to my classes, had another new one after the last one ended last week. I actually felt a little tired after these two classes. I think because they are new so I have to put more effort in them as opposed to when I only have one new classes and the other is just an old one which requires less effort to teach because they are more obedience already.
+
+Tomorrow, I think I'm going to finish grading the tests for S129 and then write and prepare for video clipping after that, and also finish preparing lesson for the whole week.
+
+---
+pre: [[(2026-03-22) Got addicted to vibe coding, meetup ACX yesterday, went to an English club today]]
