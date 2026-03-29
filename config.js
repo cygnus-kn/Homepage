@@ -9,6 +9,7 @@ const CONFIG = {
   categories: [
     {
         name: "Blogs",
+        icon: "📁",
         links: [
             {
                 title: "Astral Codex Ten",
@@ -59,7 +60,78 @@ const CONFIG = {
         ]
     },
     {
+        name: "Friends of the Blogs",
+        icon: "📁",
+        links: [
+            {
+                title: "Boundedly Rational",
+                url: "https://boundedlyrational.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!ePQ3!,w_176,h_176,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8d16cbe-ad5e-4b2b-a7ce-1901f82592eb_48x48.jpeg"
+            },
+            {
+                title: "Hardly Working",
+                url: "https://hardlyworking1.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!rZEU!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F79870fae-450e-4f22-ac74-fe3b1ac4f960_206x206.png"
+            },
+            {
+                title: "Res Obscura",
+                url: "https://resobscura.substack.com/"
+            },
+            {
+                title: "Singal-Minded",
+                url: "https://jessesingal.substack.com/"
+            },
+            {
+                title: "Woman of Letters",
+                url: "https://www.woman-of-letters.com/"
+            },
+            {
+                title: "Vectors of Mind",
+                url: "https://www.vectorsofmind.com/"
+            },
+            {
+                title: "The Autodidacts",
+                url: "https://www.autodidacts.io/"
+            },
+            {
+                title: "Telescropic Turnip",
+                url: "https://malmesbury.substack.com/"
+            },
+            {
+                title: "Shtetl Optimized",
+                url: "https://scottaaronson.blog/"
+            },
+            {
+                title: "Experimental History",
+                url: "https://www.experimental-history.com/"
+            },
+            {
+                title: "Enterprise Value",
+                url: "https://enterprisevalue.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!q-VV!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F619021c5-6dba-4492-aeae-f3d38b6e849e_463x486.jpeg"
+            },
+            {
+                title: "Hard Reset",
+                url: "https://www.hardresetmedia.com/"
+            },
+            {
+                title: "No Set Gauge",
+                url: "https://www.nosetgauge.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!HdSA!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F816cef70-50a0-4954-a8ce-8f712e1248e8_460x460.png"
+            },
+            {
+                title: "Pea Bee",
+                url: "https://peabee.substack.com/"
+            },
+            {
+                title: "Sol Hando",
+                url: "https://solhando.substack.com/"
+            }
+        ]
+    },
+    {
         name: "Magazines",
+        icon: "📁",
         links: [
             {
                 title: "Lesswrong",
@@ -121,6 +193,7 @@ const CONFIG = {
     },
     {
         name: "Education",
+        icon: "📁",
         links: [
             {
                 title: "Bobby Broccoli",
@@ -166,6 +239,7 @@ const CONFIG = {
     },
     {
         name: "Video Essay",
+        icon: "📁",
         links: [
             {
                 title: "Solar Sands",
@@ -231,6 +305,7 @@ const CONFIG = {
     },
     {
         name: "Cinema & TV",
+        icon: "📁",
         links: [
             {
                 title: "Accented Cinema",
@@ -271,6 +346,7 @@ const CONFIG = {
     },
     {
         name: "Animation",
+        icon: "📁",
         links: [
             {
                 title: "TheOdd1sOut",
@@ -331,6 +407,7 @@ const CONFIG = {
     },
     {
         name: "Video game",
+        icon: "📁",
         links: [
             {
                 title: "Winter Starcraft",
