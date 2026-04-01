@@ -19,6 +19,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css?v=5" />
 </head>
+<body>
   <div class="main-content">
     <div class="site-switcher" id="site-switcher">
       <button id="sidebar-toggle" class="sidebar-toggle" title="Switch Site">
@@ -43,6 +44,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script src="config.js?v=3"></script>
-  <script src="app.js?v=5"></script>
+  <!-- Modules (load order matters: storage first, app last) -->
+  <script src="js/storage.js?v=1"></script>
+  <script src="js/nav.js?v=1"></script>
+  <script src="js/rss.js?v=1"></script>
+  <script src="js/ui.js?v=1"></script>
+  <script src="js/categories.js?v=1"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
