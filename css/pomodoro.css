@@ -1,0 +1,61 @@
+/* ── Pomodoro Widget ────────────────────────────────────────── */
+.pomodoro-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.pomodoro-widget:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: var(--surface-border-hover);
+}
+
+.pomodoro-widget.running {
+  color: var(--accent-1);
+  background: linear-gradient(
+    to right, 
+    color-mix(in srgb, var(--accent-1), transparent 80%) var(--progress, 100%), 
+    var(--surface) var(--progress, 100%)
+  );
+  border-color: color-mix(in srgb, var(--accent-1), transparent 60%);
+}
+
+.pomodoro-widget.finished {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.15);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.pomodoro-icon {
+  display: flex;
+  align-items: center;
+}
+
+.pomodoro-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes flipHourglass {
+  0%   { transform: rotate(0deg); }
+  3%   { transform: rotate(180deg); }
+  50%  { transform: rotate(180deg); }
+  53%  { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pomodoro-widget.running .pomodoro-icon svg {
+  animation: flipHourglass 60s ease-in-out infinite;
+}

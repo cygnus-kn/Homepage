@@ -1,0 +1,201 @@
+/* ── Context Menu (right-click) ─────────────────────────────── */
+.ctx-menu {
+  position: fixed;
+  z-index: 999999 !important;
+  min-width: 140px;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 4px 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  transform-origin: top left;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.ctx-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.ctx-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ctx-menu__item:hover {
+  background: var(--surface-hover);
+}
+
+.ctx-menu__item--danger {
+  color: #f87171;
+}
+
+.ctx-menu__item--danger:hover {
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.ctx-menu__divider {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--surface-border);
+}
+
+/* ── Modal Overlay ─────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.modal__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.modal__input:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.modal__input::placeholder {
+  color: var(--text-muted);
+}
+
+.modal__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.modal__btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.modal__btn--cancel {
+  background: var(--surface);
+  color: var(--text-secondary);
+}
+
+.modal__btn--cancel:hover {
+  background: var(--surface-hover);
+}
+
+.modal__btn--save {
+  background: var(--accent-1);
+  color: #fff;
+}
+
+.modal__btn--save:hover {
+  background: #5a52e0;
+}
+
+/* ── No Results ─────────────────────────────────────────────── */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  display: none;
+}
+
+.no-results.show {
+  display: block;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--surface-border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer a {
+  color: var(--accent-1);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Hidden helper (search filter) ──────────────────────────── */
+.hidden {
+  display: none !important;
+}
