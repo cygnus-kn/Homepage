@@ -37,11 +37,6 @@ const CONFIG = {
                 iconUrl: "https://substackcdn.com/image/fetch/$s_!nZQz!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F59a1514d-5160-43db-83e1-c1e5dc5de2ee_1280x1280.png"
             },
             {
-                title: "The Cochinchine Pensées",
-                url: "https://archyatt.substack.com",
-                iconUrl: "https://substackcdn.com/image/fetch/$s_!tQQh!,w_64,h_64,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F05eebdb4-2c20-4953-b3f2-e2940e767e84_640x640.png"
-            },
-            {
                 title: "Noahpinion",
                 url: "https://www.noahpinion.blog"
             },
@@ -56,6 +51,26 @@ const CONFIG = {
             {
                 title: "Looking Through the Past",
                 url: "https://worldhistory.substack.com/"
+            },
+            {
+                title: "The Cochinchine Pensées",
+                url: "https://archyatt.substack.com",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!tQQh!,w_64,h_64,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F05eebdb4-2c20-4953-b3f2-e2940e767e84_640x640.png"
+            },
+            {
+                title: "Curiosity Pocket",
+                url: "https://curiositypocket.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!m9bO!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b8230e2-6303-4abe-bb71-cc33add969b5_1024x1024.png"
+            },
+            {
+                title: "Tornad",
+                url: "https://tornad294.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!XnZO!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe9a589fe-7b58-41f3-a91d-583186d463f5_720x720.png"
+            },
+            {
+                title: "Hex",
+                url: "https://hexpion.substack.com/",
+                iconUrl: "https://substackcdn.com/image/fetch/$s_!FydJ!,w_80,h_80,c_fill,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6696e120-81a1-42f1-a189-caecbee6c541_1000x1000.png"
             }
         ]
     },
