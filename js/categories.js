@@ -5,7 +5,7 @@
 const allCards = [];
 
 // ── Utility: make a category name inline-editable ─────────
-function makeEditable(h2El, originalName) {
+function makeEditable(h2El, originalName, onRename) {
   h2El.contentEditable = "true";
   h2El.spellcheck = false;
   h2El.style.outline = "none";
@@ -17,6 +17,7 @@ function makeEditable(h2El, originalName) {
       const renamed = getRenamedCats();
       renamed[originalName] = newName;
       saveRenamedCats(renamed);
+      if (onRename) onRename(newName);
     }
   });
   h2El.addEventListener("keydown", (e) => {
@@ -78,7 +79,7 @@ function createLinkEl(link, categoryName, isCustom) {
 }
 
 // ── Build a full category section ─────────────────────────
-function buildCategorySection(catName, icon, links, isCustomCat) {
+function buildCategorySection(catName, icon, links, isCustomCat, onRename, onDeleteClick) {
   const renamedCats   = getRenamedCats();
   const deletedLinks  = getDeletedLinks();
   const customLinks   = getCustomLinks();
@@ -89,38 +90,14 @@ function buildCategorySection(catName, icon, links, isCustomCat) {
   section.className = "category";
   section.setAttribute("data-category", catName);
 
-  const collapsed = getCollapsedCats();
-  if (collapsed.includes(catName)) section.classList.add("collapsed");
-
   // Header row
   const catHeader = document.createElement("div");
   catHeader.className = "category__header";
 
-  const chevronBtn = document.createElement("button");
-  chevronBtn.className = "category__chevron";
-  chevronBtn.title = "Toggle Category";
-  chevronBtn.innerHTML = `
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  `;
-  chevronBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    section.classList.toggle("collapsed");
-    let cols = getCollapsedCats();
-    if (section.classList.contains("collapsed")) {
-      if (!cols.includes(catName)) cols.push(catName);
-    } else {
-      cols = cols.filter(c => c !== catName);
-    }
-    saveCollapsedCats(cols);
-  });
-  catHeader.appendChild(chevronBtn);
-
   const h2 = document.createElement("h2");
   h2.className   = "category__name";
   h2.textContent = displayName;
-  makeEditable(h2, catName);
+  makeEditable(h2, catName, onRename);
   catHeader.appendChild(h2);
 
   const delCatBtn = document.createElement("button");
@@ -131,6 +108,7 @@ function buildCategorySection(catName, icon, links, isCustomCat) {
   delCatBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     if (confirm(`Are you sure you want to delete the "${displayName}" category?`)) {
+      if (onDeleteClick) onDeleteClick();
       deleteCategory(section, catName, isCustomCat);
     }
   });
@@ -247,9 +225,24 @@ function deleteCategory(sectionEl, catName, isCustomCat) {
 
 // ── Render all categories + category drag-drop + Add Cat ──
 function initCategories(app) {
+  const layout = document.createElement("div");
+  layout.className = "category-layout";
+
+  const sidebarWrapper = document.createElement("div");
+  sidebarWrapper.className = "category-sidebar-wrapper";
+  
+  const sidebar = document.createElement("div");
+  sidebar.className = "category-sidebar";
+
+  sidebarWrapper.appendChild(sidebar);
+
   const categoriesContainer = document.createElement("div");
   categoriesContainer.id = "categories";
-  app.appendChild(categoriesContainer);
+  categoriesContainer.className = "category-content";
+
+  layout.appendChild(sidebarWrapper);
+  layout.appendChild(categoriesContainer);
+  app.appendChild(layout);
 
   const hiddenCats          = JSON.parse(localStorage.getItem("homepage_hidden_cats") || "[]");
   const savedCategoryOrder  = JSON.parse(localStorage.getItem("homepage_category_block_orders") || "[]");
@@ -272,37 +265,57 @@ function initCategories(app) {
   });
 
   const renderedCatIds = new Set();
+  let firstCat = null;
+  const tabsMap = {};
+
+  const renderCategory = (cat) => {
+    if (renderedCatIds.has(cat.name)) return;
+    renderedCatIds.add(cat.name);
+
+    const displayName = getRenamedCats()[cat.name] || cat.name;
+    const itemIcon = cat.icon || "📁";
+
+    const tab = document.createElement("button");
+    tab.className = "sidebar-tab";
+    tab.setAttribute("data-catname", cat.name);
+    tab.innerHTML = `<span class="tab-name"><span class="tab-icon">${itemIcon}</span> <span class="tab-text">${displayName}</span></span>`;
+
+    const section = buildCategorySection(cat.name, itemIcon, cat.links, cat.isCustom, 
+      (newName) => {
+        const textSpan = tab.querySelector(".tab-text");
+        if (textSpan) textSpan.textContent = newName;
+      },
+      () => {
+        tab.remove();
+        if (tab.classList.contains("active")) {
+          const remainingTabs = sidebar.querySelectorAll(".sidebar-tab");
+          if (remainingTabs.length > 0) remainingTabs[0].click();
+        }
+      }
+    );
+
+    tab.addEventListener("click", () => {
+      sidebar.querySelectorAll(".sidebar-tab").forEach(t => t.classList.remove("active"));
+      categoriesContainer.querySelectorAll(".category").forEach(c => c.classList.remove("active-tab"));
+      tab.classList.add("active");
+      section.classList.add("active-tab");
+      localStorage.setItem("homepage_active_tab", cat.name);
+    });
+
+    categoriesContainer.appendChild(section);
+    sidebar.appendChild(tab);
+    tabsMap[cat.name] = { tab, section };
+    if (!firstCat) firstCat = tabsMap[cat.name];
+  };
 
   savedCategoryOrder.forEach(savedCatName => {
     const matched = allAvailableCats.find(c => c.name === savedCatName);
-    if (matched) {
-      categoriesContainer.appendChild(buildCategorySection(matched.name, matched.icon, matched.links, matched.isCustom));
-      renderedCatIds.add(matched.name);
-    }
+    if (matched) renderCategory(matched);
   });
 
-  allAvailableCats.forEach((cat) => {
-    if (!renderedCatIds.has(cat.name)) {
-      categoriesContainer.appendChild(buildCategorySection(cat.name, cat.icon, cat.links, cat.isCustom));
-    }
-  });
+  allAvailableCats.forEach(cat => renderCategory(cat));
 
-  // Category-level drag-and-drop
-  new Sortable(categoriesContainer, {
-    group: "homepage-categories",
-    handle: ".category__header",
-    animation: 250,
-    delay: 300,
-    delayOnTouchOnly: true,
-    ghostClass: "sortable-ghost",
-    onEnd: () => {
-      const domCats = document.querySelectorAll(".category");
-      const order   = Array.from(domCats).map(el => el.getAttribute("data-category"));
-      localStorage.setItem("homepage_category_block_orders", JSON.stringify(order));
-    }
-  });
-
-  // "Add new category" button (outside the sortable container)
+  // "Add new category" button
   const addCatBtn = document.createElement("button");
   addCatBtn.className   = "add-category-btn";
   addCatBtn.type        = "button";
@@ -314,14 +327,15 @@ function initCategories(app) {
     cats.push({ name: internalName, icon });
     saveCustomCats(cats);
 
-    const section = buildCategorySection(internalName, icon, [], true);
-    categoriesContainer.appendChild(section);
+    renderCategory({ name: internalName, icon, links: [], isCustom: true });
 
-    const domCats = document.querySelectorAll(".category");
-    const order   = Array.from(domCats).map(el => el.getAttribute("data-category"));
+    const domTabs = sidebar.querySelectorAll(".sidebar-tab");
+    const order   = Array.from(domTabs).map(el => el.getAttribute("data-catname"));
     localStorage.setItem("homepage_category_block_orders", JSON.stringify(order));
 
-    const h2 = section.querySelector(".category__name");
+    tabsMap[internalName].tab.click();
+
+    const h2 = tabsMap[internalName].section.querySelector(".category__name");
     if (h2) {
       h2.focus();
       const range = document.createRange();
@@ -331,7 +345,28 @@ function initCategories(app) {
       sel.addRange(range);
     }
   });
-  app.appendChild(addCatBtn);
+  sidebarWrapper.appendChild(addCatBtn);
+
+  // Activate saved or first tab
+  const savedTab = localStorage.getItem("homepage_active_tab");
+  if (savedTab && tabsMap[savedTab]) {
+    tabsMap[savedTab].tab.click();
+  } else if (firstCat) {
+    firstCat.tab.click();
+  }
+
+  // Sidebar drag-and-drop
+  if (typeof Sortable !== "undefined") {
+    new Sortable(sidebar, {
+      animation: 250,
+      ghostClass: "sortable-ghost",
+      onEnd: () => {
+        const domTabs = sidebar.querySelectorAll(".sidebar-tab");
+        const order   = Array.from(domTabs).map(el => el.getAttribute("data-catname"));
+        localStorage.setItem("homepage_category_block_orders", JSON.stringify(order));
+      }
+    });
+  }
 
   return allCards;
 }
