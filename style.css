@@ -371,7 +371,7 @@ body::before {
 .tab-name {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   width: 100%;
 }
 
@@ -395,7 +395,7 @@ body::before {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-top: 2px;
+  padding-top: 1px;
 }
 
 .category-content {
