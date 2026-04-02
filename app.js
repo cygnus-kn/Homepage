@@ -29,6 +29,9 @@
   // 6. Footer
   initFooter(app);
 
+  // 7. Mini tools
+  initScratchpad();
+
   // 7. Staggered fade-in
   requestAnimationFrame(() => {
     cards.forEach(({ el }, i) => {

@@ -67,7 +67,15 @@ function initNav(app) {
     renderToggle(next);
   });
 
-  header.appendChild(themeBtn);
+  const controls = document.createElement("div");
+  controls.className = "header__controls";
+  
+  if (typeof createPomodoroWidget === "function") {
+    controls.appendChild(createPomodoroWidget());
+  }
+  controls.appendChild(themeBtn);
+
+  header.appendChild(controls);
   app.appendChild(header);
 
   // ── Navigation sidebar ────────────────────────────────────

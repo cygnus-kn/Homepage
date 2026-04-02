@@ -17,7 +17,7 @@
   />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body>
   <div class="main-content">
@@ -42,14 +42,19 @@
     </div>
   </div>
 
+  <div id="modal-backdrop"></div>
+
+  <!-- Note: We defer loading non-critical external libraries -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script src="config.js?v=3"></script>
   <!-- Modules (load order matters: storage first, app last) -->
-  <script src="js/storage.js?v=1"></script>
-  <script src="js/nav.js?v=1"></script>
-  <script src="js/rss.js?v=1"></script>
-  <script src="js/ui.js?v=1"></script>
-  <script src="js/categories.js?v=1"></script>
-  <script src="app.js?v=7"></script>
+  <script src="js/storage.js?v=2"></script>
+  <script src="js/nav.js?v=2"></script>
+  <script src="js/rss.js?v=2"></script>
+  <script src="js/ui.js?v=2"></script>
+  <script src="js/categories.js?v=2"></script>
+  <script src="js/pomodoro.js?v=2"></script>
+  <script src="js/scratchpad.js?v=3"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

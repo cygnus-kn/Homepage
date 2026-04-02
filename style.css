@@ -297,6 +297,74 @@ body::before {
   color: var(--accent-1);
 }
 
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Pomodoro Widget ────────────────────────────────────────── */
+.pomodoro-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.pomodoro-widget:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: var(--surface-border-hover);
+}
+
+.pomodoro-widget.running {
+  color: var(--accent-1);
+  background: linear-gradient(
+    to right, 
+    color-mix(in srgb, var(--accent-1), transparent 80%) var(--progress, 100%), 
+    var(--surface) var(--progress, 100%)
+  );
+  border-color: color-mix(in srgb, var(--accent-1), transparent 60%);
+}
+
+.pomodoro-widget.finished {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.15);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.pomodoro-icon {
+  display: flex;
+  align-items: center;
+}
+
+.pomodoro-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes flipHourglass {
+  0%   { transform: rotate(0deg); }
+  3%   { transform: rotate(180deg); }
+  50%  { transform: rotate(180deg); }
+  53%  { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pomodoro-widget.running .pomodoro-icon svg {
+  animation: flipHourglass 60s ease-in-out infinite;
+}
+
 /* ── Category Section ───────────────────────────────────────── */
 .category-layout {
   display: flex;
@@ -1031,6 +1099,100 @@ body::before {
   .sidebar-tab {
     white-space: nowrap;
   }
+}
+
+/* ── Scratchpad ────────────────────────────────────────────── */
+.scratchpad-wrapper {
+  position: fixed;
+  right: -430px; /* Deeply pushed off so the massive 35-deg corner swing only leaves a ~40px peek */
+  top: 50%;
+  width: 300px; /* Scaled down to exactly 3:4 ratio */
+  height: 400px;
+  margin-top: -200px;
+  z-index: 2000;
+  display: flex;
+  transform: rotate(-35deg); /* Sharp, dramatic 35 degree dangle! */
+  transform-origin: bottom right; /* Pivots from the bottom right corner */
+  transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: right, transform;
+  cursor: pointer;
+}
+
+.scratchpad-wrapper:hover {
+  right: -280px; /* Pulls solidly out when hovered */
+  transform: rotate(-15deg); /* Starts straightening as you reach for it */
+}
+
+.scratchpad-wrapper.open {
+  right: 50px; /* Snaps cleanly onto the reading frame */
+  transform: rotate(0deg); /* Fully straight to write! */
+  cursor: default;
+}
+
+/* Background overlay when open */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1005; /* Below the modal overlay and the right-click menus, but above the rest */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+body.scratchpad-active::after {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scratchpad-panel {
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, #fdfbc7 92%, transparent); /* Post It Note Yellow */
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: none; /* Removed entirely per user request! */
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .scratchpad-panel {
+  background: color-mix(in srgb, #4a472c 95%, transparent); /* Dark mode yellow-brown */
+}
+
+/* For readability, remove frosted blur on panel since it's a solid paper color */
+.scratchpad-panel {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.scratchpad-textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  padding: 30px;
+  font-family: inherit;
+  font-size: 1.15rem;
+  color: #1c1c1c;
+  line-height: 1.6;
+  outline: none;
+}
+
+[data-theme="dark"] .scratchpad-textarea {
+  color: #fff9e6;
+}
+
+.scratchpad-textarea::placeholder {
+  color: rgba(28, 28, 28, 0.4);
+}
+
+[data-theme="dark"] .scratchpad-textarea::placeholder {
+  color: rgba(255, 249, 230, 0.4);
 }
 
 @media (max-width: 600px) {
