@@ -273,7 +273,12 @@ function initCategories(app) {
     renderedCatIds.add(cat.name);
 
     const displayName = getRenamedCats()[cat.name] || cat.name;
-    const itemIcon = cat.icon || "📁";
+
+    // Use a simple, elegant SVG folder icon if no custom icon is provided (or if it's the old emoji)
+    let itemIcon = cat.icon;
+    if (!itemIcon || itemIcon === "📁" || itemIcon === "\uD83D\uDCC1") {
+      itemIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`;
+    }
 
     const tab = document.createElement("button");
     tab.className = "sidebar-tab";
@@ -322,7 +327,7 @@ function initCategories(app) {
   addCatBtn.textContent = "+ Add new category";
   addCatBtn.addEventListener("click", () => {
     const internalName = "New Category_" + Date.now();
-    const icon = "\uD83D\uDCC1";
+    const icon = ""; // Let it default to the clean SVG
     const cats = getCustomCats();
     cats.push({ name: internalName, icon });
     saveCustomCats(cats);

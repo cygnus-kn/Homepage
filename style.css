@@ -371,15 +371,23 @@ body::before {
 .tab-name {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   width: 100%;
 }
 
 .tab-icon {
-  font-size: 1.1rem;
-  line-height: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  opacity: 0.8;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.sidebar-tab:hover .tab-icon,
+.sidebar-tab.active .tab-icon {
+  color: inherit;
+  opacity: 1;
 }
 
 .tab-text {
@@ -387,6 +395,7 @@ body::before {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-top: 2px;
 }
 
 .category-content {
