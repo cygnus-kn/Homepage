@@ -76,6 +76,18 @@ function createFeedItem(article, index, hiddenArticles) {
   return row;
 }
 
+function createSkeletonLoader(count = 5) {
+  return Array.from({ length: count }, (_, i) => `
+    <div class="feed-skeleton" style="animation-delay: ${i * 0.1}s">
+      <div class="feed-skeleton__number"></div>
+      <div class="feed-skeleton__main">
+        <div class="feed-skeleton__title" style="width: ${70 + Math.floor((i * 37) % 25)}%"></div>
+        <div class="feed-skeleton__meta"></div>
+      </div>
+    </div>
+  `).join("");
+}
+
 function buildRssFeedBox(appEl) {
   const RssSources = collectRssSources();
   if (RssSources.length === 0) return;
@@ -86,7 +98,7 @@ function buildRssFeedBox(appEl) {
   feedBox.className = "feed-box";
   const feedContent = document.createElement("div");
   feedContent.className = "feed-content";
-  feedContent.innerHTML = `<div class="feed-loading">Loading articles...</div>`;
+  feedContent.innerHTML = createSkeletonLoader(5);
   feedBox.appendChild(feedContent);
   appEl.appendChild(feedBox);
 

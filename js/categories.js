@@ -230,6 +230,39 @@ function initCategories(app) {
 
   const sidebarWrapper = document.createElement("div");
   sidebarWrapper.className = "category-sidebar-wrapper";
+
+  // Mobile custom dropdown (hidden on desktop via CSS)
+  const mobileDropdown = document.createElement("div");
+  mobileDropdown.className = "category-mobile-dropdown";
+  mobileDropdown.setAttribute("aria-label", "Select category");
+
+  const mobileDropdownTrigger = document.createElement("button");
+  mobileDropdownTrigger.className = "cmd-trigger";
+  mobileDropdownTrigger.type = "button";
+  mobileDropdownTrigger.innerHTML = `
+    <span class="cmd-selected">
+      <span class="cmd-sel-icon"></span>
+      <span class="cmd-sel-text">Select category</span>
+    </span>
+    <svg class="cmd-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  `;
+
+  const mobileDropdownPanel = document.createElement("div");
+  mobileDropdownPanel.className = "cmd-panel";
+
+  mobileDropdown.appendChild(mobileDropdownTrigger);
+  mobileDropdown.appendChild(mobileDropdownPanel);
+  sidebarWrapper.appendChild(mobileDropdown);
+
+  // Toggle open/close
+  mobileDropdownTrigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileDropdown.classList.toggle("open");
+  });
+
+  // Close on outside click or Escape
+  document.addEventListener("click", () => mobileDropdown.classList.remove("open"));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") mobileDropdown.classList.remove("open"); });
   
   const sidebar = document.createElement("div");
   sidebar.className = "category-sidebar";
@@ -268,6 +301,14 @@ function initCategories(app) {
   let firstCat = null;
   const tabsMap = {};
 
+  // Helper: update the dropdown trigger display to the active category
+  function syncMobileDropdownTrigger(catName, iconHtml, displayName) {
+    const selIcon = mobileDropdownTrigger.querySelector(".cmd-sel-icon");
+    const selText = mobileDropdownTrigger.querySelector(".cmd-sel-text");
+    if (selIcon) selIcon.innerHTML = iconHtml;
+    if (selText) selText.textContent = displayName;
+  }
+
   const renderCategory = (cat) => {
     if (renderedCatIds.has(cat.name)) return;
     renderedCatIds.add(cat.name);
@@ -296,13 +337,34 @@ function initCategories(app) {
     tab.setAttribute("data-catname", cat.name);
     tab.innerHTML = `<span class="tab-name"><span class="tab-icon">${itemIcon}</span> <span class="tab-text">${displayName}</span></span>`;
 
-    const section = buildCategorySection(cat.name, itemIcon, cat.links, cat.isCustom, 
+    // Add a matching row to the mobile custom dropdown panel
+    const dropdownItem = document.createElement("button");
+    dropdownItem.className = "cmd-item";
+    dropdownItem.type = "button";
+    dropdownItem.setAttribute("data-catname", cat.name);
+    dropdownItem.innerHTML = `<span class="cmd-item-icon">${itemIcon}</span><span class="cmd-item-text">${displayName}</span>`;
+    dropdownItem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (tabsMap[cat.name]) tabsMap[cat.name].tab.click();
+      mobileDropdown.classList.remove("open");
+    });
+    mobileDropdownPanel.appendChild(dropdownItem);
+
+    const section = buildCategorySection(cat.name, itemIcon, cat.links, cat.isCustom,
       (newName) => {
         const textSpan = tab.querySelector(".tab-text");
         if (textSpan) textSpan.textContent = newName;
+        // Also update the dropdown item text
+        const dItem = mobileDropdownPanel.querySelector(`[data-catname="${CSS.escape(cat.name)}"] .cmd-item-text`);
+        if (dItem) dItem.textContent = newName;
+        // Update trigger if this is the active tab
+        if (tab.classList.contains("active")) syncMobileDropdownTrigger(cat.name, itemIcon, newName);
       },
       () => {
         tab.remove();
+        // Remove dropdown item
+        const dItem = mobileDropdownPanel.querySelector(`[data-catname="${CSS.escape(cat.name)}"]`);
+        if (dItem) dItem.remove();
         if (tab.classList.contains("active")) {
           const remainingTabs = sidebar.querySelectorAll(".sidebar-tab");
           if (remainingTabs.length > 0) remainingTabs[0].click();
@@ -316,6 +378,11 @@ function initCategories(app) {
       tab.classList.add("active");
       section.classList.add("active-tab");
       localStorage.setItem("homepage_active_tab", cat.name);
+      // Sync the mobile dropdown trigger
+      syncMobileDropdownTrigger(cat.name, itemIcon, displayName);
+      // Highlight active item in panel
+      mobileDropdownPanel.querySelectorAll(".cmd-item").forEach(i => i.classList.remove("active"));
+      dropdownItem.classList.add("active");
     });
 
     categoriesContainer.appendChild(section);
