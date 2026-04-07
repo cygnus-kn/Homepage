@@ -114,8 +114,13 @@ const heatmapData = {
     "title": "Another Tet day another same routine, but the gambling was fun though",
     "path": "notes/(2026-02-20) Another Tet day another same routine, but the gambling was fun though.md"
   },
+  "2026-04-01": {
+    "count": 255,
+    "title": "Been following Tip 2 tip, a series on YT and low commitment days this week",
+    "path": "notes/(2026-04-01) Been following Tip 2 tip, a series on YT and low commitment days this week.md"
+  },
   "2026-03-29": {
-    "count": 209,
+    "count": 105,
     "title": "Coming back to VT, lazy Sunday",
     "path": "notes/(2026-03-29) Coming back to VT, lazy Sunday.md"
   },
@@ -274,6 +279,11 @@ const heatmapData = {
     "title": "Cold and windy weather, sore throat turned into coughing",
     "path": "notes/(2026-01-15) Cold and windy weather, sore throat turned into coughing.md"
   },
+  "2026-04-04": {
+    "count": 376,
+    "title": "Going back to Tra Vinh, my thought on the state of my father's hometown",
+    "path": "notes/(2026-04-04) Going back to Tra Vinh, my thought on the state of my father's hometown.md"
+  },
   "2026-01-09": {
     "count": 461,
     "title": "Extreme cold weather and anxiety due to doom scrolling",
@@ -284,10 +294,20 @@ const heatmapData = {
     "title": "Weather turning rainy and investment keep growing",
     "path": "notes/(2026-02-25) Weather turning rainy and investment keep growing.md"
   },
+  "2026-04-03": {
+    "count": 265,
+    "title": "Going to work by grab today",
+    "path": "notes/(2026-04-03) Going to work by grab today.md"
+  },
   "2026-02-07": {
     "count": 472,
     "title": "Finally finish all cleaning tasks and go around to bookstore and megamarket",
     "path": "notes/(2026-02-07) Finally finish all cleaning tasks and go around to bookstore and megamarket.md"
+  },
+  "2026-03-30": {
+    "count": 258,
+    "title": "Returning to HCMC and unusually low traffic day",
+    "path": "notes/(2026-03-30) Returning to HCMC and unusually low traffic day.md"
   },
   "2026-02-23": {
     "count": 209,
