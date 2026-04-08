@@ -470,6 +470,38 @@ const CONFIG = {
                 iconUrl: "https://yt3.ggpht.com/ytc/AIdro_ngE7fO47swvERx3l6qvB8qU2wyNtjFLVyGe9T9jnBQNcA=s88-c-k-c0x00ffffff-no-rj"
             }
         ]
+    },
+    {
+        name: "Regular websites",
+        icon: "📁",
+        links: [
+            {
+                title: "Youtube",
+                url: "https://www.youtube.com/"
+            },
+            {
+                title: "Reddit",
+                url: "https://www.reddit.com/"
+            },
+            {
+                title: "Facebook",
+                url: "https://www.facebook.com/"
+            },
+            {
+                title: "Agena English",
+                url: "https://agena.edu.vn/"
+            },
+            {
+                title: "Google Drive",
+                url: "https://drive.google.com/drive/u/0/my-drive",
+                iconUrl: "https://static.vecteezy.com/system/resources/previews/017/395/378/non_2x/google-drive-icons-free-png.png"
+            },
+            {
+                title: "Shopee",
+                url: "https://shopee.vn/",
+                iconUrl: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/shopee-icon.png"
+            }
+        ]
     }
 ]
 };

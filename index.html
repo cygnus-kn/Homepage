@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
-  <div class="main-content">
+  <header class="topbar" id="topbar">
     <div class="site-switcher" id="site-switcher">
       <button id="sidebar-toggle" class="sidebar-toggle" title="Switch Site">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,6 +33,12 @@
         <button id="nav-stats" class="site-option">Heatmap & Stats</button>
       </div>
     </div>
+    
+    <div class="topbar__center" id="topbar-center"></div>
+    <div class="topbar__controls" id="topbar-controls"></div>
+  </header>
+
+  <div class="main-content">
 
     <div id="home-view" class="view active">
       <div class="container" id="app"></div>

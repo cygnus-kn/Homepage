@@ -19,10 +19,8 @@
 
 /* ── Site Switcher Dropdown ──────────────────────────────────── */
 .site-switcher {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  z-index: 1001; /* Above layout content, attached to scroll origin */
+  position: relative;
+  z-index: 1001; 
 }
 
 .sidebar-toggle {
@@ -120,18 +118,32 @@
 }
 
 
-/* ── Header (top-left, compact) ─────────────────────────────── */
-.header {
+/* ── Topbar (Global Header) ─────────────────────────────── */
+.topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 64px;
 }
 
-@media (max-width: 900px) {
-  .header {
-    padding-left: 3rem; /* Leave room for floating toggle on narrow screens */
-  }
+.topbar__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.topbar__controls {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 60px;
 }
 
 .theme-toggle {
@@ -185,11 +197,16 @@
 }
 
 .header__title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-family: var(--font-heading);
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--accent-1);
+  margin: 0;
+  padding: 0 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header__controls {

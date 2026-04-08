@@ -327,7 +327,7 @@ function initCategories(app) {
     };
 
     // Use a matched elegant SVG icon if mapped, otherwise default folder SVG
-    let itemIcon = cat.icon;
+    let itemIcon = getCategoryIconsMap()[cat.name] || cat.icon;
     if (!itemIcon || itemIcon === "📁" || itemIcon === "\uD83D\uDCC1") {
       itemIcon = svgIcons[cat.name] || `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`;
     }
@@ -335,14 +335,69 @@ function initCategories(app) {
     const tab = document.createElement("button");
     tab.className = "sidebar-tab";
     tab.setAttribute("data-catname", cat.name);
-    tab.innerHTML = `<span class="tab-name"><span class="tab-icon">${itemIcon}</span> <span class="tab-text">${displayName}</span></span>`;
+    tab.innerHTML = `<span class="tab-name"><span class="tab-icon" title="Change Icon" style="pointer-events: auto;">${itemIcon}</span> <span class="tab-text">${displayName}</span></span>`;
 
     // Add a matching row to the mobile custom dropdown panel
     const dropdownItem = document.createElement("button");
     dropdownItem.className = "cmd-item";
     dropdownItem.type = "button";
     dropdownItem.setAttribute("data-catname", cat.name);
-    dropdownItem.innerHTML = `<span class="cmd-item-icon">${itemIcon}</span><span class="cmd-item-text">${displayName}</span>`;
+    dropdownItem.innerHTML = `<span class="cmd-item-icon" title="Change Icon" style="pointer-events: auto;">${itemIcon}</span><span class="cmd-item-text">${displayName}</span>`;
+    
+    // Set up icon picker interactions
+    const handlePickerTrigger = (e) => {
+      if(e.stopPropagation) e.stopPropagation();
+      if(typeof showIconPicker === "function") {
+        showIconPicker(e.clientX, e.clientY, (newIconHtml) => {
+          const tIcon = tab.querySelector(".tab-icon");
+          if (tIcon) tIcon.innerHTML = newIconHtml;
+          const dItemIcon = dropdownItem.querySelector(".cmd-item-icon");
+          if (dItemIcon) dItemIcon.innerHTML = newIconHtml;
+          if (tab.classList.contains("active")) {
+             syncMobileDropdownTrigger(cat.name, newIconHtml, getRenamedCats()[cat.name] || cat.name);
+          }
+          itemIcon = newIconHtml;
+          if (cat.isCustom) {
+             const customCats = getCustomCats();
+             const target = customCats.find(c => c.name === cat.name);
+             if (target) {
+               target.icon = newIconHtml;
+               saveCustomCats(customCats);
+             }
+          } else {
+             const map = getCategoryIconsMap();
+             map[cat.name] = newIconHtml;
+             saveCategoryIconsMap(map);
+          }
+        });
+      }
+    };
+    
+    // Attach to tab-icon and cmd-item-icon
+    const tIconElem = tab.querySelector(".tab-icon");
+    const dIconElem = dropdownItem.querySelector(".cmd-item-icon");
+    
+    [tIconElem, dIconElem].forEach(el => {
+      if(!el) return;
+      el.style.cursor = "pointer";
+      el.addEventListener("click", handlePickerTrigger);
+      el.addEventListener("contextmenu", (e) => { e.preventDefault(); handlePickerTrigger(e); });
+      let touchTimer;
+      let hasMovedPicker = false;
+      el.addEventListener("touchstart", (e) => {
+        hasMovedPicker = false;
+        touchTimer = setTimeout(() => {
+          if (!hasMovedPicker) {
+            const touch = e.touches[0];
+            handlePickerTrigger({ clientX: touch.clientX, clientY: touch.clientY - 20, stopPropagation: () => {} });
+          }
+        }, 600);
+      }, { passive: true });
+      el.addEventListener("touchmove",   () => { hasMovedPicker = true; clearTimeout(touchTimer); }, { passive: true });
+      el.addEventListener("touchend",    () => clearTimeout(touchTimer));
+      el.addEventListener("touchcancel", () => clearTimeout(touchTimer));
+    });
+
     dropdownItem.addEventListener("click", (e) => {
       e.stopPropagation();
       if (tabsMap[cat.name]) tabsMap[cat.name].tab.click();

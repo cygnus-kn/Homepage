@@ -22,6 +22,7 @@
   // 4. Modal + Context menu (must init after categories exist)
   initModal();
   initContextMenu();
+  initIconPicker();
 
   // 5. Export / Reset actions bar
   initActionsBar(app);

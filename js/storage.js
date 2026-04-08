@@ -8,6 +8,7 @@ const RENAMED_KEY     = "homepage_renamed_cats";
 const CUSTOM_CATS_KEY = "homepage_custom_cats";
 const ORDERS_KEY      = "homepage_category_orders";
 const COLLAPSED_KEY   = "homepage_collapsed_cats";
+const CATEGORY_ICONS_KEY = "homepage_category_icons";
 
 function getCustomLinks() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
@@ -49,4 +50,11 @@ function getCollapsedCats() {
 }
 function saveCollapsedCats(data) {
   localStorage.setItem(COLLAPSED_KEY, JSON.stringify(data));
+}
+
+function getCategoryIconsMap() {
+  try { return JSON.parse(localStorage.getItem(CATEGORY_ICONS_KEY)) || {}; } catch { return {}; }
+}
+function saveCategoryIconsMap(data) {
+  localStorage.setItem(CATEGORY_ICONS_KEY, JSON.stringify(data));
 }

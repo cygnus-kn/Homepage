@@ -3,14 +3,14 @@
 // ============================================================
 
 function initNav(app) {
-  // ── Header ────────────────────────────────────────────────
-  const header = document.createElement("header");
-  header.className = "header";
+  // ── Header Target Nodes ───────────────────────────────────
+  const centerTarget = document.getElementById("topbar-center");
+  const controlsTarget = document.getElementById("topbar-controls");
 
   const title = document.createElement("h1");
   title.className = "header__title";
   title.textContent = CONFIG.siteTitle;
-  header.appendChild(title);
+  if(centerTarget) centerTarget.appendChild(title);
 
   // ── Theme Toggle ──────────────────────────────────────────
   const themeBtn = document.createElement("button");
@@ -75,8 +75,7 @@ function initNav(app) {
   }
   controls.appendChild(themeBtn);
 
-  header.appendChild(controls);
-  app.appendChild(header);
+  if(controlsTarget) controlsTarget.appendChild(controls);
 
   // ── Navigation sidebar ────────────────────────────────────
   const navHome      = document.getElementById("nav-home");
