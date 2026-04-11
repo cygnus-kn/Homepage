@@ -593,8 +593,9 @@ function hideContextMenu() {
 
 function deleteLink(el, catName, linkTitle, linkUrl, isCustom) {
   el.style.opacity   = "0";
-  el.style.transform = "scale(0.8)";
-  setTimeout(() => el.remove(), 200);
+  el.style.transform = "scale(0.92)";
+  el.style.transition = "opacity 0.2s ease-out, transform 0.25s cubic-bezier(0.33, 1, 0.68, 1)";
+  setTimeout(() => el.remove(), 250);
 
   if (isCustom) {
     const data = getCustomLinks();
@@ -1339,7 +1340,7 @@ function initActionsBar(app) {
 
   const resetBtn = document.createElement("button");
   resetBtn.className   = "action-btn action-btn--reset";
-  resetBtn.textContent = "♻️ Reset to Default";
+  resetBtn.innerHTML   = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg> Reset to Default`;
   resetBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to discard your browser's local edits and fully restore your layout directly from the master 'config.js' file?")) {
       const keys = [];
@@ -1356,7 +1357,7 @@ function initActionsBar(app) {
 
   const exportBtn = document.createElement("button");
   exportBtn.className   = "action-btn action-btn--export";
-  exportBtn.textContent = "💾 Save Layout";
+  exportBtn.innerHTML   = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Save Layout`;
   exportBtn.addEventListener("click", () => {
     if (!confirm("This will securely construct your entire displayed layout into code and download it as 'config.js'. Do you want to proceed?")) return;
 
