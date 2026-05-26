@@ -198,8 +198,17 @@ function initFooter(app) {
 //  RSS — Feed collection, fetching, and rendering
 // ============================================================
 
+function parseRssDate(dateString) {
+  if (!dateString) return NaN;
+  // rss2json returns "YYYY-MM-DD HH:MM:SS" which is not valid ISO 8601;
+  // replace the space with 'T' and treat as UTC so all browsers parse it correctly.
+  const normalized = dateString.replace(' ', 'T');
+  const ts = new Date(normalized.includes('Z') || normalized.includes('+') ? normalized : normalized + 'Z').getTime();
+  return ts;
+}
+
 function timeAgo(dateString) {
-  const timestamp = new Date(dateString).getTime();
+  const timestamp = parseRssDate(dateString);
   if (isNaN(timestamp)) return dateString;
   const seconds = Math.floor((new Date() - timestamp) / 1000);
   const intervals = { year: 31536000, month: 2592000, week: 604800, day: 86400, hour: 3600, minute: 60 };
@@ -319,7 +328,7 @@ function buildRssFeedBox(appEl) {
           const data = await response.json();
           if (data.status === "ok") {
             const items = data.items
-              .filter(item => new Date(item.pubDate).getTime() >= cutoffTime)
+              .filter(item => parseRssDate(item.pubDate) >= cutoffTime)
               .slice(0, 3)
               .map(item => ({ ...item, blogName: source.name }));
             localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: items }));
@@ -331,7 +340,7 @@ function buildRssFeedBox(appEl) {
 
       let allArticles = (await Promise.all(fetchPromises)).flat();
       let validArticles = allArticles.filter(item => !hiddenArticles.includes(item.link));
-      validArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+      validArticles.sort((a, b) => parseRssDate(b.pubDate) - parseRssDate(a.pubDate));
 
       const newestArticles = validArticles.slice(0, 20);
       feedContent.innerHTML = "";
