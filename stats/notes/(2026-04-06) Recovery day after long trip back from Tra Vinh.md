@@ -1,0 +1,10 @@
+I arrived home yesterday, back from Tra Vinh, from a grueling 10 hours on the road, due to intense traffic jam and diversion from congested road. It was horrible 10 hours sitting in a confined space, filled to the brim with stuff the my relatives from the country gave us. At one point we have to take some shady road that run along side with the national highway to find an entrance to it and I was afraid we were going to some dead-end and had to make a turnaround but luckily, that wasn't the case. I arrived home battered, beaten, exhausted because of all the travel, both on foot and on the car. We have to stop for 1 hrs at Ben Tre to visit some of the relatives from my mother's side since she didn't have the opportunity to come with her extended family home last year. What we would consider a brief stop turned into a whole meal and we couldn't leave until 5 p.m. 
+
+This morning, I did some laundry and replace my tire tubes for my back wheel since it was degraded to the point of leaking air like I mentioned in a note last week. They charged 40k VND fee. Preposterously expensive I say. In the evening, I taught two classes and talked to my students about getting the upcoming holiday early, convincing them to take a break not too early and come back soon. They've just come back from Tet holiday, which they took until 1st of Mar and then one month and a half later, they just have another one of one week long. So their study would obviously be negatively affected. 
+
+Turn out one of the game I saw a demo last year has released the full version "The Scourge: Tai Ương", the later part of the game is as good as the first, and the story as a whole, is meaningful, leaving an impact on the player. The choices that player has to made for the "Good ending" was appropriately hard, they can take short-cuts but it just furthers the agenda of the antagonist. 
+
+Tomorrow, I will clean the toilet, grade half of S129 Mock test 05 and buy some grocery, I'm out of several food items like peas and salad dresser. 
+
+---
+[[(2026-04-04) Going back to Tra Vinh, my thought on the state of my father's hometown]]

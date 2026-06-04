@@ -1,344 +1,4 @@
 const heatmapData = {
-  "2026-01-02": {
-    "count": 343,
-    "title": "It's near Tet holiday, people are taking pictures again",
-    "path": "notes/(2026-01-02) It's near Tet holiday, people are taking pictures again.md"
-  },
-  "2026-02-28": {
-    "count": 488,
-    "title": "Agentic vs knowledgeable dichotomy and starting to cook some simple dishes",
-    "path": "notes/(2026-02-28) Agentic vs knowledgeable dichotomy and starting to cook some simple dishes.md"
-  },
-  "2026-01-12": {
-    "count": 104,
-    "title": "Sore throat developing further, created some cool mashup today",
-    "path": "notes/(2026-01-12) Sore throat developing further, created some cool mashup today.md"
-  },
-  "2026-03-14": {
-    "count": 423,
-    "title": "Another experience cooking fish and diving into making website again",
-    "path": "notes/(2026-03-14) Another experience cooking fish and diving into making website again.md"
-  },
-  "2026-02-11": {
-    "count": 561,
-    "title": "Problem with abdominal pain leads to ER visit and return home on motorbike at night with heavy rain",
-    "path": "notes/(2026-02-11) Problem with abdominal pain leads to ER visit and return home on motorbike at night with heavy rain.md"
-  },
-  "2026-03-13": {
-    "count": 358,
-    "title": "Great sleep yesterday and more experience cooking",
-    "path": "notes/(2026-03-13) Great sleep yesterday and more experience cooking.md"
-  },
-  "2026-01-26": {
-    "count": 602,
-    "title": "Lazy morning but productive afternoon traveling around Thu Thiem 2 and Ba Son station",
-    "path": "notes/(2026-01-26) Lazy morning but productive afternoon traveling around Thu Thiem 2 and Ba Son station.md"
-  },
-  "2026-02-19": {
-    "count": 154,
-    "title": "On the third day of Tet holiday, another day passes",
-    "path": "notes/(2026-02-19) On the third day of Tet holiday, another day passes.md"
-  },
-  "2026-03-25": {
-    "count": 362,
-    "title": "Another lazy day, cook different meal and taught two new classes",
-    "path": "notes/(2026-03-25) Another lazy day, cook different meal and taught two new classes.md"
-  },
-  "2026-02-09": {
-    "count": 334,
-    "title": "Fed up with playing Clash of Clans for too much and feeling the pressure of rising prices",
-    "path": "notes/(2026-02-09) Fed up with playing Clash of Clans for too much and feeling the pressure of rising prices.md"
-  },
-  "2026-01-25": {
-    "count": 403,
-    "title": "A lazy Sunday and figuring details of storing things long-term",
-    "path": "notes/(2026-01-25) A lazy Sunday and figuring details of storing things long-term.md"
-  },
-  "2026-02-18": {
-    "count": 255,
-    "title": "Second day of Tet",
-    "path": "notes/(2026-02-18) Second day of Tet.md"
-  },
-  "2026-03-28": {
-    "count": 175,
-    "title": "Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day",
-    "path": "notes/(2026-03-28) Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day.md"
-  },
-  "2026-03-03": {
-    "count": 342,
-    "title": "Assembling new furniture for the kitchen",
-    "path": "notes/(2026-03-03) Assembling new furniture for the kitchen.md"
-  },
-  "2026-02-26": {
-    "count": 205,
-    "title": "Fridge received and continue with creating PowerPoint slides.",
-    "path": "notes/(2026-02-26) Fridge received and continue with creating PowerPoint slides..md"
-  },
-  "2026-01-14": {
-    "count": 185,
-    "title": "Recovering from sore throat",
-    "path": "notes/(2026-01-14) Recovering from sore throat.md"
-  },
-  "2026-03-16": {
-    "count": 480,
-    "title": "Cooking fish getting better and odd season rain again",
-    "path": "notes/(2026-03-16) Cooking fish getting better and odd season rain again.md"
-  },
-  "2026-02-12": {
-    "count": 150,
-    "title": "Starting one piece of the investment plan today",
-    "path": "notes/(2026-02-12) Starting one piece of the investment plan today.md"
-  },
-  "2026-01-05": {
-    "count": 154,
-    "title": "End of the New Year holiday",
-    "path": "notes/(2026-01-05) End of the New Year holiday.md"
-  },
-  "2026-02-02": {
-    "count": 145,
-    "title": "didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset",
-    "path": "notes/(2026-02-02) didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset.md"
-  },
-  "2026-03-27": {
-    "count": 586,
-    "title": "Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good",
-    "path": "notes/(2026-03-27) Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good.md"
-  },
-  "2026-01-08": {
-    "count": 254,
-    "title": "Cold weather for the first few days of 2026 and gathering all note into one place, Obsidian",
-    "path": "notes/(2026-01-08) Cold weather for the first few days of 2026 and gathering all note into one place, Obsidian.md"
-  },
-  "2026-02-20": {
-    "count": 263,
-    "title": "Another Tet day another same routine, but the gambling was fun though",
-    "path": "notes/(2026-02-20) Another Tet day another same routine, but the gambling was fun though.md"
-  },
-  "2026-04-01": {
-    "count": 255,
-    "title": "Been following Tip 2 tip, a series on YT and low commitment days this week",
-    "path": "notes/(2026-04-01) Been following Tip 2 tip, a series on YT and low commitment days this week.md"
-  },
-  "2026-03-29": {
-    "count": 105,
-    "title": "Coming back to VT, lazy Sunday",
-    "path": "notes/(2026-03-29) Coming back to VT, lazy Sunday.md"
-  },
-  "2026-01-29": {
-    "count": 303,
-    "title": "Cleaning the kitchen counter and continue to download music",
-    "path": "notes/(2026-01-29) Cleaning the kitchen counter and continue to download music.md"
-  },
-  "2026-03-11": {
-    "count": 328,
-    "title": "Stay up too late and somewhat successful cream sauce cooking",
-    "path": "notes/(2026-03-11) Stay up too late and somewhat successful cream sauce cooking.md"
-  },
-  "2026-01-28": {
-    "count": 282,
-    "title": "Downloading songs for my phone and S127 ended yesterday",
-    "path": "notes/(2026-01-28) Downloading songs for my phone and S127 ended yesterday.md"
-  },
-  "2026-02-17": {
-    "count": 436,
-    "title": "Busy first day of Tet holiday",
-    "path": "notes/(2026-02-17) Busy first day of Tet holiday.md"
-  },
-  "2026-02-01": {
-    "count": 329,
-    "title": "ACX meetup yesterday and going to an English club",
-    "path": "notes/(2026-02-01) ACX meetup yesterday and going to an English club.md"
-  },
-  "2026-01-11": {
-    "count": 228,
-    "title": "Ye old sore throat and fire near the traditional market near my home",
-    "path": "notes/(2026-01-11) Ye old sore throat and fire near the traditional market near my home.md"
-  },
-  "2026-03-08": {
-    "count": 485,
-    "title": "After a week of cooking at home, there are many issues",
-    "path": "notes/(2026-03-08) After a week of cooking at home, there are many issues.md"
-  },
-  "2026-02-15": {
-    "count": 306,
-    "title": "Another day before Tet holiday with lots of prep",
-    "path": "notes/(2026-02-15) Another day before Tet holiday with lots of prep.md"
-  },
-  "2026-02-10": {
-    "count": 245,
-    "title": "Last day in HCMC before returning to VT with many flower displays set up",
-    "path": "notes/(2026-02-10) Last day in HCMC before returning to VT with many flower displays set up.md"
-  },
-  "2026-03-15": {
-    "count": 287,
-    "title": "ACX meetup in the morning till afternoon with many taboo topics",
-    "path": "notes/(2026-03-15) ACX meetup in the morning till afternoon with many taboo topics.md"
-  },
-  "2026-03-24": {
-    "count": 330,
-    "title": "Another lazy day, feeling sleepy and unwilling",
-    "path": "notes/(2026-03-24) Another lazy day, feeling sleepy and unwilling.md"
-  },
-  "2026-01-21": {
-    "count": 473,
-    "title": "Receiving the Samsung phone and a wonderful wander to the Park under Thu Thiem 2 bridge",
-    "path": "notes/(2026-01-21) Receiving the Samsung phone and a wonderful wander to the Park under Thu Thiem 2 bridge.md"
-  },
-  "2026-02-14": {
-    "count": 235,
-    "title": "As preparation for Tet holiday continues",
-    "path": "notes/(2026-02-14) As preparation for Tet holiday continues.md"
-  },
-  "2026-01-23": {
-    "count": 302,
-    "title": "Wake up late feeling tire and another beautiful sunset walking near Thu Thiem 2 park",
-    "path": "notes/(2026-01-23) Wake up late feeling tire and another beautiful sunset walking near Thu Thiem 2 park.md"
-  },
-  "2026-01-30": {
-    "count": 234,
-    "title": "Finish with cleaning the kitchen and going to Thu Thiem 2 park again today for a walk",
-    "path": "notes/(2026-01-30) Finish with cleaning the kitchen and going to Thu Thiem 2 park again today for a walk.md"
-  },
-  "2026-02-22": {
-    "count": 567,
-    "title": "Tet holiday is over, rated ok and migration of notes from Notion to Obsidian resumed",
-    "path": "notes/(2026-02-22) Tet holiday is over, rated ok and migration of notes from Notion to Obsidian resumed.md"
-  },
-  "2026-01-19": {
-    "count": 388,
-    "title": "An adventure with more problems than gains",
-    "path": "notes/(2026-01-19) An adventure with more problems than gains.md"
-  },
-  "2026-03-19": {
-    "count": 661,
-    "title": "Cooking again with some success and walked in the evening 3k steps",
-    "path": "notes/(2026-03-19) Cooking again with some success and walked in the evening 3k steps.md"
-  },
-  "2026-03-10": {
-    "count": 323,
-    "title": "History VN-Index drop and gas prices rises sharply",
-    "path": "notes/(2026-03-10) History VN-Index drop and gas prices rises sharply.md"
-  },
-  "2026-02-08": {
-    "count": 587,
-    "title": "Done with all the cleaning and finish with grading tests for one class, went to the lovely kite flying ground again today.",
-    "path": "notes/(2026-02-08) Done with all the cleaning and finish with grading tests for one class, went to the lovely kite flying ground again today..md"
-  },
-  "2026-01-18": {
-    "count": 224,
-    "title": "Back to Vung Tau and road construction despite directive from the government not to",
-    "path": "notes/(2026-01-18) Back to Vung Tau and road construction despite directive from the government not to.md"
-  },
-  "2026-03-02": {
-    "count": 512,
-    "title": "More cooking problem arises and first day back to work",
-    "path": "notes/(2026-03-02) More cooking problem arises and first day back to work.md"
-  },
-  "2026-03-22": {
-    "count": 787,
-    "title": "Got addicted to vibe coding, meetup ACX yesterday, went to an English club today",
-    "path": "notes/(2026-03-22) Got addicted to vibe coding, meetup ACX yesterday, went to an English club today.md"
-  },
-  "2026-01-03": {
-    "count": 263,
-    "title": "Doing some chores today",
-    "path": "notes/(2026-01-03) Doing some chores today.md"
-  },
-  "2026-03-06": {
-    "count": 271,
-    "title": "Odd season raining and continued bear market",
-    "path": "notes/(2026-03-06) Odd season raining and continued bear market.md"
-  },
-  "2026-02-16": {
-    "count": 188,
-    "title": "Lunar New Year's Eve the last day of lunar year",
-    "path": "notes/(2026-02-16) Lunar New Year's Eve the last day of lunar year.md"
-  },
-  "2026-02-27": {
-    "count": 315,
-    "title": "Setting up home cook continued",
-    "path": "notes/(2026-02-27) Setting up home cook continued.md"
-  },
-  "2026-03-26": {
-    "count": 186,
-    "title": "Another lazy day, cook fish and meat ball together, had only one class",
-    "path": "notes/(2026-03-26) Another lazy day, cook fish and meat ball together, had only one class.md"
-  },
-  "2026-02-13": {
-    "count": 177,
-    "title": "Another block of the investment foundation laid",
-    "path": "notes/(2026-02-13) Another block of the investment foundation laid.md"
-  },
-  "2026-02-04": {
-    "count": 406,
-    "title": "a little bit sleep deprived and an adventure to a rarely explored area near Cat Lai",
-    "path": "notes/(2026-02-04) a little bit sleep deprived and an adventure to a rarely explored area near Cat Lai.md"
-  },
-  "2026-01-15": {
-    "count": 402,
-    "title": "Cold and windy weather, sore throat turned into coughing",
-    "path": "notes/(2026-01-15) Cold and windy weather, sore throat turned into coughing.md"
-  },
-  "2026-04-04": {
-    "count": 376,
-    "title": "Going back to Tra Vinh, my thought on the state of my father's hometown",
-    "path": "notes/(2026-04-04) Going back to Tra Vinh, my thought on the state of my father's hometown.md"
-  },
-  "2026-01-09": {
-    "count": 461,
-    "title": "Extreme cold weather and anxiety due to doom scrolling",
-    "path": "notes/(2026-01-09) Extreme cold weather and anxiety due to doom scrolling.md"
-  },
-  "2026-02-25": {
-    "count": 457,
-    "title": "Weather turning rainy and investment keep growing",
-    "path": "notes/(2026-02-25) Weather turning rainy and investment keep growing.md"
-  },
-  "2026-04-03": {
-    "count": 265,
-    "title": "Going to work by grab today",
-    "path": "notes/(2026-04-03) Going to work by grab today.md"
-  },
-  "2026-02-07": {
-    "count": 472,
-    "title": "Finally finish all cleaning tasks and go around to bookstore and megamarket",
-    "path": "notes/(2026-02-07) Finally finish all cleaning tasks and go around to bookstore and megamarket.md"
-  },
-  "2026-03-30": {
-    "count": 258,
-    "title": "Returning to HCMC and unusually low traffic day",
-    "path": "notes/(2026-03-30) Returning to HCMC and unusually low traffic day.md"
-  },
-  "2026-02-23": {
-    "count": 209,
-    "title": "Coming back to HCMC after Tet holiday",
-    "path": "notes/(2026-02-23) Coming back to HCMC after Tet holiday.md"
-  },
-  "2026-01-16": {
-    "count": 168,
-    "title": "Feeling productive in the morning and went to the kite-flying ground to relax again",
-    "path": "notes/(2026-01-16) Feeling productive in the morning and went to the kite-flying ground to relax again.md"
-  },
-  "2026-03-17": {
-    "count": 668,
-    "title": "Cooking stir-fried beef and fried chicken and went to Thu Thiem 2 park in the afternoon",
-    "path": "notes/(2026-03-17) Cooking stir-fried beef and fried chicken and went to Thu Thiem 2 park in the afternoon.md"
-  },
-  "2026-03-04": {
-    "count": 362,
-    "title": "Home cook a full meal for the first time in years and procrastination before sleeping getting worse",
-    "path": "notes/(2026-03-04) Home cook a full meal for the first time in years and procrastination before sleeping getting worse.md"
-  },
-  "2026-01-06": {
-    "count": 136,
-    "title": "Having my scooter serviced today, shivering rain in the evening",
-    "path": "notes/(2026-01-06) Having my scooter serviced today, shivering rain in the evening.md"
-  },
-  "2026-03-23": {
-    "count": 360,
-    "title": "New Monday same routine, bearish stock market",
-    "path": "notes/(2026-03-23) New Monday same routine, bearish stock market.md"
-  },
   "2022-08-29": {
     "count": 969,
     "title": "Anti-fragile in the age of fragility",
@@ -1113,5 +773,475 @@ const heatmapData = {
     "count": 135,
     "title": "Crisis stage 3rd?",
     "path": "notes/(2020-06-08) Crisis stage 3rd?.md"
+  },
+  "2026-01-02": {
+    "count": 343,
+    "title": "It's near Tet holiday, people are taking pictures again",
+    "path": "notes/(2026-01-02) It's near Tet holiday, people are taking pictures again.md"
+  },
+  "2026-02-28": {
+    "count": 488,
+    "title": "Agentic vs knowledgeable dichotomy and starting to cook some simple dishes",
+    "path": "notes/(2026-02-28) Agentic vs knowledgeable dichotomy and starting to cook some simple dishes.md"
+  },
+  "2026-01-12": {
+    "count": 104,
+    "title": "Sore throat developing further, created some cool mashup today",
+    "path": "notes/(2026-01-12) Sore throat developing further, created some cool mashup today.md"
+  },
+  "2026-03-14": {
+    "count": 423,
+    "title": "Another experience cooking fish and diving into making website again",
+    "path": "notes/(2026-03-14) Another experience cooking fish and diving into making website again.md"
+  },
+  "2026-02-11": {
+    "count": 561,
+    "title": "Problem with abdominal pain leads to ER visit and return home on motorbike at night with heavy rain",
+    "path": "notes/(2026-02-11) Problem with abdominal pain leads to ER visit and return home on motorbike at night with heavy rain.md"
+  },
+  "2026-03-13": {
+    "count": 358,
+    "title": "Great sleep yesterday and more experience cooking",
+    "path": "notes/(2026-03-13) Great sleep yesterday and more experience cooking.md"
+  },
+  "2026-04-23": {
+    "count": 468,
+    "title": "Cooking delicious soup today",
+    "path": "notes/(2026-04-23) Cooking delicious soup today.md"
+  },
+  "2026-01-26": {
+    "count": 602,
+    "title": "Lazy morning but productive afternoon traveling around Thu Thiem 2 and Ba Son station",
+    "path": "notes/(2026-01-26) Lazy morning but productive afternoon traveling around Thu Thiem 2 and Ba Son station.md"
+  },
+  "2026-02-19": {
+    "count": 154,
+    "title": "On the third day of Tet holiday, another day passes",
+    "path": "notes/(2026-02-19) On the third day of Tet holiday, another day passes.md"
+  },
+  "2026-03-25": {
+    "count": 362,
+    "title": "Another lazy day, cook different meal and taught two new classes",
+    "path": "notes/(2026-03-25) Another lazy day, cook different meal and taught two new classes.md"
+  },
+  "2026-02-09": {
+    "count": 334,
+    "title": "Fed up with playing Clash of Clans for too much and feeling the pressure of rising prices",
+    "path": "notes/(2026-02-09) Fed up with playing Clash of Clans for too much and feeling the pressure of rising prices.md"
+  },
+  "2026-01-25": {
+    "count": 403,
+    "title": "A lazy Sunday and figuring details of storing things long-term",
+    "path": "notes/(2026-01-25) A lazy Sunday and figuring details of storing things long-term.md"
+  },
+  "2026-04-24": {
+    "count": 357,
+    "title": "Major traffic jam before the holiday and still can't crack speaking classes",
+    "path": "notes/(2026-04-24) Major traffic jam before the holiday and still can't crack speaking classes.md"
+  },
+  "2026-05-13": {
+    "count": 206,
+    "title": "Power outage late at night again",
+    "path": "notes/(2026-05-13) Power outage late at night again.md"
+  },
+  "2026-02-18": {
+    "count": 255,
+    "title": "Second day of Tet",
+    "path": "notes/(2026-02-18) Second day of Tet.md"
+  },
+  "2026-04-17": {
+    "count": 129,
+    "title": "Overcast morning and hot afternoon",
+    "path": "notes/(2026-04-17) Overcast morning and hot afternoon.md"
+  },
+  "2026-03-28": {
+    "count": 175,
+    "title": "Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day",
+    "path": "notes/(2026-03-28) Fire stir-fry beef today with green pepper and mushroom, overall still a lazy day.md"
+  },
+  "2026-03-03": {
+    "count": 342,
+    "title": "Assembling new furniture for the kitchen",
+    "path": "notes/(2026-03-03) Assembling new furniture for the kitchen.md"
+  },
+  "2026-02-26": {
+    "count": 205,
+    "title": "Fridge received and continue with creating PowerPoint slides.",
+    "path": "notes/(2026-02-26) Fridge received and continue with creating PowerPoint slides..md"
+  },
+  "2026-05-11": {
+    "count": 127,
+    "title": "A really productive morning today as well as productive classes",
+    "path": "notes/(2026-05-11) A really productive morning today as well as productive classes.md"
+  },
+  "2026-01-14": {
+    "count": 185,
+    "title": "Recovering from sore throat",
+    "path": "notes/(2026-01-14) Recovering from sore throat.md"
+  },
+  "2026-05-31": {
+    "count": 199,
+    "title": "Listening while preparing for a meal is fun actually, non-ironically",
+    "path": "notes/(2026-05-31) Listening while preparing for a meal is fun actually, non-ironically.md"
+  },
+  "2026-03-16": {
+    "count": 480,
+    "title": "Cooking fish getting better and odd season rain again",
+    "path": "notes/(2026-03-16) Cooking fish getting better and odd season rain again.md"
+  },
+  "2026-05-30": {
+    "count": 720,
+    "title": "Raining heavily in the evening on my way back home",
+    "path": "notes/(2026-05-30) Raining heavily in the evening on my way back home.md"
+  },
+  "2026-02-12": {
+    "count": 150,
+    "title": "Starting one piece of the investment plan today",
+    "path": "notes/(2026-02-12) Starting one piece of the investment plan today.md"
+  },
+  "2026-01-05": {
+    "count": 154,
+    "title": "End of the New Year holiday",
+    "path": "notes/(2026-01-05) End of the New Year holiday.md"
+  },
+  "2026-02-02": {
+    "count": 145,
+    "title": "didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset",
+    "path": "notes/(2026-02-02) didn't do much and going to Thu Thiem 2 park for another walk and stay at GS25 to watch the sunset.md"
+  },
+  "2026-05-23": {
+    "count": 360,
+    "title": "A beautiful typical summer morning and a normal day",
+    "path": "notes/(2026-05-23) A beautiful typical summer morning and a normal day.md"
+  },
+  "2026-03-27": {
+    "count": 586,
+    "title": "Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good",
+    "path": "notes/(2026-03-27) Another lazy day but I decided to go for a ride around Dist. 9, long-term review of home cooking - it's good.md"
+  },
+  "2026-01-08": {
+    "count": 254,
+    "title": "Cold weather for the first few days of 2026 and gathering all note into one place, Obsidian",
+    "path": "notes/(2026-01-08) Cold weather for the first few days of 2026 and gathering all note into one place, Obsidian.md"
+  },
+  "2026-05-16": {
+    "count": 183,
+    "title": "Inkling of a cold and a rainy day",
+    "path": "notes/(2026-05-16) Inkling of a cold and a rainy day.md"
+  },
+  "2026-02-20": {
+    "count": 263,
+    "title": "Another Tet day another same routine, but the gambling was fun though",
+    "path": "notes/(2026-02-20) Another Tet day another same routine, but the gambling was fun though.md"
+  },
+  "2026-04-01": {
+    "count": 255,
+    "title": "Been following Tip 2 tip, a series on YT and low commitment days this week",
+    "path": "notes/(2026-04-01) Been following Tip 2 tip, a series on YT and low commitment days this week.md"
+  },
+  "2026-03-29": {
+    "count": 105,
+    "title": "Coming back to VT, lazy Sunday",
+    "path": "notes/(2026-03-29) Coming back to VT, lazy Sunday.md"
+  },
+  "2026-01-29": {
+    "count": 303,
+    "title": "Cleaning the kitchen counter and continue to download music",
+    "path": "notes/(2026-01-29) Cleaning the kitchen counter and continue to download music.md"
+  },
+  "2026-03-11": {
+    "count": 328,
+    "title": "Stay up too late and somewhat successful cream sauce cooking",
+    "path": "notes/(2026-03-11) Stay up too late and somewhat successful cream sauce cooking.md"
+  },
+  "2026-01-28": {
+    "count": 282,
+    "title": "Downloading songs for my phone and S127 ended yesterday",
+    "path": "notes/(2026-01-28) Downloading songs for my phone and S127 ended yesterday.md"
+  },
+  "2026-02-17": {
+    "count": 436,
+    "title": "Busy first day of Tet holiday",
+    "path": "notes/(2026-02-17) Busy first day of Tet holiday.md"
+  },
+  "2026-02-01": {
+    "count": 329,
+    "title": "ACX meetup yesterday and going to an English club",
+    "path": "notes/(2026-02-01) ACX meetup yesterday and going to an English club.md"
+  },
+  "2026-04-18": {
+    "count": 204,
+    "title": "Still hot days and more ahead",
+    "path": "notes/(2026-04-18) Still hot days and more ahead.md"
+  },
+  "2026-01-11": {
+    "count": 228,
+    "title": "Ye old sore throat and fire near the traditional market near my home",
+    "path": "notes/(2026-01-11) Ye old sore throat and fire near the traditional market near my home.md"
+  },
+  "2026-03-08": {
+    "count": 485,
+    "title": "After a week of cooking at home, there are many issues",
+    "path": "notes/(2026-03-08) After a week of cooking at home, there are many issues.md"
+  },
+  "2026-02-15": {
+    "count": 306,
+    "title": "Another day before Tet holiday with lots of prep",
+    "path": "notes/(2026-02-15) Another day before Tet holiday with lots of prep.md"
+  },
+  "2026-02-10": {
+    "count": 245,
+    "title": "Last day in HCMC before returning to VT with many flower displays set up",
+    "path": "notes/(2026-02-10) Last day in HCMC before returning to VT with many flower displays set up.md"
+  },
+  "2026-03-15": {
+    "count": 287,
+    "title": "ACX meetup in the morning till afternoon with many taboo topics",
+    "path": "notes/(2026-03-15) ACX meetup in the morning till afternoon with many taboo topics.md"
+  },
+  "2026-04-07": {
+    "count": 421,
+    "title": "Hotter days are coming, with less wind and more heat",
+    "path": "notes/(2026-04-07) Hotter days are coming, with less wind and more heat.md"
+  },
+  "2026-03-24": {
+    "count": 330,
+    "title": "Another lazy day, feeling sleepy and unwilling",
+    "path": "notes/(2026-03-24) Another lazy day, feeling sleepy and unwilling.md"
+  },
+  "2026-05-10": {
+    "count": 568,
+    "title": "Recap of this god forsaken week of heat and unwillingness",
+    "path": "notes/(2026-05-10) Recap of this god forsaken week of heat and unwillingness.md"
+  },
+  "2026-01-21": {
+    "count": 473,
+    "title": "Receiving the Samsung phone and a wonderful wander to the Park under Thu Thiem 2 bridge",
+    "path": "notes/(2026-01-21) Receiving the Samsung phone and a wonderful wander to the Park under Thu Thiem 2 bridge.md"
+  },
+  "2026-02-14": {
+    "count": 235,
+    "title": "As preparation for Tet holiday continues",
+    "path": "notes/(2026-02-14) As preparation for Tet holiday continues.md"
+  },
+  "2026-04-12": {
+    "count": 387,
+    "title": "Another weekend day-off, new vibe coding project and going to English club in the evening",
+    "path": "notes/(2026-04-12) Another weekend day-off, new vibe coding project and going to English club in the evening.md"
+  },
+  "2026-01-23": {
+    "count": 302,
+    "title": "Wake up late feeling tire and another beautiful sunset walking near Thu Thiem 2 park",
+    "path": "notes/(2026-01-23) Wake up late feeling tire and another beautiful sunset walking near Thu Thiem 2 park.md"
+  },
+  "2026-01-30": {
+    "count": 234,
+    "title": "Finish with cleaning the kitchen and going to Thu Thiem 2 park again today for a walk",
+    "path": "notes/(2026-01-30) Finish with cleaning the kitchen and going to Thu Thiem 2 park again today for a walk.md"
+  },
+  "2026-02-22": {
+    "count": 567,
+    "title": "Tet holiday is over, rated ok and migration of notes from Notion to Obsidian resumed",
+    "path": "notes/(2026-02-22) Tet holiday is over, rated ok and migration of notes from Notion to Obsidian resumed.md"
+  },
+  "2026-01-19": {
+    "count": 388,
+    "title": "An adventure with more problems than gains",
+    "path": "notes/(2026-01-19) An adventure with more problems than gains.md"
+  },
+  "2026-04-14": {
+    "count": 282,
+    "title": "Continue with vibe coding project and researching tires for scooter",
+    "path": "notes/(2026-04-14) Continue with vibe coding project and researching tires for scooter.md"
+  },
+  "2026-04-21": {
+    "count": 442,
+    "title": "New week this week",
+    "path": "notes/(2026-04-21) New week this week.md"
+  },
+  "2026-05-27": {
+    "count": 323,
+    "title": "reading book in the morning and classes felt absent-minded in the evening, the heat continues",
+    "path": "notes/(2026-05-27) reading book in the morning and classes felt absent-minded in the evening, the heat continues.md"
+  },
+  "2026-03-19": {
+    "count": 661,
+    "title": "Cooking again with some success and walked in the evening 3k steps",
+    "path": "notes/(2026-03-19) Cooking again with some success and walked in the evening 3k steps.md"
+  },
+  "2026-05-04": {
+    "count": 176,
+    "title": "Just caming back the scorching hot HCM, students are all absent",
+    "path": "notes/(2026-05-04) Just caming back the scorching hot HCM, students are all absent.md"
+  },
+  "2026-03-10": {
+    "count": 323,
+    "title": "History VN-Index drop and gas prices rises sharply",
+    "path": "notes/(2026-03-10) History VN-Index drop and gas prices rises sharply.md"
+  },
+  "2026-02-08": {
+    "count": 587,
+    "title": "Done with all the cleaning and finish with grading tests for one class, went to the lovely kite flying ground again today.",
+    "path": "notes/(2026-02-08) Done with all the cleaning and finish with grading tests for one class, went to the lovely kite flying ground again today..md"
+  },
+  "2026-01-18": {
+    "count": 224,
+    "title": "Back to Vung Tau and road construction despite directive from the government not to",
+    "path": "notes/(2026-01-18) Back to Vung Tau and road construction despite directive from the government not to.md"
+  },
+  "2026-03-02": {
+    "count": 512,
+    "title": "More cooking problem arises and first day back to work",
+    "path": "notes/(2026-03-02) More cooking problem arises and first day back to work.md"
+  },
+  "2026-04-16": {
+    "count": 593,
+    "title": "Going to tax agency with no help and covering classes in Dist. 9",
+    "path": "notes/(2026-04-16) Going to tax agency with no help and covering classes in Dist. 9.md"
+  },
+  "2026-04-06": {
+    "count": 398,
+    "title": "Recovery day after long trip back from Tra Vinh",
+    "path": "notes/(2026-04-06) Recovery day after long trip back from Tra Vinh.md"
+  },
+  "2026-03-22": {
+    "count": 787,
+    "title": "Got addicted to vibe coding, meetup ACX yesterday, went to an English club today",
+    "path": "notes/(2026-03-22) Got addicted to vibe coding, meetup ACX yesterday, went to an English club today.md"
+  },
+  "2026-05-21": {
+    "count": 373,
+    "title": "Some update for this week",
+    "path": "notes/(2026-05-21) Some update for this week.md"
+  },
+  "2026-01-03": {
+    "count": 263,
+    "title": "Doing some chores today",
+    "path": "notes/(2026-01-03) Doing some chores today.md"
+  },
+  "2026-03-06": {
+    "count": 271,
+    "title": "Odd season raining and continued bear market",
+    "path": "notes/(2026-03-06) Odd season raining and continued bear market.md"
+  },
+  "2026-05-24": {
+    "count": 234,
+    "title": "Going back to VT, sunny weather and relatives getting ill",
+    "path": "notes/(2026-05-24) Going back to VT, sunny weather and relatives getting ill.md"
+  },
+  "2026-04-09": {
+    "count": 670,
+    "title": "Days are still hot and reflection on the goals I've achieved or haven't this year",
+    "path": "notes/(2026-04-09) Days are still hot and reflection on the goals I've achieved or haven't this year.md"
+  },
+  "2026-02-16": {
+    "count": 188,
+    "title": "Lunar New Year's Eve the last day of lunar year",
+    "path": "notes/(2026-02-16) Lunar New Year's Eve the last day of lunar year.md"
+  },
+  "2026-02-27": {
+    "count": 315,
+    "title": "Setting up home cook continued",
+    "path": "notes/(2026-02-27) Setting up home cook continued.md"
+  },
+  "2026-03-26": {
+    "count": 186,
+    "title": "Another lazy day, cook fish and meat ball together, had only one class",
+    "path": "notes/(2026-03-26) Another lazy day, cook fish and meat ball together, had only one class.md"
+  },
+  "2026-04-13": {
+    "count": 313,
+    "title": "Hot days continues and two classes in the evening",
+    "path": "notes/(2026-04-13) Hot days continues and two classes in the evening.md"
+  },
+  "2026-02-13": {
+    "count": 177,
+    "title": "Another block of the investment foundation laid",
+    "path": "notes/(2026-02-13) Another block of the investment foundation laid.md"
+  },
+  "2026-02-04": {
+    "count": 406,
+    "title": "a little bit sleep deprived and an adventure to a rarely explored area near Cat Lai",
+    "path": "notes/(2026-02-04) a little bit sleep deprived and an adventure to a rarely explored area near Cat Lai.md"
+  },
+  "2026-01-15": {
+    "count": 402,
+    "title": "Cold and windy weather, sore throat turned into coughing",
+    "path": "notes/(2026-01-15) Cold and windy weather, sore throat turned into coughing.md"
+  },
+  "2026-04-11": {
+    "count": 408,
+    "title": "Full day off and ACX meetup",
+    "path": "notes/(2026-04-11) Full day off and ACX meetup.md"
+  },
+  "2026-04-04": {
+    "count": 384,
+    "title": "Going back to Tra Vinh, my thought on the state of my father's hometown",
+    "path": "notes/(2026-04-04) Going back to Tra Vinh, my thought on the state of my father's hometown.md"
+  },
+  "2026-01-09": {
+    "count": 461,
+    "title": "Extreme cold weather and anxiety due to doom scrolling",
+    "path": "notes/(2026-01-09) Extreme cold weather and anxiety due to doom scrolling.md"
+  },
+  "2026-02-25": {
+    "count": 457,
+    "title": "Weather turning rainy and investment keep growing",
+    "path": "notes/(2026-02-25) Weather turning rainy and investment keep growing.md"
+  },
+  "2026-04-03": {
+    "count": 265,
+    "title": "Going to work by grab today",
+    "path": "notes/(2026-04-03) Going to work by grab today.md"
+  },
+  "2026-05-03": {
+    "count": 332,
+    "title": "Long holiday and vibe coding every single day",
+    "path": "notes/(2026-05-03) Long holiday and vibe coding every single day.md"
+  },
+  "2026-02-07": {
+    "count": 472,
+    "title": "Finally finish all cleaning tasks and go around to bookstore and megamarket",
+    "path": "notes/(2026-02-07) Finally finish all cleaning tasks and go around to bookstore and megamarket.md"
+  },
+  "2026-03-30": {
+    "count": 258,
+    "title": "Returning to HCMC and unusually low traffic day",
+    "path": "notes/(2026-03-30) Returning to HCMC and unusually low traffic day.md"
+  },
+  "2026-02-23": {
+    "count": 209,
+    "title": "Coming back to HCMC after Tet holiday",
+    "path": "notes/(2026-02-23) Coming back to HCMC after Tet holiday.md"
+  },
+  "2026-01-16": {
+    "count": 168,
+    "title": "Feeling productive in the morning and went to the kite-flying ground to relax again",
+    "path": "notes/(2026-01-16) Feeling productive in the morning and went to the kite-flying ground to relax again.md"
+  },
+  "2026-03-17": {
+    "count": 668,
+    "title": "Cooking stir-fried beef and fried chicken and went to Thu Thiem 2 park in the afternoon",
+    "path": "notes/(2026-03-17) Cooking stir-fried beef and fried chicken and went to Thu Thiem 2 park in the afternoon.md"
+  },
+  "2026-03-04": {
+    "count": 362,
+    "title": "Home cook a full meal for the first time in years and procrastination before sleeping getting worse",
+    "path": "notes/(2026-03-04) Home cook a full meal for the first time in years and procrastination before sleeping getting worse.md"
+  },
+  "2026-01-06": {
+    "count": 136,
+    "title": "Having my scooter serviced today, shivering rain in the evening",
+    "path": "notes/(2026-01-06) Having my scooter serviced today, shivering rain in the evening.md"
+  },
+  "2026-05-17": {
+    "count": 245,
+    "title": "Weekend with rain and ACX meetup",
+    "path": "notes/(2026-05-17) Weekend with rain and ACX meetup.md"
+  },
+  "2026-03-23": {
+    "count": 360,
+    "title": "New Monday same routine, bearish stock market",
+    "path": "notes/(2026-03-23) New Monday same routine, bearish stock market.md"
   }
 };

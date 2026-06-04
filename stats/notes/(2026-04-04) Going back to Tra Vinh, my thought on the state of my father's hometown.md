@@ -12,3 +12,4 @@ I haven't had any sleep since the 4hrs I had yesterday and I haven't showered un
 
 
 ---
+pre: [[(2026-04-03) Going to work by grab today]]

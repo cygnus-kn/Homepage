@@ -1,0 +1,12 @@
+The weather is getting hotter and there's less wind to day, and the temperature will continue to rise for the next few days, it seems like summer come early, but without the rain. It is usually rainy right before Labor Day but there isn't any indication of that. Right now, I'll just have to bear the heat. [[Nhiệt độ nhiều nơi vượt 40 độ C]]
+
+I haven't done anything significant today, doing some grading of S129 in the morning, haven't cleaned the toilet like I wrote for, I don't know, the last month or so. Buying some grocery, the Dutch peas are so expensive now that I saw the receipt, 50k VND for a bag of 1kg?, I think I need to find a replacement for quick frozen veggie. I also bought some plums today but it wasn't as sweet as last week, although it's the same vendor. 
+
+At lunch, I cook some pieces of pork, stir fried some water spinach. Drawing from experience from the last time I did that, I cut the heat immediately after putting the spinach in the pot, letting the residue heat do the cooking, at the end I had to turn on the heat for a little bit because the pot wasn't able to hold all the fresh veggie so I have to put a new batch in after the first one softened and reduced in volume. But since the heat wasn't enough to cook through the new batch of leaves, turning it on for a while was the only option. The stir-fried veggie turned out great, no browning or smell of burnt leaves like the last time I cooked.
+
+In the afternoon, I doom scroll until 3 p.m before taking some nap. Basically, I watch Tip2tip on Youtube, a series where two YTbers travel accross China without using maps and only relying on asking locals for directions. And their related contents like reactions video and bilibili comment. I just now know that the delay between the actual event and the videos is around 5 days. Both of them are back to the U.S but on these videos, they are 600 km to their actual final destination. Really throws off the immersive feeling of uncertainly that they might or might not make it, knowing they've already done it and returned.
+
+The night used to be more breezy and cool but not so much now, it is as suffocating as day, without any air circulation.
+
+---
+[[(2026-04-06) Recovery day after long trip back from Tra Vinh]]

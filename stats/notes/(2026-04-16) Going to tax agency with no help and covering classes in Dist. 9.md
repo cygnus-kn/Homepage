@@ -1,0 +1,15 @@
+I don't have a lot to cook in the fridge today, so I bought some braised pork belly and duck egg for lunch along with the rice I cooked at home. It isn't bad, I do like the immediately taste of the pork the richness of it but I dislike the salty fish sauce after taste. 
+
+Yesterday, I went to a tax agency in Ho Chi Minh city to ask for help setting up my e-tax account but there is no hope, people just pointing me to the wrong person and that person don't give me any useful information at all to continue, this is just how bureaucracy works in Vietnam, and the whole agency is always packed with people because of course they do, they just did a streamline of the whole government apparatus, firing over half of all government official, a people's committee that used to serve 10k people in a ward now have to serve 100k people in a newly drawn ward (new ward is like 1 million people each now). So I guess I have to search online for a specific instruction on how to complete the registration.
+
+Today, I didn't do a lot, just staying at home in the morning doing nothing, but in the afternoon and evening, I had a cover class for the old branch I used to teach in Dist. 9. All classrooms is smaller than I remember, and these people who worked at the receptionist desk is the same, as the matter of fact most of the staff there are still the same as when I left, which is really good for them. I didn't talk to them much but though. The class is online, only one person came in-person.
+
+I didn't make any adjustment to my homework viewing site because I think it's good already, most of the input I think would just be AI assisted so I don't need to build an interface to add new homework, just ask the AI to build it for me. Honestly, I'm in a little bit of boredom, unmotivated mood for the last few week, don't really want to do anything much, I just want to stay conserved in terms of energy although I know I should do a lot to improve my condition of living. Maybe clean the floor because I haven't done them since before Tet holiday and it's getting really dirty to the point that sweeping is not enough anymore. 
+
+Another things that has been on pause since after Tet holiday is consistent running schedule. I haven't done a single run since then and I can feel that I am less agile then before, waking up early is a non-starter and the weather is so hot to run, I know I complaint about this before but the weather didn't change because I do. It's still an insurmountable barrier. I would consider exercising at home but there is no equipment and it's even hotter in here, I don't want any air-condition since it consumes too much energy.
+
+In terms of consumption, I am still watching youtube and playing Clash of clan, as a matter of face the new account I created just ramming up in building time and things to do. Tip 2 tip China has wrapped up and there's nothing to binge now, although there is that final season of The Boys, but it releases new episode every Sunday so during the day-to-day, I just go from video to video.
+
+---
+pre: [[(2026-04-14) Continue with vibe coding project and researching tires for scooter]]
+
